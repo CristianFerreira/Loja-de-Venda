@@ -5,10 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "db_funcionario")
+@NamedQueries({ 
+	@NamedQuery(name = "Funcionario.listar", query = "SELECT funcionario FROM Funcionario funcionario"),
+	@NamedQuery(name="Funcionario.buscarPorCodigo", query = "SELECT funcionario FROM Funcionario funcionario"
+		+ " WHERE funcionario.codigo = :codigo") })
 public class Funcionario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) // AutoIncremento
@@ -78,6 +84,12 @@ public class Funcionario {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "Funcionario [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", senha=" + senha + ", telefone="
+				+ telefone + ", tipo=" + tipo + "]";
 	}
 
 }

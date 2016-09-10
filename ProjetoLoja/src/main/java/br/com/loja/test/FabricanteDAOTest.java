@@ -49,24 +49,35 @@ public class FabricanteDAOTest {
 		
 	}
 	
+//	@Test
+//	@Ignore
+//	public void excluir(){
+//		FabricanteDAO dao =  new FabricanteDAO();
+//		
+//		Fabricante fabricante = dao.buscarPorCodigo(2L);
+//		if(fabricante !=null){
+//			dao.excluir(fabricante);
+//		}
+//		
+//	}
+	
 	@Test
 	@Ignore
-	public void excluir(){
-		FabricanteDAO dao =  new FabricanteDAO();
-		
-		Fabricante fabricante = dao.buscarPorCodigo(2L);
-		if(fabricante !=null){
-			dao.excluir(fabricante);
-		}
-		
-	}
-	
-	@Test
-	
 	public void excluirPorCodigo(){
 		FabricanteDAO dao =  new FabricanteDAO();
 		
-		dao.excluir(2L);
+		dao.excluir(2L);	
+	}
+	
+	@Test
+	@Ignore
+	public void editar(){
+		FabricanteDAO dao =  new FabricanteDAO();
+		Fabricante f1 = new Fabricante();
+		f1.setCodigo(1L);
+		f1.setNome("RENNER");
+		
+		dao.editar(f1);
 		
 	}
 	

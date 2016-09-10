@@ -10,32 +10,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="db_produto")
+@Table(name = "db_produto")
+@NamedQueries({ @NamedQuery(name = "Produto.listar", query = "SELECT produto FROM Produto produto"),
+		@NamedQuery(name = "Produto.buscarPorCodigo", query = "SELECT produto FROM Produto produto"
+				+ " WHERE produto.codigo = :codigo") })
 public class Produto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "produtoID")
 	private Long codigo;
-	
+
 	@Column(length = 50, nullable = false)
 	private String descricao;
-	
-	@Column(precision = 7, scale = 2, nullable = false )
+
+	@Column(precision = 7, scale = 2, nullable = false)
 	private BigDecimal preco;
-	
+
 	@Column(nullable = false)
 	private Integer quantidade;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "db_fabricante_fabricanteID", referencedColumnName = "fabricanteID", nullable = false)
 	private Fabricante fabricante;
 
-	
-	//GET E SET
+	// GET E SET
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -75,6 +79,11 @@ public class Produto {
 	public void setFabricante(Fabricante fabricante) {
 		this.fabricante = fabricante;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Produto [codigo=" + codigo + ", descricao=" + descricao + ", preco=" + preco + ", quantidade="
+				+ quantidade + ", fabricante=" + fabricante + "]";
+	}
+
 }
