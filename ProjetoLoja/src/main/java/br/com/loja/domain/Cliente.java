@@ -16,7 +16,10 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="db_cliente")
-
+@NamedQueries({ 
+	@NamedQuery(name = "Cliente.listar", query = "SELECT cliente FROM Cliente cliente"),
+	@NamedQuery(name="Cliente.buscarPorCodigo", query = "SELECT cliente FROM Cliente cliente"
+		+ " WHERE cliente.codigo = :codigo") })
 
 public class Cliente implements Serializable {
 	@Id
