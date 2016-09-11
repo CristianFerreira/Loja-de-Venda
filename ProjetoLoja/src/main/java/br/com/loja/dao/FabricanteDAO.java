@@ -84,25 +84,22 @@ public class FabricanteDAO {
 //
 //	}
 	
-	public void excluir(Long codigo) {
+	public void excluir(Fabricante fabricante) {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction transacao = null;
-
-		try {
+		
+		try{
 			transacao = sessao.beginTransaction();
-			Fabricante fabricante = buscarPorCodigo(codigo);
 			sessao.delete(fabricante);
 			transacao.commit();
-		} catch (RuntimeException ex) {
+		}catch(RuntimeException ex){
 			if (transacao != null) {
 				transacao.rollback();
 			}
 			throw ex;
-
-		} finally {
+		}finally{
 			sessao.close();
 		}
-
 	}
 	
 	public void editar(Fabricante fabricante) {

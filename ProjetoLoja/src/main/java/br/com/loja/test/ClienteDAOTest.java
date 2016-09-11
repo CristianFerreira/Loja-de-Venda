@@ -5,7 +5,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.loja.dao.ClienteDAO;
+
 import br.com.loja.domain.Cliente;
+
 
 
 
@@ -21,10 +23,11 @@ public class ClienteDAOTest {
 	
 	@Test
 	@Ignore
-	public void excluirPorCodigo(){
+	public void excluir(){
 		ClienteDAO dao = new ClienteDAO();
 		
-		dao.excluir(5L);	
+		Cliente f1 = dao.buscarPorCodigo(1L);
+		dao.excluir(f1);
 	}
 	
 }

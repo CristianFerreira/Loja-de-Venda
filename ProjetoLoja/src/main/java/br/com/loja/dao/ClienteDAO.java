@@ -28,25 +28,22 @@ public class ClienteDAO {
 	}
 	
 	
-	public void excluir(Long codigo) {
+	public void excluir(Cliente cliente) {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction transacao = null;
-
-		try {
+		
+		try{
 			transacao = sessao.beginTransaction();
-			Cliente cliente = buscarPorCodigo(codigo);
 			sessao.delete(cliente);
 			transacao.commit();
-		} catch (RuntimeException ex) {
+		}catch(RuntimeException ex){
 			if (transacao != null) {
 				transacao.rollback();
 			}
 			throw ex;
-
-		} finally {
+		}finally{
 			sessao.close();
 		}
-
 	}
 	
 	
