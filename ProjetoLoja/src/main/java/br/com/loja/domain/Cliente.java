@@ -9,11 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="db_cliente")
+
+
 public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -122,6 +126,13 @@ public class Cliente implements Serializable {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [codigo=" + codigo + ", nome=" + nome + ", telefone=" + telefone + ", rua=" + rua + ", numero="
+				+ numero + ", bairro=" + bairro + ", cep=" + cep + ", estado=" + estado + ", descricao=" + descricao
+				+ ", tipo=" + tipo + "]";
 	}
 	
 	

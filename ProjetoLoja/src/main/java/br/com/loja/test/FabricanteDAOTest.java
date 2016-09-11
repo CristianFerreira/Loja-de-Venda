@@ -10,7 +10,7 @@ import br.com.loja.domain.Fabricante;
 
 public class FabricanteDAOTest {
 	@Test
-	@Ignore
+	
 	public void salvar(){
 		Fabricante f1 = new Fabricante();
 		f1.setNome("Robust LTDA");
