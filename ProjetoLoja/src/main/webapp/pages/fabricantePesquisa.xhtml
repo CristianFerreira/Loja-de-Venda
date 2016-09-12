@@ -8,30 +8,31 @@
 
 <ui:composition template="/templates/modeloGeral.xhtml">
 	<ui:define name="conteudo">
+		<f:event listener="#{fabricanteBean.listarFabricante}"
+			type="preRenderView" />
+		<h:form id="formFabricante">
 
-		<h:form>
-			<h:panelGrid>
-				<h1 style="text-align: center;">Fabricante</h1>
 
-			</h:panelGrid>
-			<h:panelGrid columns="4">
-				<p:outputLabel value="Nome:">
-					<p:inputText maxlength="45" size="30"></p:inputText>
-				</p:outputLabel>
-				<p:commandButton value="Pesquisar"></p:commandButton>
-				<p:commandButton value="Novo"
-					action="/pages/fabricanteCadastro.xhtml?faces-redirect=true"></p:commandButton>
+			<div align="center" style="text-align: center !important;">
+				<h2>Lista de Fabricantes</h2>
+			</div>
 
-			</h:panelGrid>
-			<p:dataTable emptyMessage="Nenhum registro encontrado.">
+
+			<p:dataTable id="tblFabricante" widgetVar="tabelaFabricante"
+				emptyMessage="Nenhum registro encontrado."
+				value="#{fabricanteBean.listFabricante}"
+				filteredValue="#{fabricanteBean.listFabricanteFiltro}"
+				var="fabricante" rows="10" paginator="true">
 				<p:column headerText="Código">
-
+					<h:outputText value="#{fabricante.codigo}" />
 				</p:column>
-				<p:column headerText="Nome">
-
+				<p:column headerText="Nome" filterBy="#{fabricante.nome}"
+					sortBy="#{fabricante.nome}">
+					<h:outputText value="#{fabricante.nome}" />
 				</p:column>
-				<p:column headerText="Descrição">
-
+				<p:column headerText="Descrição" filterBy="#{fabricante.descricao}"
+					sortBy="#{fabricante.descricao}">
+					<h:outputText value="#{fabricante.descricao}" />
 				</p:column>
 
 				<p:column headerText="Opções">
@@ -40,36 +41,34 @@
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo Cadastro"
-						oncomplete="PF('dlgMedicoNovo').show();" />
+						oncomplete="PF('dlgFabricanteNovo').show();"
+						update=":formCriarFabricante:pnlFabricante" />
 				</f:facet>
 
 			</p:dataTable>
 
 		</h:form>
 
-		<p:dialog widgetVar="dlgMedicoNovo" closable="false" draggable="false"
-			resizable="false" modal="true" appendTo="@(body)"
-			header="Novo Cadastro">
+		<p:dialog widgetVar="dlgFabricanteNovo" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Cadastrar Fabricante" >
 
 
-			<h:form style="text-alig:center;">
-				<h1>Fabricante</h1>
-
-				<h:panelGrid columns="2">
+			<h:form id="formCriarFabricante">
+				<h:panelGrid id="pnlFabricante" columns="2">
 					<p:outputLabel value="Nome"></p:outputLabel>
-					<p:inputText maxlength="50" size="30"
+					<p:inputText maxlength="50" size="40"
 						value="#{fabricanteBean.fabricante.nome}"></p:inputText>
 					<p:outputLabel value="Descrição"></p:outputLabel>
-					<p:inputText maxlength="50" size="30"
-						value="#{fabricanteBean.fabricante.descricao}"></p:inputText>
+					<p:inputTextarea rows="5" cols="35" value="#{fabricanteBean.fabricante.descricao}"/>
 				</h:panelGrid>
-				<h:panelGrid columns="3">
-					<p:commandButton value="Novo"></p:commandButton>
-					<p:commandButton value="Salvar"
-						actionListener="#{fabricanteBean.salvar}" update=":msgInfo"
-						oncomplete="PF('dlgMedicoNovo').hide();" />
-					<p:commandButton value="Voltar"
-						onclick="PF('dlgMedicoEditar').hide();"></p:commandButton>
+				<h:panelGrid columns="2">
+					<p:commandButton value="SALVAR"
+						actionListener="#{fabricanteBean.salvar}"
+						update=":msgInfo :formFabricante:tblFabricante"
+						oncomplete="PF('dlgFabricanteNovo').hide(); PF('tabelaFabricante').clearFilters(); " />
+					<p:commandButton value="SAIR"
+						onclick="PF('dlgFabricanteNovo').hide();"></p:commandButton>
 				</h:panelGrid>
 
 			</h:form>
