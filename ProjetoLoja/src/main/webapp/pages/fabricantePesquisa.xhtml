@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
+
+
+
 <ui:composition template="/templates/modeloGeral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{fabricanteBean.listarFabricante}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
 	<ui:define name="conteudo">
-		<f:event listener="#{fabricanteBean.listarFabricante}"
-			type="preRenderView" />
+
 		<h:form id="formFabricante">
-
-
 			<div align="center" style="text-align: center !important;">
 				<h2>Lista de Fabricantes</h2>
 			</div>
@@ -26,18 +33,34 @@
 				<p:column headerText="Código">
 					<h:outputText value="#{fabricante.codigo}" />
 				</p:column>
-				<p:column headerText="Nome" filterBy="#{fabricante.nome}"
-					sortBy="#{fabricante.nome}">
+				<p:column headerText="Nome" class="centralizarTxtColuna"
+					filterBy="#{fabricante.nome}" sortBy="#{fabricante.nome}">
 					<h:outputText value="#{fabricante.nome}" />
 				</p:column>
-				<p:column headerText="Descrição" filterBy="#{fabricante.descricao}"
-					sortBy="#{fabricante.descricao}">
+				<p:column headerText="Descrição" class="centralizarTxtColuna"
+					filterBy="#{fabricante.descricao}" sortBy="#{fabricante.descricao}">
 					<h:outputText value="#{fabricante.descricao}" />
 				</p:column>
 
-				<p:column headerText="Opções">
+
+				<p:column headerText="Opções" class="centralizarTxtColuna">
+					<p:commandButton icon="ui-icon-pencil" value="Editar"
+						oncomplete="PF('dlgFabricanteEditar').show();"
+						update=":formFabEditar:pnlFabEditar">
+						<f:setPropertyActionListener target="#{fabricanteBean.fabricante}"
+							value="#{fabricante}" />
+					</p:commandButton>
+
+
+					<p:commandButton style="color:#700000;" icon="ui-icon-trash"
+						value="Excluir" oncomplete="PF('dlgFabricanteExcluir').show();"
+						update=":formFabExcluir:pnlFabExcluir">
+						<f:setPropertyActionListener target="#{fabricanteBean.fabricante}"
+							value="#{fabricante}" />
+					</p:commandButton>
 
 				</p:column>
+
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo Cadastro"
@@ -49,9 +72,69 @@
 
 		</h:form>
 
+
+
+		<p:dialog widgetVar="dlgFabricanteExcluir" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Paciente - Excluir">
+
+			<h:form id="formFabExcluir">
+				<h:panelGrid id="pnlFabExcluir" columns="2">
+					<h:outputText value="Código:" />
+					<h:outputText value="#{fabricanteBean.fabricante.codigo}" />
+
+					<h:outputText value="Nome:" />
+					<h:outputText value="#{fabricanteBean.fabricante.nome}" />
+
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton style="color:#700000;" value="Excluir"
+						actionListener="#{fabricanteBean.excluirFabricante}"
+						update=":msgInfo :formFabricante:tblFabricante"
+						oncomplete="PF('dlgFabricanteExcluir').hide(); PF('tabelaFabricante').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgFabricanteExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+		<p:dialog widgetVar="dlgFabricanteEditar" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Paciente - Editar">
+			<h:form id="formFabEditar">
+				<h:panelGrid id="pnlFabEditar" columns="2">
+					<p:outputLabel value="Código" />
+					<h:outputText value="#{fabricanteBean.fabricante.codigo}" />
+
+					<p:outputLabel value="Nome: "></p:outputLabel>
+					<p:inputText size="30" maxlength="45"
+						value="#{fabricanteBean.fabricante.nome}" />
+
+					<p:outputLabel value="Observações: " />
+					<p:inputTextarea rows="6" cols="32"
+						value="#{fabricanteBean.fabricante.descricao}" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Editar"
+						actionListener="#{fabricanteBean.editarFabricante}"
+						update=":msgInfo :formFabricante:tblFabricante"
+						oncomplete="PF('dlgFabricanteEditar').hide(); PF('tabelaFabricante').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgFabricanteEditar').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+
+
 		<p:dialog widgetVar="dlgFabricanteNovo" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
-			header="Cadastrar Fabricante" >
+			header="Cadastrar Fabricante">
 
 
 			<h:form id="formCriarFabricante">
@@ -60,7 +143,8 @@
 					<p:inputText maxlength="50" size="40"
 						value="#{fabricanteBean.fabricante.nome}"></p:inputText>
 					<p:outputLabel value="Descrição"></p:outputLabel>
-					<p:inputTextarea rows="5" cols="35" value="#{fabricanteBean.fabricante.descricao}"/>
+					<p:inputTextarea rows="5" cols="35"
+						value="#{fabricanteBean.fabricante.descricao}" />
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<p:commandButton value="SALVAR"
@@ -74,10 +158,6 @@
 			</h:form>
 
 		</p:dialog>
-
-
-
-
 	</ui:define>
 </ui:composition>
 </html>

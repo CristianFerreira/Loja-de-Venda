@@ -71,5 +71,32 @@ public class FabricanteBean {
 			FacesUtil.adicionarMsgErro("Erro ao tentar listar os fabricantes:" + ex.getMessage());
 		}
 	}
+	
+	public void editarFabricante(){
+		try {
+			FabricanteDAO fdao = new FabricanteDAO();
+			fdao.editar(fabricante);
+
+			fabricante = new Fabricante();
+			FacesUtil.adicionarMsgSucesso("Fabricante editado com sucesso");
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			FacesUtil.adicionarMsgErro("Erro ao tentar editar o fabricante:" + ex.getMessage());
+		}
+	}
+	
+	public void excluirFabricante(){
+		try {
+			FabricanteDAO fdao = new FabricanteDAO();
+			fdao.excluir(fabricante);
+
+			fabricante = new Fabricante();
+			FacesUtil.adicionarMsgSucesso("Fabricante excluido com sucesso");
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			FacesUtil.adicionarMsgErro("Erro ao tentar excluir o fabricante:" + ex.getMessage());
+		}
+	}
+	
 
 }

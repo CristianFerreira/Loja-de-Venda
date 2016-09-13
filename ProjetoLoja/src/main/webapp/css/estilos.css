@@ -1,9 +1,0 @@
-@CHARSET "ISO-8859-1";
-
-.ui-layout-north {
-		            z-index:20 !important;
-		            overflow:visible;
-		        }
-		        .ui-layout-north .ui-layout-unit-content {
-		            overflow:visible;
-		        }
