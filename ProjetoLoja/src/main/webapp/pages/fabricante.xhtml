@@ -141,16 +141,21 @@
 				<h:panelGrid id="pnlFabricante" columns="2">
 					<p:outputLabel value="Nome"></p:outputLabel>
 					<p:inputText maxlength="50" size="40"
-						value="#{fabricanteBean.fabricante.nome}"></p:inputText>
+						value="#{fabricanteBean.fabricante.nome}">
+						<f:validateBean />
+					</p:inputText>
 					<p:outputLabel value="Descrição"></p:outputLabel>
 					<p:inputTextarea rows="5" cols="35"
-						value="#{fabricanteBean.fabricante.descricao}" />
+						value="#{fabricanteBean.fabricante.descricao}">
+						<f:validateBean />
+					</p:inputTextarea>
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<p:commandButton value="SALVAR"
 						actionListener="#{fabricanteBean.salvar}"
 						update=":msgInfo :formFabricante:tblFabricante"
-						oncomplete="PF('dlgFabricanteNovo').hide(); PF('tabelaFabricante').clearFilters(); " />
+						oncomplete="PF('tabelaFabricante').clearFilters(); "
+						 />
 					<p:commandButton value="SAIR"
 						onclick="PF('dlgFabricanteNovo').hide();"></p:commandButton>
 				</h:panelGrid>
@@ -161,3 +166,4 @@
 	</ui:define>
 </ui:composition>
 </html>
+

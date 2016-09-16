@@ -6,7 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
+import br.com.loja.domain.Fabricante;
 import br.com.loja.domain.Funcionario;
 import br.com.loja.util.HibernateUtil;
 
@@ -86,25 +86,22 @@ public class FuncionarioDAO {
 //
 //	}
 	
-	public void excluir(Long codigo) {
+	public void excluir(Funcionario funcionario) {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction transacao = null;
-
-		try {
+		
+		try{
 			transacao = sessao.beginTransaction();
-			Funcionario fabricante = buscarPorCodigo(codigo);
-			sessao.delete(fabricante);
+			sessao.delete(funcionario);
 			transacao.commit();
-		} catch (RuntimeException ex) {
+		}catch(RuntimeException ex){
 			if (transacao != null) {
 				transacao.rollback();
 			}
 			throw ex;
-
-		} finally {
+		}finally{
 			sessao.close();
 		}
-
 	}
 	
 	public void editar(Funcionario funcionario) {

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+
+
+<ui:composition template="/templates/modeloGeral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{funcionarioBean.listarFuncionario}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<h:form id="formFuncionario">
+			<div align="center" style="text-align: center !important;">
+				<h2>Lista de Funcionarios</h2>
+			</div>
+
+
+			<p:dataTable id="tblFuncionario" widgetVar="tabelaFuncionario"
+				emptyMessage="Nenhum registro encontrado."
+				value="#{funcionarioBean.listaFuncionario}"
+				filteredValue="#{funcionarioBean.listaFiltrarFuncionario}"
+				var="funcionario" rows="10" paginator="true">
+				<p:column headerText="Código">
+					<h:outputText value="#{funcionario.codigo}" />
+				</p:column>
+				<p:column headerText="Nome" class="centralizarTxtColuna"
+					filterBy="#{funcionario.nome}" sortBy="#{funcionario.nome}">
+					<h:outputText value="#{funcionario.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF" class="centralizarTxtColuna"
+					filterBy="#{funcionario.cpf}" sortBy="#{funcionario.cpf}">
+					<h:outputText value="#{funcionario.cpf}" />
+				</p:column>
+
+				<p:column headerText="Telefone" class="centralizarTxtColuna"
+					filterBy="#{funcionario.telefone}" sortBy="#{funcionario.telefone}">
+					<h:outputText value="#{funcionario.telefone}" />
+				</p:column>
+
+
+				<p:column headerText="Opções" class="centralizarTxtColuna">
+					<p:commandButton icon="ui-icon-pencil" value="Editar"
+						oncomplete="PF('dlgFuncionarioEditar').show();"
+						update=":formFuncEditar:pnlFuncEditar">
+						<f:setPropertyActionListener
+							target="#{funcionarioBean.funcionario}" value="#{funcionario}" />
+					</p:commandButton>
+
+
+					<p:commandButton style="color:#700000;" icon="ui-icon-trash"
+						value="Excluir" oncomplete="PF('dlgFuncionarioExcluir').show();"
+						update=":formFuncExcluir:pnlFuncExcluir">
+						<f:setPropertyActionListener
+							target="#{funcionarioBean.funcionario}" value="#{funcionario}" />
+					</p:commandButton>
+
+				</p:column>
+
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo Cadastro"
+						oncomplete="PF('dlgFuncionarioNovo').show();"
+						update=":formCriarFuncionario:pnlFuncionario" />
+				</f:facet>
+
+			</p:dataTable>
+
+		</h:form>
+
+
+
+		<p:dialog widgetVar="dlgFuncionarioExcluir" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Funcionario - Excluir">
+
+			<h:form id="formFuncExcluir">
+				<h:panelGrid id="pnlFuncExcluir" columns="2">
+					<h:outputText value="Código:" />
+					<h:outputText value="#{funcionarioBean.funcionario.codigo}" />
+
+					<h:outputText value="Nome:" />
+					<h:outputText value="#{funcionarioBean.funcionario.nome}" />
+
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton style="color:#700000;" value="Excluir"
+						actionListener="#{funcionarioBean.excluirFuncionario}"
+						update=":msgInfo :formFuncionario:tblFuncionario"
+						oncomplete="PF('dlgFuncionarioExcluir').hide(); PF('tabelaFuncionario').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgFuncionarioExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+		<p:dialog widgetVar="dlgFuncionarioEditar" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Funcionario - Editar">
+			<h:form id="formFuncEditar">
+				<h:panelGrid id="pnlFuncEditar" columns="2">
+					<p:outputLabel value="Código" />
+					<h:outputText value="#{funcionarioBean.funcionario.codigo}" />
+
+					<p:outputLabel value="Nome: "></p:outputLabel>
+					<p:inputText size="30" maxlength="45"
+						value="#{funcionarioBean.funcionario.nome}" />
+
+					<p:outputLabel value="CPF: " />
+					<p:inputText size="30" maxlength="15"
+						value="#{funcionarioBean.funcionario.cpf}" />
+
+					<p:outputLabel value="Telefone: " />
+					<p:inputText size="30"
+						value="#{funcionarioBean.funcionario.telefone}" />
+
+
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Editar"
+						actionListener="#{funcionarioBean.editarFuncionario}"
+						update=":msgInfo :formFuncionario:tblFuncionario"
+						oncomplete="PF('dlgFuncionarioEditar').hide(); PF('tabelaFuncionario').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgFuncionarioEditar').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+
+
+		<p:dialog widgetVar="dlgFuncionarioNovo" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Cadastrar Funcionario">
+
+
+			<h:form id="formCriarFuncionario">
+				<h:panelGrid id="pnlFuncionario" columns="2">
+					<p:outputLabel value="Nome"></p:outputLabel>
+					<p:inputText maxlength="50" size="40"
+						value="#{funcionarioBean.funcionario.nome}"></p:inputText>
+					<p:outputLabel value="Telefone:"></p:outputLabel>
+					<p:inputText maxlength="20" size="40"
+						value="#{funcionarioBean.funcionario.telefone}" />
+				
+						
+            <!-- <p:outputLabel value="Função: " />
+            <p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}">
+                <f:selectItem itemValue="" itemLabel="Selecione..." />
+                <f:selectItem itemLabel="Vendedor" itemValue="Vendedor"/>
+                <f:selectItem itemLabel="Caixa" itemValue="Caixa" />
+            </p:selectOneMenu> -->
+            
+            <p:outputLabel value="Função: "></p:outputLabel>
+					<p:inputText maxlength="25" size="40"
+						value="#{funcionarioBean.funcionario.tipo}" />
+          
+
+					<p:outputLabel value="CPF: "></p:outputLabel>
+					<p:inputText maxlength="15" size="40"
+						value="#{funcionarioBean.funcionario.cpf}" />
+						
+					<p:outputLabel value="Senha:"></p:outputLabel>
+					<p:inputText maxlength="20" size="40" type="password"
+						value="#{funcionarioBean.funcionario.senha}" />
+
+
+
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="SALVAR"
+						actionListener="#{funcionarioBean.salvar}"
+						update=":msgInfo :formFuncionario:tblFuncionario"
+						oncomplete="PF('dlgFuncionarioNovo').hide(); PF('tabelaFuncionario').clearFilters(); " />
+					<p:commandButton value="SAIR"
+						onclick="PF('dlgFuncionarioNovo').hide();"></p:commandButton>
+				</h:panelGrid>
+
+			</h:form>
+
+
+
+
+
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+</html>

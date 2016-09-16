@@ -64,16 +64,16 @@ public class FuncionarioDAOTest {
 //		
 //	}
 	
-	@Test
-	@Ignore
-	public void excluirPorCodigo(){
-		FuncionarioDAO dao =  new FuncionarioDAO();
+	//@Test
+	//@Ignore
+	//public void excluirPorCodigo(){
+		//FuncionarioDAO dao =  new FuncionarioDAO();
 		
-		dao.excluir(3L);	
-	}
+		//dao.excluir(3L);	
+	//}
 	
+
 	@Test
-	
 	public void editar(){
 		FuncionarioDAO dao =  new FuncionarioDAO();
 		Funcionario f1 = new Funcionario();

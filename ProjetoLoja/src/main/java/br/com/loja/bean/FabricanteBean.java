@@ -5,6 +5,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.context.RequestContext;
+
 import br.com.loja.dao.FabricanteDAO;
 import br.com.loja.domain.Fabricante;
 import br.com.loja.util.FacesUtil;
@@ -55,7 +57,9 @@ public class FabricanteBean {
 
 			fabricante = new Fabricante();
 			FacesUtil.adicionarMsgSucesso("Fabricante salvo com sucesso");
+			
 		} catch (RuntimeException ex) {
+			
 			ex.printStackTrace();
 			FacesUtil.adicionarMsgErro("Erro ao tentar salvar o fabricante:" + ex.getMessage());
 		}

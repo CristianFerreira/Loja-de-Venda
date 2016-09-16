@@ -26,4 +26,9 @@
   <param-name>primefaces.THEME</param-name>
   <param-value>cupertino</param-value>
 </context-param>
+
+<!-- Carregamento do ContextListener 
+<listener>
+	<listener-class>br.com.loja.util.ContextListener</listener-class>
+</listener>-->
 </web-app>

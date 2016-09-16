@@ -8,6 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "db_fabricante")
@@ -20,6 +25,8 @@ public class Fabricante {
 	@Column(name = "fabricanteID")
 	private Long codigo;
 
+	@NotEmpty(message = "O campo nome é obrigatório")
+	@Size(min = 3, max = 50, message = "O campo nome deve obter entre 3 a 50 caracteres")
 	@Column(length = 50, nullable = false)
 	private String nome;
 
@@ -30,7 +37,7 @@ public class Fabricante {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	
 	@Column(length = 50)
 	private String descricao;
 
