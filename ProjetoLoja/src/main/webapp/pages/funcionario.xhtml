@@ -83,7 +83,8 @@
 
 
 				<f:facet name="footer">
-					<p:commandButton value="Novo Cadastro" actionListener="#{funcionarioBean.prepararNovoFuncionario}"
+					<p:commandButton value="Novo Cadastro"
+						actionListener="#{funcionarioBean.prepararNovoFuncionario}"
 						oncomplete="PF('dlgFuncionarioNovo').show();"
 						update=":formCriarFuncionario:pnlFuncionario" />
 				</f:facet>
@@ -95,26 +96,26 @@
 
 		<p:dialog widgetVar="dlgFuncionarioNovo" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
-			header="Cadastrar Funcionario">
+			header="Cadastrar Funcionario" style="font-family: sans-serif !important;">
 
 
 			<h:form id="formCriarFuncionario">
 				<h:panelGrid id="pnlFuncionario" columns="2">
-					<p:outputLabel value="Nome"></p:outputLabel>
-					<p:inputText maxlength="50" size="30"
+					<p:outputLabel value="Nome: "></p:outputLabel>
+					<p:inputText maxlength="50" size="25"
 						value="#{funcionarioBean.funcionario.nome}">
 						<f:validateBean />
 					</p:inputText>
-
-					<p:outputLabel value="Telefone:"></p:outputLabel>
-					<p:inputMask size="30" mask="(99)9999-9999"
+					
+					<p:outputLabel value="Telefone: "></p:outputLabel>
+					<p:inputMask size="25" mask="(99)9999-9999"
 						value="#{funcionarioBean.funcionario.telefone}">
 						<f:validateBean />
 					</p:inputMask>
 
 
 					<p:outputLabel value="Função: " />
-					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}">
+					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}" style="width: 218px;">
 						<f:validateBean />
 						<f:selectItem itemValue="" itemLabel="Selecione uma função" />
 						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
@@ -122,22 +123,17 @@
 						<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
 					</p:selectOneMenu>
 
-
-
-
 					<p:outputLabel value="CPF: " />
-					<p:inputMask size="30" mask="999.999.999-99"
+					<p:inputMask size="25" mask="999.999.999-99"
 						value="#{funcionarioBean.funcionario.cpf}">
 						<f:validateBean />
 					</p:inputMask>
 
 					<p:outputLabel value="Senha:"></p:outputLabel>
-					<p:password maxlength="8" size="30"
+					<p:password maxlength="8" size="25"
 						value="#{funcionarioBean.funcionario.senha}">
 						<f:validateBean />
 					</p:password>
-
-
 
 				</h:panelGrid>
 				<h:panelGrid columns="2">
@@ -162,10 +158,10 @@
 
 			<h:form id="formFuncExcluir">
 				<h:panelGrid id="pnlFuncExcluir" columns="2">
-					<h:outputText value="Código:" />
+					<h:outputText value="Código: " />
 					<h:outputText value="#{funcionarioBean.funcionario.codigo}" />
 
-					<h:outputText value="Nome:" />
+					<h:outputText value="Nome: " />
 					<h:outputText value="#{funcionarioBean.funcionario.nome}" />
 
 				</h:panelGrid>
@@ -186,42 +182,35 @@
 			header="Funcionario - Editar">
 			<h:form id="formFuncEditar">
 				<h:panelGrid id="pnlFuncEditar" columns="2">
-					<p:outputLabel value="Código" />
+					<p:outputLabel value="Código: " />
 					<h:outputText value="#{funcionarioBean.funcionario.codigo}" />
 
-					<p:outputLabel value="Nome"></p:outputLabel>
-					<p:inputText maxlength="50" size="30"
+					<p:outputLabel value="Nome: "></p:outputLabel>
+					<p:inputText maxlength="50" size="25"
 						value="#{funcionarioBean.funcionario.nome}">
 						<f:validateBean />
 					</p:inputText>
 
-					<p:outputLabel value="Telefone:"></p:outputLabel>
-					<p:inputMask size="30" mask="(99)9999-9999"
+					<p:outputLabel value="Telefone: "></p:outputLabel>
+					<p:inputMask size="25" mask="(99)9999-9999"
 						value="#{funcionarioBean.funcionario.telefone}">
 						<f:validateBean />
 					</p:inputMask>
 
+					<p:outputLabel value="CPF: " />
+					<p:inputMask size="25" mask="999.999.999-99"
+						value="#{funcionarioBean.funcionario.cpf}">
+						<f:validateBean />
+					</p:inputMask>
 
 					<p:outputLabel value="Função: " />
-					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}">
+					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}" style="width: 208px;">
 						<f:validateBean />
 						<f:selectItem itemValue="" itemLabel="Selecione uma função" />
 						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
 						<f:selectItem itemLabel="Vendedor" itemValue="Vendedor" />
 						<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
 					</p:selectOneMenu>
-
-
-
-
-					<p:outputLabel value="CPF: " />
-					<p:inputMask size="30" mask="999.999.999-99"
-						value="#{funcionarioBean.funcionario.cpf}">
-						<f:validateBean />
-					</p:inputMask>
-
-
-
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">

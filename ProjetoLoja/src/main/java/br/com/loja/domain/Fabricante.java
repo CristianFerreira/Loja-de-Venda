@@ -38,7 +38,7 @@ public class Fabricante {
 		this.nome = nome;
 	}
 	
-	@Column(length = 50)
+	@Column(length = 100)
 	private String descricao;
 
 	public Long getCodigo() {

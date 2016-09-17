@@ -108,15 +108,15 @@
 			header="Paciente - Editar">
 			<h:form id="formFabEditar">
 				<h:panelGrid id="pnlFabEditar" columns="2">
-					<p:outputLabel value="Código" />
+					<p:outputLabel value="Código: " />
 					<h:outputText value="#{fabricanteBean.fabricante.codigo}" />
 
 					<p:outputLabel value="Nome: "></p:outputLabel>
 					<p:inputText size="30" maxlength="45"
 						value="#{fabricanteBean.fabricante.nome}" />
 
-					<p:outputLabel value="Observações: " />
-					<p:inputTextarea rows="6" cols="32"
+					<p:outputLabel value="Descrição: " />
+					<p:inputTextarea rows="2" cols="28" maxlength="100"
 						value="#{fabricanteBean.fabricante.descricao}" />
 
 				</h:panelGrid>
@@ -142,24 +142,26 @@
 
 
 			<h:form id="formCriarFabricante">
+			
 				<h:panelGrid id="pnlFabricante" columns="2">
-					<p:outputLabel value="Nome"></p:outputLabel>
-					<p:inputText maxlength="50" size="40"
+					<p:outputLabel value="Nome: "></p:outputLabel>
+					<p:inputText maxlength="50" size="30"
 						value="#{fabricanteBean.fabricante.nome}">
 						<f:validateBean />
 					</p:inputText>
-					<p:outputLabel value="Descrição"></p:outputLabel>
-					<p:inputTextarea rows="5" cols="35"
+					
+					<p:outputLabel value="Descrição: "></p:outputLabel>
+					<p:inputTextarea rows="2" cols="28" maxlength="100"
 						value="#{fabricanteBean.fabricante.descricao}">
 						<f:validateBean />
 					</p:inputTextarea>
 				</h:panelGrid>
 				<h:panelGrid columns="2">
-					<p:commandButton value="SALVAR"
+					<p:commandButton value="Salvar"
 						actionListener="#{fabricanteBean.salvar}"
 						update=":msgInfo :formFabricante:tblFabricante"
 						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaFabricante').clearFilters(); " />
-					<p:commandButton value="SAIR"
+					<p:commandButton value="Sair"
 						onclick="PF('dlgFabricanteNovo').hide();"></p:commandButton>
 				</h:panelGrid>
 
