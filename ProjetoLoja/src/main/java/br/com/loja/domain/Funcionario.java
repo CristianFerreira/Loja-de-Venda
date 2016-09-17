@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "db_funcionario")
@@ -21,18 +25,23 @@ public class Funcionario {
 	@Column(name = "funcionarioID")
 	private Long codigo;
 
+	@NotEmpty(message = "O campo nome é obrigatório")
+	@Size(min = 3, max = 50, message = "O campo nome deve obter entre 3 a 50 caracteres")
 	@Column(length = 50, nullable = false)
 	private String nome;
 
+	@CPF(message = "CPF informado é inválido")
 	@Column(length = 14, nullable = false, unique = true)
 	private String cpf;
 
+	@Size(min = 5, max = 50, message = "O campo senha deve obter entre 6 a 8 caracteres")
 	@Column(length = 32, nullable = false)
 	private String senha;
 
 	@Column(length = 14)
 	private String telefone;
-
+	
+	@NotEmpty(message = "O campo função é obrigatório")
 	@Column(length = 50, nullable = false)
 	private String tipo;
 

@@ -48,14 +48,16 @@ public class FabricanteBean {
 
 	// Metodos
 
+	public void prepararNovoFabricante(){
+		fabricante = new Fabricante();
+	}
+		
 	public void salvar() {
 
 		// FacesUtil.adicionarMsgSucesso(fabricante.toString());
 		try {
 			FabricanteDAO fdao = new FabricanteDAO();
 			fdao.salvar(fabricante);
-
-			fabricante = new Fabricante();
 			FacesUtil.adicionarMsgSucesso("Fabricante salvo com sucesso");
 			
 		} catch (RuntimeException ex) {

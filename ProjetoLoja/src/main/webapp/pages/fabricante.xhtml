@@ -30,21 +30,25 @@
 				value="#{fabricanteBean.listFabricante}"
 				filteredValue="#{fabricanteBean.listFabricanteFiltro}"
 				var="fabricante" rows="10" paginator="true">
-				<p:column headerText="Código">
+				<p:column headerText="Código" class="centralizarTxtColuna"
+					filterBy="#{fabricante.codigo}" sortBy="#{fabricante.codigo}" style="width:80px">
 					<h:outputText value="#{fabricante.codigo}" />
 				</p:column>
 				<p:column headerText="Nome" class="centralizarTxtColuna"
-					filterBy="#{fabricante.nome}" sortBy="#{fabricante.nome}">
+					filterBy="#{fabricante.nome}" sortBy="#{fabricante.nome}"
+					style="width:300px">
 					<h:outputText value="#{fabricante.nome}" />
 				</p:column>
 				<p:column headerText="Descrição" class="centralizarTxtColuna"
-					filterBy="#{fabricante.descricao}" sortBy="#{fabricante.descricao}">
+					filterBy="#{fabricante.descricao}" sortBy="#{fabricante.descricao}"
+					style="width:300px">
 					<h:outputText value="#{fabricante.descricao}" />
 				</p:column>
 
 
-				<p:column headerText="Opções" class="centralizarTxtColuna">
-					<p:commandButton icon="ui-icon-pencil" value="Editar"
+				<p:column headerText="Opções" class="centralizarTxtColuna"
+					style="width: 80px">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						oncomplete="PF('dlgFabricanteEditar').show();"
 						update=":formFabEditar:pnlFabEditar">
 						<f:setPropertyActionListener target="#{fabricanteBean.fabricante}"
@@ -52,8 +56,8 @@
 					</p:commandButton>
 
 
-					<p:commandButton style="color:#700000;" icon="ui-icon-trash"
-						value="Excluir" oncomplete="PF('dlgFabricanteExcluir').show();"
+					<p:commandButton style="color:#red;" icon="ui-icon-trash"
+						title="Excluir" oncomplete="PF('dlgFabricanteExcluir').show();"
 						update=":formFabExcluir:pnlFabExcluir">
 						<f:setPropertyActionListener target="#{fabricanteBean.fabricante}"
 							value="#{fabricante}" />
@@ -63,7 +67,7 @@
 
 
 				<f:facet name="footer">
-					<p:commandButton value="Novo Cadastro"
+					<p:commandButton value="Novo Cadastro" actionListener="#{fabricanteBean.prepararNovoFabricante}"
 						oncomplete="PF('dlgFabricanteNovo').show();"
 						update=":formCriarFabricante:pnlFabricante" />
 				</f:facet>
@@ -121,7 +125,7 @@
 					<p:commandButton value="Editar"
 						actionListener="#{fabricanteBean.editarFabricante}"
 						update=":msgInfo :formFabricante:tblFabricante"
-						oncomplete="PF('dlgFabricanteEditar').hide(); PF('tabelaFabricante').clearFilters(); " />
+						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaFabricante').clearFilters(); " />
 					<p:commandButton value="Cancelar"
 						onclick="PF('dlgFabricanteEditar').hide();" />
 				</h:panelGrid>
@@ -154,13 +158,34 @@
 					<p:commandButton value="SALVAR"
 						actionListener="#{fabricanteBean.salvar}"
 						update=":msgInfo :formFabricante:tblFabricante"
-						oncomplete="PF('tabelaFabricante').clearFilters(); "
-						 />
+						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaFabricante').clearFilters(); " />
 					<p:commandButton value="SAIR"
 						onclick="PF('dlgFabricanteNovo').hide();"></p:commandButton>
 				</h:panelGrid>
 
 			</h:form>
+
+			<script type="text/javascript">
+				function validateRequestCreate(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgFabricanteNovo').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgFabricanteNovo').hide();
+					}
+				}
+
+				function validateRequestEdit(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgFabricanteEditar').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgFabricanteEditar').hide();
+					}
+				}
+			</script>
 
 		</p:dialog>
 	</ui:define>

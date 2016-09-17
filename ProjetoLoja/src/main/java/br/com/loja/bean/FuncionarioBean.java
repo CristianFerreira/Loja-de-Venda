@@ -44,14 +44,21 @@ public class FuncionarioBean {
         this.listaFiltrarFuncionario = listaFiltrarFuncionario;
     }
 
+    
+    
+    
+    public void prepararNovoFuncionario() {
+		funcionario = new Funcionario();
+	}
+    
+    
     public void salvar() {
 
         // FacesUtil.adicionarMsgSucesso(fabricante.toString());
         try {
             FuncionarioDAO fdao = new FuncionarioDAO();
             fdao.salvar(funcionario);
-
-            funcionario = new Funcionario();
+            
             FacesUtil.adicionarMsgSucesso("Funcionario salvo com sucesso");
         } catch (RuntimeException ex) {
             ex.printStackTrace();
