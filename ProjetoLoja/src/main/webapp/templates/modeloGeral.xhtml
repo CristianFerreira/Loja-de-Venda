@@ -14,16 +14,34 @@
 	<h:outputStylesheet library="css" name="estilos.css" />
 
 	<h:outputStylesheet library="stylesheet" name="estilos.css" />
+	
 
 	<style>
-span#j_idt42_title.ui-dialog-title {
+<!--
+Dialog Funcionario-->span#j_idt42_title.ui-dialog-title {
 	font-family: sans-serif !important;
 	font-size: 18px !important;
 	font-weight: 400;
 }
 
-div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container{
-font-family: sans-serif !important;
+div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
+{
+	font-family: sans-serif !important;
+	font-size: 16px !important;
+	font-weight: 400;
+	text-align: right;
+}
+
+<!--
+Dialog Fabricante-->div.ui-dialog-titlebar.ui-widget-header.ui-helper-clearfix.ui-corner-top
+	{
+	font-family: sans-serif !important;
+	font-size: 18px !important;
+	font-weight: 400;
+}
+
+div.ui-dialog-content.ui-widget-content {
+	font-family: sans-serif !important;
 	font-size: 16px !important;
 	font-weight: 400;
 	text-align: right;
@@ -84,14 +102,14 @@ font-family: sans-serif !important;
 
 					<p:submenu label="Fabricante">
 						<p:menuitem value="Lista de fabricantes"
-							outcome="/pages/fabricante.xhtml"></p:menuitem>
+							outcome="/pages/fabricantes.xhtml"></p:menuitem>
 					</p:submenu>
 
 					<p:submenu label="Estoque">
 						<p:menuitem value="Cadastro"></p:menuitem>
 					</p:submenu>
 					<p:submenu label="Gerenciamento">
-						<p:menuitem value="Funcionario" outcome="/pages/funcionario.xhtml" />
+						<p:menuitem value="Funcionario" outcome="/pages/funcionarios.xhtml" />
 					</p:submenu>
 
 				</p:menubar>

@@ -13,94 +13,97 @@ import java.util.List;
 @ViewScoped
 public class FuncionarioBean {
 
-    private Funcionario funcionario;
-    private List<Funcionario> listaFuncionario;
-    private List<Funcionario> listaFiltrarFuncionario;
+	private Funcionario funcionario;
+	private List<Funcionario> listaFuncionario;
+	private List<Funcionario> listaFiltrarFuncionario;
 
-    public Funcionario getFuncionario() {
-    	if (funcionario == null) {
+	public Funcionario getFuncionario() {
+		if (funcionario == null) {
 			funcionario = new Funcionario();
 		}
 		return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
-    public List<Funcionario> getListaFuncionario() {
-        return listaFuncionario;
-    }
-
-    public void setListaFuncionario(List<Funcionario> listaFuncionario) {
-        this.listaFuncionario = listaFuncionario;
-    }
-
-    public List<Funcionario> getListaFiltrarFuncionario() {
-        return listaFiltrarFuncionario;
-    }
-
-    public void setListaFiltrarFuncionario(List<Funcionario> listaFiltrarFuncionario) {
-        this.listaFiltrarFuncionario = listaFiltrarFuncionario;
-    }
-
-    
-    
-    
-    public void prepararNovoFuncionario() {
-		funcionario = new Funcionario();
 	}
-    
-    
-    public void salvar() {
 
-        // FacesUtil.adicionarMsgSucesso(fabricante.toString());
-        try {
-            FuncionarioDAO fdao = new FuncionarioDAO();
-            fdao.salvar(funcionario);
-            
-            FacesUtil.adicionarMsgSucesso("Funcionario salvo com sucesso");
-        } catch (RuntimeException ex) {
-            ex.printStackTrace();
-            FacesUtil.adicionarMsgErro("Erro ao tentar salvar o funcionario: " + ex.getMessage());
-        }
-    }
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
 
-    public void listarFuncionario() {
-        try {
-            FuncionarioDAO fdao = new FuncionarioDAO();
-            listaFuncionario = fdao.listar();
-        } catch (RuntimeException ex) {
-            ex.printStackTrace();
-            FacesUtil.adicionarMsgErro("Erro ao tentar listar os fabricantes:" + ex.getMessage());
-        }
-    }
+	public List<Funcionario> getListaFuncionario() {
+		return listaFuncionario;
+	}
 
-    public void editarFuncionario() {
-        try {
-            FuncionarioDAO fdao = new FuncionarioDAO();
-            fdao.editar(funcionario);
+	public void setListaFuncionario(List<Funcionario> listaFuncionario) {
+		this.listaFuncionario = listaFuncionario;
+	}
 
-            funcionario = new Funcionario();
-            FacesUtil.adicionarMsgSucesso("Funcionario editado com sucesso");
-        } catch (RuntimeException ex) {
-            ex.printStackTrace();
-            FacesUtil.adicionarMsgErro("Erro ao tentar editar o funcionario:" + ex.getMessage());
-        }
-    }
+	public List<Funcionario> getListaFiltrarFuncionario() {
+		return listaFiltrarFuncionario;
+	}
 
-    public void excluirFuncionario() {
-        try {
-            FuncionarioDAO fdao = new FuncionarioDAO();
-            fdao.excluir(funcionario);
+	public void setListaFiltrarFuncionario(List<Funcionario> listaFiltrarFuncionario) {
+		this.listaFiltrarFuncionario = listaFiltrarFuncionario;
+	}
 
-            funcionario = new Funcionario();
-            FacesUtil.adicionarMsgSucesso("Funcionario excluido com sucesso");
-        } catch (RuntimeException ex) {
-            ex.printStackTrace();
-            FacesUtil.adicionarMsgErro("Erro ao tentar excluir o funcionario:" + ex.getMessage());
-        }
-    }
+	public void prepararNovoFuncionario() {
+		// System.out.println("FUNCIONARIO NOME ANTES: "
+		// +funcionario.getNome());
+		// System.out.println("FUNCIONARIO cpf anteS: " +funcionario.getCpf());
+
+		funcionario = new Funcionario();
+		// System.out.println("FUNCIONARIO NOME DEPOIS: "
+		// +funcionario.getNome());
+		// System.out.println("FUNCIONARIO cpf depois: " +funcionario.getCpf());
+
+	}
+
+	public void salvar() {
+
+		// FacesUtil.adicionarMsgSucesso(fabricante.toString());
+		try {
+			FuncionarioDAO fdao = new FuncionarioDAO();
+			fdao.salvar(funcionario);
+
+			FacesUtil.adicionarMsgSucesso("Funcionario salvo com sucesso");
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			FacesUtil.adicionarMsgErro("Erro ao tentar salvar o funcionario: " + ex.getMessage());
+		}
+	}
+
+	public void listarFuncionario() {
+		try {
+			FuncionarioDAO fdao = new FuncionarioDAO();
+			listaFuncionario = fdao.listar();
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			FacesUtil.adicionarMsgErro("Erro ao tentar listar os fabricantes:" + ex.getMessage());
+		}
+	}
+
+	public void editarFuncionario() {
+		try {
+			FuncionarioDAO fdao = new FuncionarioDAO();
+			fdao.editar(funcionario);
+
+			funcionario = new Funcionario();
+			FacesUtil.adicionarMsgSucesso("Funcionario editado com sucesso");
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			FacesUtil.adicionarMsgErro("Erro ao tentar editar o funcionario:" + ex.getMessage());
+		}
+	}
+
+	public void excluirFuncionario() {
+		try {
+			FuncionarioDAO fdao = new FuncionarioDAO();
+			fdao.excluir(funcionario);
+
+			funcionario = new Funcionario();
+			FacesUtil.adicionarMsgSucesso("Funcionario excluido com sucesso");
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			FacesUtil.adicionarMsgErro("Erro ao tentar excluir o funcionario:" + ex.getMessage());
+		}
+	}
 
 }
-

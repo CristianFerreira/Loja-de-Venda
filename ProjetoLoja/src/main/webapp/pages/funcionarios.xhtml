@@ -83,8 +83,7 @@
 
 
 				<f:facet name="footer">
-					<p:commandButton value="Novo Cadastro"
-						actionListener="#{funcionarioBean.prepararNovoFuncionario}"
+					<p:commandButton value="Novo Cadastro" actionListener="#{funcionarioBean.prepararNovoFuncionario}"
 						oncomplete="PF('dlgFuncionarioNovo').show();"
 						update=":formCriarFuncionario:pnlFuncionario" />
 				</f:facet>
@@ -96,7 +95,7 @@
 
 		<p:dialog widgetVar="dlgFuncionarioNovo" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
-			header="Cadastrar Funcionario" style="font-family: sans-serif !important;">
+			header="Cadastrar Funcionario" >
 
 
 			<h:form id="formCriarFuncionario">
@@ -142,7 +141,8 @@
 						update=":msgInfo :formFuncionario:tblFuncionario"
 						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaFuncionario').clearFilters(); " />
 					<p:commandButton value="SAIR"
-						onclick="PF('dlgFuncionarioNovo').hide();"></p:commandButton>
+						oncomplete="PF('dlgFuncionarioNovo').hide(); " />
+						
 				</h:panelGrid>
 
 			</h:form>
@@ -181,9 +181,7 @@
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
 			header="Funcionario - Editar">
 			<h:form id="formFuncEditar">
-				<h:panelGrid id="pnlFuncEditar" columns="2">
-					<p:outputLabel value="Código: " />
-					<h:outputText value="#{funcionarioBean.funcionario.codigo}" />
+				<h:panelGrid id="pnlFuncEditar" columns="2">		
 
 					<p:outputLabel value="Nome: "></p:outputLabel>
 					<p:inputText maxlength="50" size="25"
@@ -204,7 +202,7 @@
 					</p:inputMask>
 
 					<p:outputLabel value="Função: " />
-					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}" style="width: 208px;">
+					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}" style="width: 218px;">
 						<f:validateBean />
 						<f:selectItem itemValue="" itemLabel="Selecione uma função" />
 						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />

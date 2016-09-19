@@ -7,6 +7,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 @Entity
 @PrimaryKeyJoinColumn(name="clienteID")
 @Table(name="db_pessoaFisica")
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 		})
 public class PessoaFisica extends Cliente {
 	
+	@CPF(message = "CPF informado é inválido")
 	@Column(length = 14, nullable = false, unique = true)
 	private String cpf;
 

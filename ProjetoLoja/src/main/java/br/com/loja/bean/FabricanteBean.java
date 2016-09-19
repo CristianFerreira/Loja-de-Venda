@@ -9,6 +9,7 @@ import org.primefaces.context.RequestContext;
 
 import br.com.loja.dao.FabricanteDAO;
 import br.com.loja.domain.Fabricante;
+import br.com.loja.domain.Funcionario;
 import br.com.loja.util.FacesUtil;
 
 @ManagedBean
@@ -49,7 +50,14 @@ public class FabricanteBean {
 	// Metodos
 
 	public void prepararNovoFabricante(){
+	
+    	
+		
+		System.out.println("Fab NOME anteS: " +fabricante.getNome());
+		
 		fabricante = new Fabricante();
+		
+		System.out.println("fab NOME DEPOIS: " +fabricante.getNome());
 	}
 		
 	public void salvar() {

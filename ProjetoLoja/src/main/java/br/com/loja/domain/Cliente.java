@@ -12,45 +12,64 @@ import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="db_cliente")
-@NamedQueries({ 
-	@NamedQuery(name = "Cliente.listar", query = "SELECT cliente FROM Cliente cliente"),
-	@NamedQuery(name="Cliente.buscarPorCodigo", query = "SELECT cliente FROM Cliente cliente"
-		+ " WHERE cliente.codigo = :codigo") })
+@Table(name = "db_cliente")
+@NamedQueries({ @NamedQuery(name = "Cliente.listar", query = "SELECT cliente FROM Cliente cliente"),
+		@NamedQuery(name = "Cliente.buscarPorCodigo", query = "SELECT cliente FROM Cliente cliente"
+				+ " WHERE cliente.codigo = :codigo") })
 
 public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="clienteID")
+	@Column(name = "clienteID")
 	private Long codigo;
-	
+
+	@NotEmpty(message = "O campo nome é obrigatório")
+	@Size(min = 3, max = 50, message = "O campo nome deve obter entre 3 a 50 caracteres")
 	@Column(length = 45, nullable = false)
 	private String nome;
-	
+
 	@Column(length = 14, nullable = false)
 	private String telefone;
-	
+
+	@NotEmpty(message = "O campo rua é obrigatório")
+	@Size(max = 50, message = "O campo rua deve obter no máximo 50 caracteres")
 	@Column(length = 50, nullable = false)
 	private String rua;
+
+	@NotEmpty(message = "O numero é obrigatório")
+	@Size(max = 10, message = "O campo numero deve obter no máximo 10 caracteres")
 	@Column(length = 10, nullable = false)
 	private String numero;
+
+	@NotEmpty(message = "O campo bairro é obrigatório")
+	@Size(max = 50, message = "O campo bairro deve obter no máximo 50 caracteres")
 	@Column(length = 50, nullable = false)
 	private String bairro;
+
+	@NotEmpty(message = "O campo CEP é obrigatório")
+	@Size(min = 9, max = 9, message = "CEP inválido")
 	@Column(length = 20, nullable = false)
 	private String cep;
+
+	@NotEmpty(message = "O campo estado é obrigatório")
+	@Size(max = 50, message = "O campo estado deve obter no máximo 50 caracteres")
 	@Column(length = 50, nullable = false)
 	private String estado;
+
+	@Size(max = 50, message = "O campo observação deve obter no máximo 50 caracteres")
 	@Column(length = 50)
 	private String descricao;
-	
+
 	@Column(length = 50, nullable = false)
 	private String tipo;
 
-	
-	//GET E SET
+	// GET E SET
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -137,9 +156,30 @@ public class Cliente implements Serializable {
 				+ numero + ", bairro=" + bairro + ", cep=" + cep + ", estado=" + estado + ", descricao=" + descricao
 				+ ", tipo=" + tipo + "]";
 	}
-	
-	
-	
-	
-		
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+
 }

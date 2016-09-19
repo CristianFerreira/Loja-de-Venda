@@ -6,6 +6,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 @PrimaryKeyJoinColumn(name="clienteID")
@@ -17,9 +22,13 @@ import javax.persistence.Table;
 
 public class PessoaJuridica extends Cliente {
 	
+	@NotNull(message = "O campo nome fantasia é obrigatório")
+	@Size(max = 50,message = "O campo nome fantasia deve obter no máximo 50 caracteres")
 	@Column(length = 50, nullable = false, unique = true)
 	private String nomeFantasia;
 	
+	@CNPJ
+	@NotNull(message = "O campo CNPJ é obrigatório")
 	@Column(length = 18, nullable = false, unique = true)
 	private String cnpj;
 

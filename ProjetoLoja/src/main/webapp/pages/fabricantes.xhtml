@@ -85,7 +85,7 @@
 			<h:form id="formFabExcluir">
 				<h:panelGrid id="pnlFabExcluir" columns="2">
 					<h:outputText value="Código:" />
-					<h:outputText value="#{fabricanteBean.fabricante.codigo}" />
+					<h:outputText value="#{fabricanteBean.fabricante.codigo}"/>
 
 					<h:outputText value="Nome:" />
 					<h:outputText value="#{fabricanteBean.fabricante.nome}" />
@@ -108,9 +108,6 @@
 			header="Paciente - Editar">
 			<h:form id="formFabEditar">
 				<h:panelGrid id="pnlFabEditar" columns="2">
-					<p:outputLabel value="Código: " />
-					<h:outputText value="#{fabricanteBean.fabricante.codigo}" />
-
 					<p:outputLabel value="Nome: "></p:outputLabel>
 					<p:inputText size="30" maxlength="45"
 						value="#{fabricanteBean.fabricante.nome}" />
@@ -141,8 +138,7 @@
 			header="Cadastrar Fabricante">
 
 
-			<h:form id="formCriarFabricante">
-			
+			<h:form id="formCriarFabricante">	
 				<h:panelGrid id="pnlFabricante" columns="2">
 					<p:outputLabel value="Nome: "></p:outputLabel>
 					<p:inputText maxlength="50" size="30"
