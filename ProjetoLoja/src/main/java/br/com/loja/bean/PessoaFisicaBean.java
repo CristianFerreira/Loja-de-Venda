@@ -116,5 +116,8 @@ public class PessoaFisicaBean {
 			FacesUtil.adicionarMsgErro("Erro ao tentar excluir o Cliente:" + ex.getMessage());
 		}
 	}
-
+	
+	
+			 
+	
 }

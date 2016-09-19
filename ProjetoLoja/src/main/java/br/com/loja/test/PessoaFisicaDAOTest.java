@@ -44,10 +44,10 @@ public class PessoaFisicaDAOTest {
 	}
 
 	@Test
-	@Ignore
+	
 	public void buscarPorCPF() {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO();
-		PessoaFisica f1 = dao.buscarPorCPF("111.822.200-11");
+		PessoaFisica f1 = dao.buscarPorCPF("031.831.200-02");
 
 		System.out.println(f1);
 

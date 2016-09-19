@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import br.com.loja.domain.PessoaFisica;
+import br.com.loja.util.FacesUtil;
 import br.com.loja.util.HibernateUtil;
 
 public class PessoaFisicaDAO {
