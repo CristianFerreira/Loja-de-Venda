@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+
+
+<ui:composition template="/templates/modeloGeral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{pessoaFisicaBean.listarPessoaFisica}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<h:form id="formPessoaFisica">
+			<div align="center" style="text-align: center !important;">
+				<h2>Lista de Clientes</h2>
+			</div>
+
+
+			<p:dataTable id="tblPessoaFisica" widgetVar="tabelaPessoaFisica"
+				emptyMessage="Nenhum registro encontrado."
+				value="#{pessoaFisicaBean.listaPessoaFisica}"
+				filteredValue="#{pessoaFisicaBean.listaFiltrarPessoaFisica}"
+				var="pessoaFisica" rows="10" paginator="true">
+
+
+				<p:column headerText="Código" class="centralizarTxtColuna"
+					filterBy="#{pessoaFisica.codigo}" sortBy="#{pessoaFisica.codigo}"
+					style="width:80px">
+					<h:outputText value="#{pessoaFisica.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nome" class="centralizarTxtColuna"
+					filterBy="#{pessoaFisica.nome}" sortBy="#{pessoaFisica.nome}"
+					style="width:300px">
+					<h:outputText value="#{pessoaFisica.nome}" />
+				</p:column>
+
+				<p:column headerText="Telefone" class="centralizarTxtColuna"
+					filterBy="#{pessoaFisica.telefone}"
+					sortBy="#{pessoaFisica.telefone}" style="width:300px">
+					<h:outputText value="#{pessoaFisica.telefone}" />
+				</p:column>
+
+				<p:column headerText="CPF" class="centralizarTxtColuna"
+					filterBy="#{pessoaFisica.cpf}" sortBy="#{pessoaFisica.cpf}"
+					style="width:300px">
+					<h:outputText value="#{pessoaFisica.cpf}" />
+				</p:column>
+
+
+				<p:column headerText="Opções" class="centralizarTxtColuna"
+					style="width: 80px">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						oncomplete="PF('dlgPessoaFisicaEditar').show();"
+						update=":formPessoaFisicaEditar:pnlPessoaFisicaEditar">
+						<f:setPropertyActionListener
+							target="#{pessoaFisicaBean.pessoaFisica}" value="#{pessoaFisica}" />
+					</p:commandButton>
+
+
+					<p:commandButton style="color:#red;" icon="ui-icon-trash"
+						title="Excluir" oncomplete="PF('dlgPessoaFisicaExcluir').show();"
+						update=":formPessoaFisicaExcluir:pnlPessoaFisicaExcluir">
+						<f:setPropertyActionListener
+							target="#{pessoaFisicaBean.pessoaFisica}" value="#{pessoaFisica}" />
+					</p:commandButton>
+
+				</p:column>
+
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo Cadastro"
+						actionListener="#{pessoaFisicaBean.prepararNovaPessoaFisica}"
+						oncomplete="PF('dlgPessoaFisicaNovo').show();"
+						update=":formCriarPessoaFisica:pnlPessoaFisica" />
+				</f:facet>
+
+			</p:dataTable>
+
+		</h:form>
+
+
+
+		<p:dialog widgetVar="dlgPessoaFisicaExcluir" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Pessoa Fisica - Excluir">
+
+			<h:form id="formPessoaFisicaExcluir">
+
+				<h:panelGrid id="pnlPessoaFisicaExcluir" columns="2">
+					<h:outputText value="Código:" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.codigo}" />
+
+					<h:outputText value="Nome:" />
+					<h:outputText value="#{PessoaFisicaBean.pessoaFisica.nome}" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton style="color:#700000;" value="Excluir"
+						actionListener="#{pessoaFisicaBean.excluirPessoaFisica}"
+						update=":msgInfo :formPessoaFisica:tblPessoaFisica"
+						oncomplete="PF('dlgPessoaFisicaExcluir').hide(); PF('tabelaPessoaFisica').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgPessoaFisicaExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+		<p:dialog widgetVar="dlgPessoaFisicaEditar" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Pessoa Fisica - Editar">
+			<h:form id="formPessoaFisicaEditar">
+				<h:panelGrid id="pnlPessoaFisicaEditar">
+					<h:panelGrid columns="2" style="margin-left: auto;">
+
+
+						<p:outputLabel value="Nome: "></p:outputLabel>
+						<p:inputText size="25" maxlength="50"
+							value="#{pessoaFisicaBean.pessoaFisica.nome}">
+							<f:validateBean />
+						</p:inputText>
+
+						<p:outputLabel value="CPF: " />
+						<p:inputMask mask="999.999.999-99" style="width: 240px;"
+							value="#{pessoaFisicaBean.pessoaFisica.cpf}">
+							<f:validateBean />
+						</p:inputMask>
+
+						<p:outputLabel value="Telefone: " />
+						<p:inputMask mask="(99)9999-9999" style="width: 240px;"
+							value="#{pessoaFisicaBean.pessoaFisica.telefone}">
+							<f:validateBean />
+						</p:inputMask>
+					</h:panelGrid>
+
+					<h:panelGrid columns="4" style="margin-left: auto;">
+						<p:outputLabel value="Rua: " />
+						<p:inputText size="15" maxlength="50"
+							value="#{pessoaFisicaBean.pessoaFisica.rua}">
+							<f:validateBean />
+						</p:inputText>
+
+						<p:outputLabel value="Nº: " />
+						<p:inputText size="6" maxlength="10" style="width: 55px;"
+							value="#{pessoaFisicaBean.pessoaFisica.numero}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
+
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Bairro: " />
+						<p:inputText size="25" maxlength="50"
+							value="#{pessoaFisicaBean.pessoaFisica.bairro}">
+							<f:validateBean />
+						</p:inputText>
+
+						<p:outputLabel value="CEP: " />
+						<p:inputMask mask="99999-999" style="width: 240px;"
+							value="#{pessoaFisicaBean.pessoaFisica.cep}">
+							<f:validateBean />
+						</p:inputMask>
+
+						<p:outputLabel value="Estado: " />
+						<p:selectOneMenu value="#{pessoaFisicaBean.pessoaFisica.estado}"
+							style="width: 218px;">
+
+							<f:selectItem itemValue="" itemLabel="Selecione um estado" />
+							<f:selectItems value="#{pessoaFisicaBean.arrayEstados}" />
+							<f:validateBean />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Observação: " />
+						<p:inputTextarea rows="2" cols="23" maxlength="50"
+							value="#{pessoaFisicaBean.pessoaFisica.descricao}">
+							<f:validateBean />
+						</p:inputTextarea>
+
+
+
+					</h:panelGrid>
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" style="margin-left: 28%;">
+					<p:commandButton value="Editar"
+						actionListener="#{pessoaFisicaBean.editarPessoaFisica}"
+						update=":msgInfo :formPessoaFisica:tblPessoaFisica"
+						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaPessoaFisica').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgPessoaFisicaEditar').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+
+
+		<p:dialog widgetVar="dlgPessoaFisicaNovo" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Cadastrar Pessoa Fisica">
+
+
+			<h:form id="formCriarPessoaFisica">
+				<h:panelGrid id="pnlPessoaFisica">
+					<h:panelGrid columns="2" style="margin-left: auto;">
+
+
+						<p:outputLabel value="Nome: "></p:outputLabel>
+						<p:inputText size="25" maxlength="50"
+							value="#{pessoaFisicaBean.pessoaFisica.nome}">
+							<f:validateBean />
+						</p:inputText>
+
+						<p:outputLabel value="CPF: " />
+						<p:inputMask mask="999.999.999-99" style="width: 240px;"
+							value="#{pessoaFisicaBean.pessoaFisica.cpf}">
+							<f:validateBean />
+						</p:inputMask>
+
+						<p:outputLabel value="Telefone: " />
+						<p:inputMask mask="(99)9999-9999" style="width: 240px;"
+							value="#{pessoaFisicaBean.pessoaFisica.telefone}">
+							<f:validateBean />
+						</p:inputMask>
+					</h:panelGrid>
+
+					<h:panelGrid columns="4" style="margin-left: auto;">
+						<p:outputLabel value="Rua: " />
+						<p:inputText size="15" maxlength="50"
+							value="#{pessoaFisicaBean.pessoaFisica.rua}">
+							<f:validateBean />
+						</p:inputText>
+
+						<p:outputLabel value="Nº: " />
+						<p:inputText size="6" maxlength="10" style="width: 55px;"
+							value="#{pessoaFisicaBean.pessoaFisica.numero}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
+
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Bairro: " />
+						<p:inputText size="25" maxlength="50"
+							value="#{pessoaFisicaBean.pessoaFisica.bairro}">
+							<f:validateBean />
+						</p:inputText>
+
+						<p:outputLabel value="CEP: " />
+						<p:inputMask mask="99999-999" style="width: 240px;"
+							value="#{pessoaFisicaBean.pessoaFisica.cep}">
+							<f:validateBean />
+						</p:inputMask>
+
+						<p:outputLabel value="Estado: " />
+						<p:selectOneMenu value="#{pessoaFisicaBean.pessoaFisica.estado}"
+							style="width: 218px;">
+
+							<f:selectItem itemValue="" itemLabel="Selecione um estado" />
+							<f:selectItems value="#{pessoaFisicaBean.arrayEstados}" />
+							<f:validateBean />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Observação: " />
+						<p:inputTextarea rows="2" cols="23" maxlength="50"
+							value="#{pessoaFisicaBean.pessoaFisica.descricao}">
+							<f:validateBean />
+						</p:inputTextarea>
+
+
+
+					</h:panelGrid>
+				</h:panelGrid>
+
+				<h:panelGrid columns="2" style="margin-left: 28%;">
+					<p:commandButton value="Salvar"
+						actionListener="#{pessoaFisicaBean.salvarPessoaFisica}"
+						update=":msgInfo :formPessoaFisica:tblPessoaFisica"
+						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaPessoaFisica').clearFilters(); " />
+					<p:commandButton value="Sair"
+						onclick="PF('dlgPessoaFisicaNovo').hide();"></p:commandButton>
+				</h:panelGrid>
+
+			</h:form>
+
+			<script type="text/javascript">
+				function validateRequestCreate(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgPessoaFisicaNovo').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgPessoaFisicaNovo').hide();
+					}
+				}
+
+				function validateRequestEdit(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgPessoaFisicaEditar').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgPessoaFisicaEditar').hide();
+					}
+				}
+			</script>
+
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+</html>
+

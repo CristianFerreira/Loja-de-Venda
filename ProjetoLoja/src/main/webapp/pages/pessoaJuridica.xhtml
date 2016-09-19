@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+
+
+<ui:composition template="/templates/modeloGeral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{pessoaJuridicaBean.listarPessoaJuridica}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<h:form id="formPessoaJuridica">
+			<div align="center" style="text-align: center !important;">
+				<h2>Lista de Clientes</h2>
+			</div>
+
+
+			<p:dataTable id="tblPessoaJuridica" widgetVar="tabelaPessoaJuridica"
+				emptyMessage="Nenhum registro encontrado."
+				value="#{pessoaJuridicaBean.listaPessoaJuridica}"
+				filteredValue="#{pessoaJuridicaBean.listaFiltrarPessoaJuridica}"
+				var="pessoaJuridica" rows="10" paginator="true">
+
+
+				<p:column headerText="Código" class="centralizarTxtColuna"
+					filterBy="#{pessoaJuridica.codigo}"
+					sortBy="#{pessoaJuridica.codigo}" style="width:80px">
+					<h:outputText value="#{pessoaJuridica.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nome Fantasia" class="centralizarTxtColuna"
+					filterBy="#{pessoaJuridica.nomeFantasia}"
+					sortBy="#{pessoaJuridica.nomeFantasia}" style="width:300px">
+					<h:outputText value="#{pessoaJuridica.nomeFantasia}" />
+				</p:column>
+
+				<p:column headerText="Nome" class="centralizarTxtColuna"
+					filterBy="#{pessoaJuridica.nome}" sortBy="#{pessoaJuridica.nome}"
+					style="width:300px">
+					<h:outputText value="#{pessoaJuridica.nome}" />
+				</p:column>
+
+
+				<p:column headerText="Telefone" class="centralizarTxtColuna"
+					filterBy="#{pessoaJuridica.telefone}"
+					sortBy="#{pessoaJuridica.telefone}" style="width:300px">
+					<h:outputText value="#{pessoaJuridica.telefone}" />
+				</p:column>
+
+				<p:column headerText="CNPJ" class="centralizarTxtColuna"
+					filterBy="#{pessoaJuridica.cnpj}" sortBy="#{pessoaJuridica.cnpj}"
+					style="width:300px">
+					<h:outputText value="#{pessoaJuridica.cnpj}" />
+				</p:column>
+
+
+				<p:column headerText="Opções" class="centralizarTxtColuna"
+					style="width: 80px">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						oncomplete="PF('dlgPessoaJuridicaEditar').show();"
+						update=":formPessoaJuridicaEditar:pnlPessoaJuridicaEditar">
+						<f:setPropertyActionListener
+							target="#{pessoaJuridicaBean.pessoaJuridica}"
+							value="#{pessoaJuridica}" />
+					</p:commandButton>
+
+
+					<p:commandButton style="color:#red;" icon="ui-icon-trash"
+						title="Excluir"
+						oncomplete="PF('dlgPessoaJuridicaExcluir').show();"
+						update=":formPessoaJuridicaExcluir:pnlPessoaJuridicaExcluir">
+						<f:setPropertyActionListener
+							target="#{pessoaJuridicaBean.pessoaJuridica}"
+							value="#{pessoaJuridica}" />
+					</p:commandButton>
+
+
+					<p:commandButton style="color:#red;" icon="ui-icon-search"
+						title="Detalhes"
+						oncomplete="PF('dlgPessoaJuridicaDetalhes').show();"
+						update=":formPessoaJuridicaDetalhes:pnlPessoaJuridicaDetalhes">
+						<f:setPropertyActionListener
+							target="#{pessoaJuridicaBean.pessoaJuridica}"
+							value="#{pessoaJuridica}" />
+					</p:commandButton>
+
+				</p:column>
+
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo Cadastro"
+						actionListener="#{pessoaJuridicaBean.prepararNovaPessoaJuridica}"
+						oncomplete="PF('dlgPessoaJuridicaNovo').show();"
+						update=":formCriarPessoaJuridica:pnlPessoaJuridica" />
+				</f:facet>
+
+			</p:dataTable>
+
+		</h:form>
+
+
+
+		<p:dialog widgetVar="dlgPessoaJuridicaExcluir" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Pessoa Juridica - Excluir">
+
+			<h:form id="formPessoaJuridicaExcluir">
+				<h:panelGrid id="pnlPessoaJuridicaExcluir" columns="2">
+					<h:outputText value="Código:" />
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.codigo}" />
+
+					<h:outputText value="Nome:" />
+					<h:outputText value="#{PessoaJuridicaBean.pessoaJuridica.nome}" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton style="color:#700000;" value="Excluir"
+						actionListener="#{pessoaJuridicaBean.excluirPessoaJuridica}"
+						update=":msgInfo :formPessoaJuridica:tblPessoaJuridica"
+						oncomplete="PF('dlgPessoaJuridicaExcluir').hide(); PF('tabelaJuridicaFisica').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgPessoaJuridicaExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+
+		<p:dialog widgetVar="dlgPessoaJuridicaDetalhes" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Pessoa Juridica - Detalhes">
+			<h:form id="formPessoaJuridicaDetalhes">
+				<h:panelGrid id="pnlPessoaJuridicaDetalhes" columns="2" style="text-align: left;">
+					<div style="text-align: right;" >
+					<h:outputText value="Código: " />
+					</div>
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.codigo}" />
+
+					<h:outputText value="Nome Fantasia: " />
+					<h:outputText
+						value="#{pessoaJuridicaBean.pessoaJuridica.nomeFantasia}" />
+
+					<h:outputText value="Nome: " />
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.nome}" />
+
+					<h:outputText value="Telefone: " />
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.telefone}" />
+
+					<h:outputText value="Rua: " />
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.rua}" />
+
+					<h:outputText value="Numero: " />
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.numero}" />
+
+					<h:outputText value="Bairro: " />
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.bairro}" />
+
+					<h:outputText value="CEP: " />
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.cep}" />
+
+					<h:outputText value="Estado: " />
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.estado}" />
+
+
+
+					<h:outputText value="CNPJ: " />
+					<h:outputText value="#{pessoaJuridicaBean.pessoaJuridica.cnpj}" />
+
+
+					<h:outputText value="Observação: " />
+					<h:outputText
+						value="#{pessoaJuridicaBean.pessoaJuridica.descricao}" />
+
+
+				</h:panelGrid>
+
+				<h:panelGrid>
+
+					<p:commandButton value="Fechar"
+						onclick="PF('dlgPessoaJuridicaDetalhes').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+
+		<p:dialog widgetVar="dlgPessoaJuridicaEditar" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Pessoa Juridica - Editar">
+			<h:form id="formPessoaJuridicaEditar">
+				<h:panelGrid id="pnlPessoaJuridicaEditar" columns="2">
+
+					<p:outputLabel value="Nome Fantasia: "></p:outputLabel>
+					<p:inputText size="30" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.nomeFantasia}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Nome: "></p:outputLabel>
+					<p:inputText size="30" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.nome}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Telefone: " />
+					<p:inputMask mask="(99)9999-9999"
+						value="#{pessoaJuridicaBean.pessoaJuridica.telefone}">
+						<f:validateBean />
+					</p:inputMask>
+
+					<p:outputLabel value="Rua: " />
+					<p:inputText size="30" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.rua}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Numero: " />
+					<p:inputText size="30" maxlength="10"
+						value="#{pessoaJuridicaBean.pessoaJuridica.numero}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Bairro: " />
+					<p:inputText size="30" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.bairro}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="CEP: " />
+					<p:inputMask mask="99999-999"
+						value="#{pessoaJuridicaBean.pessoaJuridica.cep}">
+						<f:validateBean />
+					</p:inputMask>
+
+					<p:outputLabel value="Estado: " />
+					<p:selectOneMenu
+						value="#{pessoaJuridicaBean.pessoaJuridica.estado}">
+
+						<f:selectItem itemValue="" itemLabel="Selecione um estado" />
+						<f:selectItems value="#{pessoaJuridicaBean.arrayEstados}" />
+						<f:validateBean />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="CNPJ: " />
+					<p:inputMask mask="99.999.999/9999-99"
+						value="#{pessoaJuridicaBean.pessoaJuridica.cnpj}">
+						<f:validateBean />
+					</p:inputMask>
+
+					<p:outputLabel value="Observação: " />
+					<p:inputTextarea rows="2" cols="28" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.descricao}">
+						<f:validateBean />
+					</p:inputTextarea>
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Editar"
+						actionListener="#{pessoaJuridicaBean.editarPessoaJuridica}"
+						update=":msgInfo :formPessoaJuridica:tblPessoaJuridica"
+						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaPessoaJuridica').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgPessoaJuridicaEditar').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+
+
+		<p:dialog widgetVar="dlgPessoaJuridicaNovo" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Cadastrar Pessoa Juridica">
+
+
+			<h:form id="formCriarPessoaJuridica">
+				<h:panelGrid id="pnlPessoaJuridica" columns="2">
+
+
+					<p:outputLabel value="Nome Fantasia: "></p:outputLabel>
+					<p:inputText size="30" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.nomeFantasia}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Nome: "></p:outputLabel>
+					<p:inputText size="30" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.nome}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Telefone: " />
+					<p:inputMask mask="(99)9999-9999"
+						value="#{pessoaJuridicaBean.pessoaJuridica.telefone}">
+						<f:validateBean />
+					</p:inputMask>
+
+					<p:outputLabel value="Rua: " />
+					<p:inputText size="30" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.rua}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Numero: " />
+					<p:inputText size="30" maxlength="10"
+						value="#{pessoaJuridicaBean.pessoaJuridica.numero}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Bairro: " />
+					<p:inputText size="30" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.bairro}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="CEP: " />
+					<p:inputMask mask="99999-999"
+						value="#{pessoaJuridicaBean.pessoaJuridica.cep}">
+						<f:validateBean />
+					</p:inputMask>
+
+					<p:outputLabel value="Estado: " />
+					<p:selectOneMenu
+						value="#{pessoaJuridicaBean.pessoaJuridica.estado}">
+
+						<f:selectItem itemValue="" itemLabel="Selecione um estado" />
+						<f:selectItems value="#{pessoaJuridicaBean.arrayEstados}" />
+						<f:validateBean />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="CNPJ: " />
+					<p:inputMask mask="99.999.999/9999-99"
+						value="#{pessoaJuridicaBean.pessoaJuridica.cnpj}">
+						<f:validateBean />
+					</p:inputMask>
+
+					<p:outputLabel value="Observação: " />
+					<p:inputTextarea rows="2" cols="28" maxlength="50"
+						value="#{pessoaJuridicaBean.pessoaJuridica.descricao}">
+						<f:validateBean />
+					</p:inputTextarea>
+
+
+
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						actionListener="#{pessoaJuridicaBean.salvarPessoaJuridica}"
+						update=":msgInfo :formPessoaJuridica:tblPessoaJuridica"
+						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaPessoaJuridica').clearFilters(); " />
+					<p:commandButton value="Sair"
+						onclick="PF('dlgPessoaJuridicaNovo').hide();"></p:commandButton>
+				</h:panelGrid>
+
+			</h:form>
+
+			<script type="text/javascript">
+				function validateRequestCreate(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgPessoaJuridicaNovo').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgPessoaJuridicaNovo').hide();
+					}
+				}
+
+				function validateRequestEdit(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgPessoaJuridicaEditar').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgPessoaJuridicaEditar').hide();
+					}
+				}
+			</script>
+
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+</html>
+

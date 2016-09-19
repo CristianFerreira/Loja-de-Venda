@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+
+
+<ui:composition template="/templates/modeloGeral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{produtoBean.listarProduto}" type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+
+		<h:form id="formProduto">
+			<div align="center" style="text-align: center !important;">
+				<h2>Lista de Produtos</h2>
+			</div>
+
+
+			<p:dataTable id="tblProduto" widgetVar="tabelaProduto"
+				emptyMessage="Nenhum registro encontrado."
+				value="#{produtoBean.listaDeProdutos}"
+				filteredValue="#{produtoBean.listaFiltrarProdutos}" var="produto"
+				rows="10" paginator="true">
+				<p:column headerText="Código" class="centralizarTxtColuna"
+					filterBy="#{produto.codigo}" sortBy="#{produto.codigo}"
+					style="width:80px">
+					<h:outputText value="#{produto.codigo}" />
+				</p:column>
+				<p:column headerText="Descrição" class="centralizarTxtColuna"
+					filterBy="#{produto.descricao}" sortBy="#{produto.descricao}"
+					style="width:300px">
+					<h:outputText value="#{produto.descricao}" />
+				</p:column>
+				<p:column headerText="Preço" class="centralizarTxtColuna"
+					sortBy="#{produto.preco}" style="width:300px">
+					<h:outputText value="#{produto.preco}" />
+				</p:column>
+
+				<p:column headerText="Quantidade" class="centralizarTxtColuna"
+					style="width:300px">
+					<h:outputText value="#{produto.quantidade}" />
+				</p:column>
+				
+				<p:column headerText="Fabricante" class="centralizarTxtColuna"
+					style="width:300px" filterBy="#{produto.fabricante.nome}" 
+					sortBy="##{produto.fabricante.nome}">
+					<h:outputText value="#{produto.fabricante.nome}" />
+				</p:column>
+
+
+				<p:column headerText="Opções" class="centralizarTxtColuna"
+					style="width: 80px">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						oncomplete="PF('dlgProdutoEditar').show();"
+						update=":formProdutoEditar:pnlProdutoEditar">
+						<f:setPropertyActionListener target="#{produtoBean.produto}"
+							value="#{produto}" />
+					</p:commandButton>
+
+
+					<p:commandButton style="color:#red;" icon="ui-icon-trash"
+						title="Excluir" oncomplete="PF('dlgProdutoExcluir').show();"
+						update=":formProdutoExcluir:pnlProdutoExcluir">
+						<f:setPropertyActionListener target="#{produtoBean.produto}"
+							value="#{produto}" />
+					</p:commandButton>
+
+				</p:column>
+
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo Cadastro"
+						actionListener="#{produtoBean.prepararNovoProduto}"
+						oncomplete="PF('dlgProdutoNovo').show();"
+						update=":formCriarProduto:pnlProduto" />
+				</f:facet>
+
+			</p:dataTable>
+
+		</h:form>
+
+
+
+		<p:dialog widgetVar="dlgProdutoExcluir" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Produto - Excluir">
+
+			<h:form id="formProdutoExcluir">
+				<h:panelGrid id="pnlProdutoExcluir" columns="2">
+					<h:outputText value="Código:" />
+					<h:outputText value="#{produtoBean.produto.codigo}" />
+
+					<h:outputText value="Descrição:" />
+					<h:outputText value="#{produtoBean.produto.descricao}" />
+
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton style="color:#700000;" value="Excluir"
+						actionListener="#{produtoBean.excluirProduto}"
+						update=":msgInfo :formProduto:tblProduto"
+						oncomplete="PF('dlgProdutoExcluir').hide(); PF('tabelaProduto').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgProdutoExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+		<p:dialog widgetVar="dlgProdutoEditar" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Produto - Editar">
+			<h:form id="formProdutoEditar">
+				<h:panelGrid id="pnlProdutoEditar" columns="2">
+					<p:outputLabel value="Descrição: "></p:outputLabel>
+					<p:inputText size="30" maxlength="50"
+						value="#{produtoBean.produto.descricao}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Editar"
+						actionListener="#{produtoBean.editarProduto}"
+						update=":msgInfo :formProduto:tblProduto"
+						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgProdutoEditar').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+
+
+		<p:dialog widgetVar="dlgProdutoNovo" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Cadastrar Produto">
+
+
+			<h:form id="formCriarProduto">
+
+				<h:panelGrid id="pnlProduto" columns="2">
+					<p:outputLabel value="Descrição: " />
+					<p:inputText maxlength="50" size="30"
+						value="#{produtoBean.produto.descricao}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Preço: " />
+					<p:inputText maxlength="30" size="30"
+						value="#{produtoBean.produto.preco}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Quantidade: " />
+					<p:inputText maxlength="30" size="30"
+						value="#{produtoBean.produto.quantidade}">
+						<f:validateBean />
+					</p:inputText>
+
+					<p:outputLabel value="Fabricante: " />
+					<p:selectOneMenu value="#{produtoBean.produto.fabricante}"
+						converter="fabricanteConverter">
+
+						<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
+						<f:selectItems value="#{produtoBean.listaDeFabricantes}"
+							var="fabricante" itemValue="#{fabricante}"
+							itemLabel="#{fabricante.nome}" />
+						<f:validateBean />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						actionListener="#{produtoBean.salvar}"
+						update=":msgInfo :formProduto:tblProduto"
+						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
+					<p:commandButton value="Sair"
+						onclick="PF('dlgProdutoNovo').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+			<script type="text/javascript">
+				function validateRequestCreate(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgProdutoNovo').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgProdutoNovo').hide();
+					}
+				}
+
+				function validateRequestEdit(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgProdutoEditar').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgProdutoEditar').hide();
+					}
+				}
+			</script>
+
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+</html>
+
