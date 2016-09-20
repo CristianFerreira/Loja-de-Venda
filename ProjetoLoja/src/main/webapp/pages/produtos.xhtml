@@ -42,7 +42,7 @@
 				</p:column>
 				<p:column headerText="Preço" class="centralizarTxtColuna"
 					sortBy="#{produto.preco}" style="width:300px">
-					<h:outputText value="#{produto.preco}">
+					<h:outputText value="R$ #{produto.preco}">
 						<f:convertNumber />
 					</h:outputText>
 				</p:column>
@@ -86,7 +86,7 @@
 					</h:commandLink>
 
 					<h:commandLink>
-						<p:graphicImage library="images" name="/pdf.png" width="24" />
+						<p:graphicImage library="images" name="/excel.PNG" width="24" />
 						<p:dataExporter type="xls" target="tblProduto" fileName="produtos" />
 					</h:commandLink>
 
@@ -175,7 +175,7 @@
 						value="#{produtoBean.produto.preco}"
 						converterMessage="Informe um valor válido para o campo preço">
 						<f:validateBean />
-						<f:convertNumber />
+						<f:convertNumber pattern="0.00"/>
 					</p:inputText>
 
 					<p:outputLabel value="Quantidade: " />
