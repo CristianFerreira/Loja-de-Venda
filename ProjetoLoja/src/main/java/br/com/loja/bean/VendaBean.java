@@ -39,12 +39,6 @@ public class VendaBean {
 	private String tipoCliente;
 	private List<Itens> listaDeItens;
 
-	
-	
-	
-	
-
-
 	public Cliente getClienteFinal() {
 		return clienteFinal;
 	}
@@ -77,10 +71,9 @@ public class VendaBean {
 		this.tipoCliente = tipoCliente;
 	}
 
-
-
 	public Venda getVenda() {
 		if (venda == null) {
+
 			venda = new Venda();
 			venda.setValor(new BigDecimal("0.00"));
 		}
@@ -112,7 +105,7 @@ public class VendaBean {
 		if (clientePJ == null) {
 			clientePJ = new PessoaJuridica();
 		}
-		
+
 		return clientePJ;
 	}
 
@@ -203,15 +196,21 @@ public class VendaBean {
 	}
 
 	public void prepararNovaVenda() {
+
 		venda.setData(new Date());
 
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-		Funcionario funcionario = funcionarioDAO.buscarPorCodigo(1L);
+		Funcionario funcionario = new Funcionario();
+		funcionario = funcionarioDAO.buscarPorCodigo(1L);
 		venda.setFuncionario(funcionario);
 
 		if (clientePF.getCpf() != null) {
 			venda.setCliente(clientePF);
 		}
+		if (clientePJ.getCnpj() != null) {
+			venda.setCliente(clientePJ);
+		}
+
 	}
 
 	public void salvarVenda() {
@@ -250,12 +249,11 @@ public class VendaBean {
 					clienteFinal = clientePF;
 					FacesUtil.adicionarMsgSucesso("Cliente adicionado ao registro de venda");
 				}
-			}if(tipoCliente.equals("cnpj")){
+			}
+			if (tipoCliente.equals("cnpj")) {
 				clientePF = new PessoaFisica();
 			}
-				
-			
-			
+
 			if (tipoCliente.equals("cnpj")) {
 				PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
 				clientePJ = pessoaJuridicaDAO.buscarPorCNPJ(buscarClientePeloTipoPJ);
@@ -263,10 +261,10 @@ public class VendaBean {
 					clienteFinal = clientePJ;
 					FacesUtil.adicionarMsgSucesso("Cliente adicionado ao registro de venda");
 				}
-			}if(tipoCliente.equals("cpf")){
+			}
+			if (tipoCliente.equals("cpf")) {
 				clientePJ = new PessoaJuridica();
 			}
-			
 
 		} catch (RuntimeException ex) {
 			FacesUtil.adicionarMsgErro("Cliente não foi encontrado");

@@ -2,6 +2,7 @@ package br.com.loja.test;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -74,6 +75,7 @@ public class FuncionarioDAOTest {
 	
 
 	@Test
+	@Ignore
 	public void editar(){
 		FuncionarioDAO dao =  new FuncionarioDAO();
 		Funcionario f1 = new Funcionario();
@@ -87,5 +89,16 @@ public class FuncionarioDAOTest {
 		
 		dao.editar(f1);
 		
+	}
+	
+	@Test
+	@Ignore
+	public void login(){
+		FuncionarioDAO fdao = new FuncionarioDAO();
+		
+		Funcionario f1 = fdao.login("20108283135", "123456");
+		
+		System.out.println("funcionario : "+f1);
+		//Assert.assertNotNull(f1);
 	}
 }

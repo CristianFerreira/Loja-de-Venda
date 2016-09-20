@@ -118,7 +118,7 @@
 				<p:column headerText="Opções" class="centralizarTxtColuna">
 					<p:commandButton value="Adicionar"
 						actionListener="#{vendaBean.adicionarItens(produto)}"
-						update="formVenda:tblItens :formVenda:txtValorTotal" />
+						update="formVenda:tblItens :formVenda:txtValorTotal formVenda:pnlFinaliza" />
 				</p:column>
 
 
@@ -146,20 +146,20 @@
 				<p:column headerText="Opções" class="centralizarTxtColuna">
 					<p:commandButton value="Remover"
 						actionListener="#{vendaBean.removerItens(item)}"
-						update="formVenda:tblItens :formVenda:txtValorTotal" />
+						update="formVenda:tblItens :formVenda:txtValorTotal formVenda:pnlFinaliza" />
 				</p:column>
 
 
 			</p:dataTable>
 			<p:separator />
 
-			<h:panelGrid columns="1">
+			<h:panelGrid columns="1" id="pnlFinaliza">
 				<h:outputText id="txtValorTotal"
 					value="Valor Total: R$ #{vendaBean.venda.valor}" />
-				<p:commandButton value="Finalizar Venda"
+				<p:commandButton value="Finalizar Venda" rendered="#{vendaBean.venda.valor != '0.00'}"
 					actionListener="#{vendaBean.prepararNovaVenda}"
-					oncomplete="PF('dlgFinalizarVenda').show();"
-					update="formFinalizarVenda:pnlFinalizarVenda" />
+					update="formFinalizarVenda:pnlFinalizarVenda" 
+					oncomplete="PF('dlgFinalizarVenda').show();"/>
 
 			</h:panelGrid>
 

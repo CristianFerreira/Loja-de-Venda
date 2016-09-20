@@ -32,6 +32,12 @@ div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-contai
 	text-align: right;
 }
 
+<!-- Login -->
+div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container{
+width: 400px;
+height: 400px
+}
+
 <!--
 Dialog Fabricante-->div.ui-dialog-titlebar.ui-widget-header.ui-helper-clearfix.ui-corner-top
 	{
@@ -88,28 +94,40 @@ div.ui-dialog-content.ui-widget-content {
 		<p:layoutUnit position="north" resizable="false" closable="false"
 			collapsible="false">
 			<h:outputText value="" />
-			<h:form>
-
-				<p:menubar>
-					<p:submenu label="Caixa">
-						<p:menuitem value="Venda"></p:menuitem>
+			
+			
+			<h:form id="formMenuPrincipal">
+				
+				<p:menubar id="menuBarPrincipal">
+					<p:submenu label="Acesso restrito" rendered="#{autenticacaoBean.funcionarioLogado.tipo == null}">
+					<p:menuitem value="Login" ></p:menuitem>
 					</p:submenu>
-					<p:submenu label="Cliente">
+				
+					<p:submenu label="Caixa" 
+					rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+						<p:menuitem value="Venda" ></p:menuitem>
+					</p:submenu>
+					<p:submenu label="Cliente" 
+					rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
 						<p:menuitem value="Cadastro Pessoa Fisica"></p:menuitem>
 						<p:menuitem value="Cadastro Pessoa Juridica"></p:menuitem>
 					</p:submenu>
 
 
-					<p:submenu label="Fabricante">
+					<p:submenu label="Fabricante" rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
 						<p:menuitem value="Lista de fabricantes"
 							outcome="/pages/fabricantes.xhtml"></p:menuitem>
 					</p:submenu>
 
-					<p:submenu label="Estoque">
+					<p:submenu label="Estoque" rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
 						<p:menuitem value="Cadastro"></p:menuitem>
 					</p:submenu>
-					<p:submenu label="Gerenciamento">
+					<p:submenu label="Gerenciamento" rendered="#{autenticacaoBean.funcionarioLogado.tipo != 'Caixa' and autenticacaoBean.funcionarioLogado.tipo != null}}">
 						<p:menuitem value="Funcionario" outcome="/pages/funcionarios.xhtml" />
+					</p:submenu>
+					
+					<p:submenu label="Sair" rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+					<p:menuitem value="Sair" action="#{autenticacaoBean.sairDoSistema}" ></p:menuitem>
 					</p:submenu>
 
 				</p:menubar>

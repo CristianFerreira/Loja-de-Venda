@@ -105,5 +105,6 @@ public class FuncionarioBean {
 			FacesUtil.adicionarMsgErro("Erro ao tentar excluir o funcionario:" + ex.getMessage());
 		}
 	}
+	
 
 }

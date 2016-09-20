@@ -69,7 +69,8 @@
 				<f:facet name="footer">
 					<p:commandButton value="Novo Cadastro" actionListener="#{fabricanteBean.prepararNovoFabricante}"
 						oncomplete="PF('dlgFabricanteNovo').show();"
-						update=":formCriarFabricante:pnlFabricante" />
+						update=":formCriarFabricante:pnlFabricante"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != 'Caixa'}" />
 				</f:facet>
 
 			</p:dataTable>
