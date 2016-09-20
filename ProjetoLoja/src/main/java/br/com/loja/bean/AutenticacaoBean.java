@@ -15,7 +15,7 @@ public class AutenticacaoBean {
 	private Funcionario funcionarioLogado;
 
 	public Funcionario getFuncionarioLogado() {
-		if(funcionarioLogado == null){
+		if (funcionarioLogado == null) {
 			funcionarioLogado = new Funcionario();
 		}
 		return funcionarioLogado;
@@ -24,26 +24,28 @@ public class AutenticacaoBean {
 	public void setFuncionarioLogado(Funcionario funcionarioLogado) {
 		this.funcionarioLogado = funcionarioLogado;
 	}
-	
-	
-	public void autenticarFuncionario(){
-		try{
+
+	public String autenticarFuncionario() {
+		try {
 			FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-			funcionarioLogado = funcionarioDAO.login(funcionarioLogado.getCpf(), DigestUtils.md5Hex(funcionarioLogado.getSenha()));
-			if(funcionarioLogado == null){
+			funcionarioLogado = funcionarioDAO.login(funcionarioLogado.getCpf(),
+					DigestUtils.md5Hex(funcionarioLogado.getSenha()));
+			if (funcionarioLogado == null) {
 				FacesUtil.adicionarMsgErro("CPF e/ou senha inválidos");
-			}else{
+				return null;
+			} else {
 				FacesUtil.adicionarMsgSucesso("Bem vindo ao sistema");
+				return "/pages/principal.xhtml?faces-redirect=true";
 			}
-		}catch(RuntimeException ex){
-			FacesUtil.adicionarMsgErro("Erro ao tentar entrar no sistema: "+ex.getMessage());
+		} catch (RuntimeException ex) {
+			FacesUtil.adicionarMsgErro("Erro ao tentar entrar no sistema: " + ex.getMessage());
+			return null;
 		}
 	}
-	
-	public String sairDoSistema(){
+
+	public String sairDoSistema() {
 		funcionarioLogado = null;
 		return "/pages/login.xhtml?faces-redirect=true";
 	}
-	
 
 }

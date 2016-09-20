@@ -29,6 +29,7 @@
 				value="#{produtoBean.listaDeProdutos}"
 				filteredValue="#{produtoBean.listaFiltrarProdutos}" var="produto"
 				rows="10" paginator="true">
+
 				<p:column headerText="Código" class="centralizarTxtColuna"
 					filterBy="#{produto.codigo}" sortBy="#{produto.codigo}"
 					style="width:80px">
@@ -41,23 +42,25 @@
 				</p:column>
 				<p:column headerText="Preço" class="centralizarTxtColuna"
 					sortBy="#{produto.preco}" style="width:300px">
-					<h:outputText value="#{produto.preco}" />
+					<h:outputText value="#{produto.preco}">
+						<f:convertNumber />
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Quantidade" class="centralizarTxtColuna"
 					style="width:300px">
 					<h:outputText value="#{produto.quantidade}" />
 				</p:column>
-				
+
 				<p:column headerText="Fabricante" class="centralizarTxtColuna"
-					style="width:300px" filterBy="#{produto.fabricante.nome}" 
+					style="width:300px" filterBy="#{produto.fabricante.nome}"
 					sortBy="##{produto.fabricante.nome}">
 					<h:outputText value="#{produto.fabricante.nome}" />
 				</p:column>
 
 
 				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 80px">
+					style="width: 80px" exportable="false">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						oncomplete="PF('dlgProdutoEditar').show();"
 						update=":formProdutoEditar:pnlProdutoEditar">
@@ -74,6 +77,20 @@
 					</p:commandButton>
 
 				</p:column>
+
+				<f:facet name="header">
+					<h:commandLink>
+						<p:graphicImage library="images" name="/pdf.png" width="24" />
+						<p:dataExporter type="pdf" target="tblProduto" fileName="produtos"
+							encoding="ISO-8859-1" />
+					</h:commandLink>
+
+					<h:commandLink>
+						<p:graphicImage library="images" name="/pdf.png" width="24" />
+						<p:dataExporter type="xls" target="tblProduto" fileName="produtos" />
+					</h:commandLink>
+
+				</f:facet>
 
 
 				<f:facet name="footer">
@@ -155,8 +172,10 @@
 
 					<p:outputLabel value="Preço: " />
 					<p:inputText maxlength="30" size="30"
-						value="#{produtoBean.produto.preco}">
+						value="#{produtoBean.produto.preco}"
+						converterMessage="Informe um valor válido para o campo preço">
 						<f:validateBean />
+						<f:convertNumber />
 					</p:inputText>
 
 					<p:outputLabel value="Quantidade: " />
