@@ -200,6 +200,12 @@
 						value="#{funcionarioBean.funcionario.cpf}">
 						<f:validateBean />
 					</p:inputMask>
+					
+					<p:outputLabel value="Senha:"></p:outputLabel>
+					<p:password maxlength="8" size="25"
+						value="#{funcionarioBean.funcionario.senha}">
+						<f:validateBean />
+					</p:password>
 
 					<p:outputLabel value="Função: " />
 					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}" style="width: 218px;">

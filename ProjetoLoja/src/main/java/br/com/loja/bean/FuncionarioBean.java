@@ -6,6 +6,8 @@ import br.com.loja.domain.Funcionario;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import br.com.loja.util.FacesUtil;
 import java.util.List;
 
@@ -61,6 +63,7 @@ public class FuncionarioBean {
 		// FacesUtil.adicionarMsgSucesso(fabricante.toString());
 		try {
 			FuncionarioDAO fdao = new FuncionarioDAO();
+			funcionario.setSenha(DigestUtils.md5Hex(funcionario.getSenha()));
 			fdao.salvar(funcionario);
 
 			FacesUtil.adicionarMsgSucesso("Funcionario salvo com sucesso");
@@ -83,6 +86,7 @@ public class FuncionarioBean {
 	public void editarFuncionario() {
 		try {
 			FuncionarioDAO fdao = new FuncionarioDAO();
+			funcionario.setSenha(DigestUtils.md5Hex(funcionario.getSenha()));
 			fdao.editar(funcionario);
 
 			funcionario = new Funcionario();

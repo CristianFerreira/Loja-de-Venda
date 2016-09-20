@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import br.com.loja.dao.FuncionarioDAO;
@@ -33,6 +34,9 @@ public class VendaBean {
 	private Cliente clienteFinal;
 	private PessoaFisica clientePF;
 	private PessoaJuridica clientePJ;
+
+	@ManagedProperty(value = "#{autenticacaoBean}")
+	private AutenticacaoBean autenticacaoBean;
 
 	private String buscarClientePeloTipoPF;
 	private String buscarClientePeloTipoPJ;
@@ -136,6 +140,14 @@ public class VendaBean {
 		this.listaDeItens = listaDeItens;
 	}
 
+	public AutenticacaoBean getAutenticacaoBean() {
+		return autenticacaoBean;
+	}
+
+	public void setAutenticacaoBean(AutenticacaoBean autenticacaoBean) {
+		this.autenticacaoBean = autenticacaoBean;
+	}
+
 	// Metodos
 	public void listarProduto() {
 		try {
@@ -200,8 +212,7 @@ public class VendaBean {
 		venda.setData(new Date());
 
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-		Funcionario funcionario = new Funcionario();
-		funcionario = funcionarioDAO.buscarPorCodigo(1L);
+		Funcionario funcionario = funcionarioDAO.buscarPorCodigo(autenticacaoBean.getFuncionarioLogado().getCodigo());
 		venda.setFuncionario(funcionario);
 
 		if (clientePF.getCpf() != null) {
