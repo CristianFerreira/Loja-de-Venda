@@ -5,52 +5,149 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
 
-<ui:composition template="/templates/modeloGeral.xhtml">
-	<ui:define name="conteudo">
-		<ui:define name="metadata"></ui:define>
+	<style>
+<!--
+Dialog Funcionario-->span#j_idt42_title.ui-dialog-title {
+	font-family: sans-serif !important;
+	font-size: 18px !important;
+	font-weight: 400;
+}
+
+div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
+	{
+	font-family: sans-serif !important;
+	font-size: 16px !important;
+	font-weight: 400;
+	text-align: right;
+}
+
+<!--
+Login -->div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
+	{
+	width: 400px;
+	height: 400px
+}
+
+<!--
+Dialog Fabricante-->div.ui-dialog-titlebar.ui-widget-header.ui-helper-clearfix.ui-corner-top
+	{
+	font-family: sans-serif !important;
+	font-size: 18px !important;
+	font-weight: 400;
+}
+
+div.ui-dialog-content.ui-widget-content {
+	font-family: sans-serif !important;
+	font-size: 16px !important;
+	font-weight: 400;
+	text-align: right;
+}
+
+.centralizarTxtColuna {
+	text-align: center;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 95%;
+}
+
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+
+.ui-layout-unit-content {
+	background-color: #FFF !important;
+	border: none !important;
+}
+
+.ui-widget-content {
+	background: #FFF !important;
+}
+
+.ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap,
+	.ui-layout-bd, .ui-layout-hd {
+	border: none;
+}
+
+.ui-layout-unit-content {
+	background-image: url('#{request.contextPath}img/imagemFundo.png');
+}
+
+.ui-growl{
+ position: fixed !important;
+    top: 250px !important;
+    right: 615px !important;
+    width: 301px !important;
+}
+
+    
+
+#msgInfo{
+  position: fixed !important;
+    top: 250px !important;
+    right: 700px !important;
+    width: 301px !important;
+
+}
+
+
+</style>
 
 
 
-		<!--  	<p:toolbar>
-				<f:facet name="left">
-					<h:outputText value="Login"></h:outputText>
-				</f:facet>
-			</p:toolbar>-->
-
-		<p:dialog widgetVar="dlgLogin" closable="false" draggable="false"
-			resizable="false" visible="true" modal="false" appendTo="@(body)">
-
-			<h:form>
-				<h:panelGrid columns="2" cellpadding="5">
 
 
-					<p:outputLabel value="CPF: " />
-					<p:inputMask size="20" mask="999.999.999-99"
-						value="#{autenticacaoBean.funcionarioLogado.cpf}">
-						<f:validateBean />
-					</p:inputMask>
-
-
-					<p:outputLabel value="Senha:"></p:outputLabel>
-					<p:password maxlength="8" size="20"
-						value="#{autenticacaoBean.funcionarioLogado.senha}">
-						<f:validateBean />
-					</p:password>
-				</h:panelGrid>
-
-				<h:panelGrid columns="1">
-					<p:commandButton value="Entrar"
-						update=":msgInfo "
-						action="#{autenticacaoBean.autenticarFuncionario}" />
-				</h:panelGrid>
-
-			</h:form>
-		</p:dialog>
+</h:head>
 
 
 
+<h:body
+	style="background-image:url(#{request.contextPath}/resources/images/teste5.jpg);position:absolute;top:0;left:0;z-index:11;background-color:#000;
+background-size:cover;opacity:0.9;filer:alpha(opacity=65);">
+	
 
-	</ui:define>
-</ui:composition>
+
+	<p:growl id="msgInfo" life="5000"/>
+	<p:dialog widgetVar="dlgLogin" closable="false" draggable="false"
+		resizable="false" visible="true" modal="false" appendTo="@(body)"
+		style="position:absolute;top:0;left:0;z-index:11;background-color:#000;
+opacity:1;filer:alpha(opacity=100);">
+
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+
+
+				<p:outputLabel value="CPF: " />
+				<p:inputMask size="20" mask="999.999.999-99"
+					value="#{autenticacaoBean.funcionarioLogado.cpf}">
+					<f:validateBean />
+				</p:inputMask>
+
+
+				<p:outputLabel value="Senha:"></p:outputLabel>
+				<p:password maxlength="8" size="20"
+					value="#{autenticacaoBean.funcionarioLogado.senha}">
+					<f:validateBean />
+				</p:password>
+			</h:panelGrid>
+
+			<h:panelGrid columns="1">
+				<p:commandButton value="Entrar" 
+					action="#{autenticacaoBean.autenticarFuncionario}" update=":msgInfo"/>
+			</h:panelGrid>
+
+		</h:form>
+	</p:dialog>
+
+
+
+
+</h:body>
 </html>

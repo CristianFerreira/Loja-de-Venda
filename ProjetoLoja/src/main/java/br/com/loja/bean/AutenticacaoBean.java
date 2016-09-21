@@ -32,6 +32,7 @@ public class AutenticacaoBean {
 					DigestUtils.md5Hex(funcionarioLogado.getSenha()));
 			if (funcionarioLogado == null) {
 				FacesUtil.adicionarMsgErro("CPF e/ou senha inválidos");
+
 				return null;
 			} else {
 				FacesUtil.adicionarMsgSucesso("Bem vindo ao sistema");

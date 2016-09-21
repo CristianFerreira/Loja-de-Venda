@@ -14,7 +14,7 @@
 	<h:outputStylesheet library="css" name="estilos.css" />
 
 	<h:outputStylesheet library="stylesheet" name="estilos.css" />
-	
+
 
 	<style>
 <!--
@@ -25,17 +25,18 @@ Dialog Funcionario-->span#j_idt42_title.ui-dialog-title {
 }
 
 div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
-{
+	{
 	font-family: sans-serif !important;
 	font-size: 16px !important;
 	font-weight: 400;
 	text-align: right;
 }
 
-<!-- Login -->
-div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container{
-width: 400px;
-height: 400px
+<!--
+Login -->div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
+	{
+	width: 400px;
+	height: 400px
 }
 
 <!--
@@ -83,6 +84,11 @@ div.ui-dialog-content.ui-widget-content {
 	.ui-layout-bd, .ui-layout-hd {
 	border: none;
 }
+
+
+
+.ui-menu.ui-widget a {
+	display: inline !important;
 }
 </style>
 
@@ -94,41 +100,50 @@ div.ui-dialog-content.ui-widget-content {
 		<p:layoutUnit position="north" resizable="false" closable="false"
 			collapsible="false">
 			<h:outputText value="" />
-			
-			
+
+
 			<h:form id="formMenuPrincipal">
-				
+
 				<p:menubar id="menuBarPrincipal">
-					<p:submenu label="Acesso restrito" rendered="#{autenticacaoBean.funcionarioLogado.tipo == null}">
-					<p:menuitem value="Login" ></p:menuitem>
+
+
+					<p:submenu label="Caixa"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+						<p:menuitem value="Venda"></p:menuitem>
 					</p:submenu>
-				
-					<p:submenu label="Caixa" 
-					rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-						<p:menuitem value="Venda" ></p:menuitem>
-					</p:submenu>
-					<p:submenu label="Cliente" 
-					rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+
+
+					<p:submenu label="Clientes"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
 						<p:menuitem value="Cadastro Pessoa Fisica"></p:menuitem>
+
 						<p:menuitem value="Cadastro Pessoa Juridica"></p:menuitem>
 					</p:submenu>
 
-
-					<p:submenu label="Fabricante" rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-						<p:menuitem value="Lista de fabricantes"
-							outcome="/pages/fabricantes.xhtml"></p:menuitem>
-					</p:submenu>
-
-					<p:submenu label="Estoque" rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+					<p:submenu label="Estoque"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
 						<p:menuitem value="Cadastro"></p:menuitem>
 					</p:submenu>
-					<p:submenu label="Gerenciamento" rendered="#{autenticacaoBean.funcionarioLogado.tipo != 'Caixa' and autenticacaoBean.funcionarioLogado.tipo != null}}">
-						<p:menuitem value="Funcionario" outcome="/pages/funcionarios.xhtml" />
+					<p:submenu label="Gerenciamento"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}">
+						<p:menuitem value="Funcionarios"
+							outcome="/pages/funcionarios.xhtml" />
 					</p:submenu>
-					
-					<p:submenu label="Sair" rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-					<p:menuitem value="Sair" action="#{autenticacaoBean.sairDoSistema}" ></p:menuitem>
-					</p:submenu>
+
+					<p:menuitem value="Fabricantes" outcome="/pages/fabricantes.xhtml"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}"></p:menuitem>
+
+
+
+
+
+					<f:facet name="options">
+						
+						<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
+							style="margin-right: 15px;"></p:link>
+						<p:commandButton value="Sair"
+							action="#{autenticacaoBean.sairDoSistema}" icon="ui-icon-extlink"/>
+					</f:facet>
 
 				</p:menubar>
 			</h:form>
