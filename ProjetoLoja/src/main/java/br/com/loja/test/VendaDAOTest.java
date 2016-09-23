@@ -1,6 +1,8 @@
 package br.com.loja.test;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +19,7 @@ import br.com.loja.domain.Cliente;
 import br.com.loja.domain.Funcionario;
 
 import br.com.loja.domain.Venda;
+import br.com.loja.filter.VendaFilter;
 
 public class VendaDAOTest {
 
@@ -87,5 +90,23 @@ public class VendaDAOTest {
 
 		vdao.editar(venda);
 
+	}
+	
+	@SuppressWarnings("unused")
+	@Test
+	
+	public void buscarVendas() throws ParseException{
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		
+		VendaFilter filtro = new VendaFilter();
+		filtro.setDataInicial(formato.parse("19/09/2016"));
+		filtro.setDataFinal(formato.parse("20/09/2016"));
+		
+		VendaDAO vendaDAO = new VendaDAO();
+		List<Venda> vendas = vendaDAO.buscarVendas(filtro);
+		
+		for (Venda venda : vendas) {
+			System.out.println(vendas);
+		}
 	}
 }

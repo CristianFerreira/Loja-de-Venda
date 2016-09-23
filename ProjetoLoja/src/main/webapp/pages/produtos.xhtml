@@ -43,7 +43,7 @@
 				<p:column headerText="Preço" class="centralizarTxtColuna"
 					sortBy="#{produto.preco}" style="width:300px">
 					<h:outputText value="R$ #{produto.preco}">
-						<f:convertNumber />
+						<f:convertNumber pattern="0.00" />
 					</h:outputText>
 				</p:column>
 
@@ -97,7 +97,9 @@
 					<p:commandButton value="Novo Cadastro"
 						actionListener="#{produtoBean.prepararNovoProduto}"
 						oncomplete="PF('dlgProdutoNovo').show();"
-						update=":formCriarProduto:pnlProduto" />
+						update=":formCriarProduto:pnlProduto" >
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
 				</f:facet>
 
 			</p:dataTable>

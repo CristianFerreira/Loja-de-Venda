@@ -81,7 +81,9 @@
 					<p:commandButton value="Novo Cadastro"
 						actionListener="#{pessoaFisicaBean.prepararNovaPessoaFisica}"
 						oncomplete="PF('dlgPessoaFisicaNovo').show();"
-						update=":formCriarPessoaFisica:pnlPessoaFisica" />
+						update=":formCriarPessoaFisica:pnlPessoaFisica">
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
 				</f:facet>
 
 			</p:dataTable>

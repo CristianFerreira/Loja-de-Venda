@@ -40,7 +40,7 @@
 
 			<p:commandButton value="Pesquisar"
 				actionListener="#{vendaBean.selecionarClientePF}"
-				update=":msgInfo :formCliente:tblCliente">
+				update=":msgInfo :formCliente:tblCliente :formVenda:pnlFinaliza">
 
 			</p:commandButton>
 			
@@ -118,7 +118,7 @@
 				<p:column headerText="Opções" class="centralizarTxtColuna">
 					<p:commandButton value="Adicionar"
 						actionListener="#{vendaBean.adicionarItens(produto)}"
-						update="formVenda:tblItens :formVenda:txtValorTotal formVenda:pnlFinaliza" />
+						update="formVenda:tblItens  :formVenda:pnlFinaliza" />
 				</p:column>
 
 
@@ -133,20 +133,29 @@
 					<h:outputText value="#{item.produto.descricao}" />
 				</p:column>
 
-				<p:column headerText="Quantidade" class="centralizarTxtColuna"
+				<p:column headerText="Quantidade" 
+				footerText= "Quantidade Total: #{vendaBean.venda.quantidadeTotal}"	
+				 class="centralizarTxtColuna"
 					style="width:300px">
 					<h:outputText value="#{item.quantidade}" />
 				</p:column>
 
-				<p:column headerText="Valor Parcial" class="centralizarTxtColuna"
+				<p:column headerText="Valor Parcial" footerText="Valor Total: R$ #{vendaBean.venda.valor}" class="centralizarTxtColuna"
 					style="width:300px">
+					<f:facet name="footer">
+						<h:outputText value="Valor Total: R$ "/>
+						<h:outputText value="#{vendaBean.venda.valor}">
+							<f:convertNumber pattern="0.00" />
+						</h:outputText>
+					</f:facet>
 					<h:outputText value="#{item.valor}" />
 				</p:column>
-
+				
+				
 				<p:column headerText="Opções" class="centralizarTxtColuna">
 					<p:commandButton value="Remover"
 						actionListener="#{vendaBean.removerItens(item)}"
-						update="formVenda:tblItens :formVenda:txtValorTotal formVenda:pnlFinaliza" />
+						update="formVenda:tblItens :formVenda:pnlFinaliza" />
 				</p:column>
 
 
@@ -154,12 +163,10 @@
 			<p:separator />
 
 			<h:panelGrid columns="1" id="pnlFinaliza">
-				<h:outputText id="txtValorTotal"
-					value="Valor Total: R$ #{vendaBean.venda.valor}" />
-				<p:commandButton value="Finalizar Venda" rendered="#{vendaBean.venda.valor != '0.00'}"
+				<p:commandButton value="Finalizar Venda" rendered="#{vendaBean.venda.valor != '0.00' and vendaBean.clienteFinal.codigo != null}"
 					actionListener="#{vendaBean.prepararNovaVenda}"
-					update="formFinalizarVenda:pnlFinalizarVenda" 
-					oncomplete="PF('dlgFinalizarVenda').show();"/>
+					oncomplete="PF('dlgFinalizarVenda').show();"
+					update=":formFinalizarVenda:pnlFinalizarVenda" />
 
 			</h:panelGrid>
 
@@ -189,7 +196,7 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar"
 						actionListener="#{vendaBean.salvarVenda}"
-						update=":msgInfo formVenda:tblItens :formVenda:txtValorTotal"
+						update=":msgInfo formVenda:tblItens "
 						oncomplete="PF('dlgFinalizarVenda').hide());" />
 					<p:commandButton value="Voltar"
 						onclick="PF('dlgFinalizarVenda').hide());" />

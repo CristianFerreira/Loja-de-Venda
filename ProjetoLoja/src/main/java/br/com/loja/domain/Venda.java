@@ -17,6 +17,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="db_venda")
@@ -31,20 +34,28 @@ public class Venda {
 	@Column(name="vendaID")
 	private Long codigo;
 	
+	@NotNull(message="A data da venda é obrigatório.")
 	@Column(nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date data;
 	
+	@NotNull(message="A venda precisa informar um valor.")
 	@Column(name="valor_total",precision = 7, scale = 2, nullable = false)
 	private BigDecimal valor;
 	
+	@NotNull(message="Informe o funcionario para realizar a venda")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "db_funcionario_funcionarioID", referencedColumnName = "funcionarioID", nullable = false)
 	private Funcionario funcionario;
 	
+	@NotNull(message="O campo cliente é obrigatório")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "db_cliente_clienteID", referencedColumnName = "clienteID", nullable = false)
 	private Cliente cliente;
+	
+	@Transient
+	private Integer quantidadeTotal;
+	
 	
 	//GET E SET
 
@@ -86,6 +97,16 @@ public class Venda {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	
+
+	public Integer getQuantidadeTotal() {
+		return quantidadeTotal;
+	}
+
+	public void setQuantidadeTotal(Integer quantidadeTotal) {
+		this.quantidadeTotal = quantidadeTotal;
 	}
 
 	@Override

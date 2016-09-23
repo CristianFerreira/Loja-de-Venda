@@ -80,6 +80,7 @@ public class VendaBean {
 
 			venda = new Venda();
 			venda.setValor(new BigDecimal("0.00"));
+			venda.setQuantidadeTotal(0);
 		}
 
 		return venda;
@@ -185,6 +186,7 @@ public class VendaBean {
 		}
 
 		venda.setValor(venda.getValor().add(produto.getPreco()));
+		venda.setQuantidadeTotal(venda.getQuantidadeTotal()+1);
 	}
 
 	public void removerItens(Itens itens) {
@@ -203,6 +205,7 @@ public class VendaBean {
 			listaDeItens.remove(posicaoEncontrada);
 
 			venda.setValor(venda.getValor().subtract(itens.getValor()));
+			venda.setQuantidadeTotal(venda.getQuantidadeTotal() - itens.getQuantidade());
 		}
 
 	}
