@@ -1,3 +1,4 @@
+
 package br.com.loja.bean;
 
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ import br.com.loja.domain.PessoaFisica;
 import br.com.loja.domain.PessoaJuridica;
 import br.com.loja.domain.Produto;
 import br.com.loja.domain.Venda;
+import br.com.loja.filter.VendaFilter;
 import br.com.loja.util.FacesUtil;
 
 @ManagedBean
@@ -42,6 +44,9 @@ public class VendaBean {
 	private String buscarClientePeloTipoPJ;
 	private String tipoCliente;
 	private List<Itens> listaDeItens;
+	private List<Venda> listaDeVendasFiltradas;
+
+	private VendaFilter filtro;
 
 	public Cliente getClienteFinal() {
 		return clienteFinal;
@@ -149,6 +154,25 @@ public class VendaBean {
 		this.autenticacaoBean = autenticacaoBean;
 	}
 
+	public List<Venda> getListaDeVendasFiltradas() {
+		return listaDeVendasFiltradas;
+	}
+
+	public void setListaDeVendasFiltradas(List<Venda> listaDeVendasFiltradas) {
+		this.listaDeVendasFiltradas = listaDeVendasFiltradas;
+	}
+
+	public VendaFilter getFiltro() {
+		if (filtro == null) {
+			filtro = new VendaFilter();
+		}
+		return filtro;
+	}
+
+	public void setFiltro(VendaFilter filtro) {
+		this.filtro = filtro;
+	}
+
 	// Metodos
 	public void listarProduto() {
 		try {
@@ -186,7 +210,7 @@ public class VendaBean {
 		}
 
 		venda.setValor(venda.getValor().add(produto.getPreco()));
-		venda.setQuantidadeTotal(venda.getQuantidadeTotal()+1);
+		venda.setQuantidadeTotal(venda.getQuantidadeTotal() + 1);
 	}
 
 	public void removerItens(Itens itens) {
@@ -249,6 +273,24 @@ public class VendaBean {
 			FacesUtil.adicionarMsgSucesso("Venda salva com sucesso");
 		} catch (RuntimeException ex) {
 			FacesUtil.adicionarMsgErro("Erro ao tentar salvar a venda: " + ex.getMessage());
+		}
+	}
+
+
+	public void buscarVenda() {
+
+		try {
+			VendaDAO vendaDAO = new VendaDAO();
+			
+			
+			if(listaDeVendasFiltradas == null){
+				listaDeVendasFiltradas = vendaDAO.listar();
+			}else{
+				listaDeVendasFiltradas = vendaDAO.buscarVendas(filtro);
+			}
+			
+		} catch (RuntimeException ex) {
+			FacesUtil.adicionarMsgErro("Erro ao tentar buscar a venda: " + ex.getMessage());
 		}
 	}
 

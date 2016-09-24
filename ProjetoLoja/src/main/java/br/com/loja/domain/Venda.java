@@ -1,8 +1,8 @@
 package br.com.loja.domain;
 
-
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,42 +23,43 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="db_venda")
+@Table(name = "db_venda")
 
-@NamedQueries({ 
-	@NamedQuery(name = "Venda.listar", query = "SELECT venda FROM Venda venda"),
-	@NamedQuery(name="Venda.buscarPorCodigo", query = "SELECT venda FROM Venda venda"
-		+ " WHERE venda.codigo = :codigo") })
+@NamedQueries({ @NamedQuery(name = "Venda.listar", query = "SELECT venda FROM Venda venda"),
+		@NamedQuery(name = "Venda.buscarPorCodigo", query = "SELECT venda FROM Venda venda"
+				+ " WHERE venda.codigo = :codigo") })
 public class Venda {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="vendaID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "vendaID")
 	private Long codigo;
-	
-	@NotNull(message="A data da venda é obrigatório.")
+
+	@NotNull(message = "A data da venda é obrigatório.")
 	@Column(nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date data;
-	
-	@NotNull(message="A venda precisa informar um valor.")
-	@Column(name="valor_total",precision = 7, scale = 2, nullable = false)
+
+	@NotNull(message = "A venda precisa informar um valor.")
+	@Column(name = "valor_total", precision = 7, scale = 2, nullable = false)
 	private BigDecimal valor;
-	
-	@NotNull(message="Informe o funcionario para realizar a venda")
+
+	@NotNull(message = "Informe o funcionario para realizar a venda")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "db_funcionario_funcionarioID", referencedColumnName = "funcionarioID", nullable = false)
 	private Funcionario funcionario;
-	
-	@NotNull(message="O campo cliente é obrigatório")
+
+	@NotNull(message = "O campo cliente é obrigatório")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "db_cliente_clienteID", referencedColumnName = "clienteID", nullable = false)
 	private Cliente cliente;
-	
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "venda")
+	private List<Itens> itensDaVenda;
+
 	@Transient
 	private Integer quantidadeTotal;
-	
-	
-	//GET E SET
+
+	// GET E SET
 
 	public Long getCodigo() {
 		return codigo;
@@ -98,8 +100,14 @@ public class Venda {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
-	
+
+	public List<Itens> getItensDaVenda() {
+		return itensDaVenda;
+	}
+
+	public void setItensDaVenda(List<Itens> itensDaVenda) {
+		this.itensDaVenda = itensDaVenda;
+	}
 
 	public Integer getQuantidadeTotal() {
 		return quantidadeTotal;
@@ -139,8 +147,5 @@ public class Venda {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 }

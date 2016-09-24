@@ -8,11 +8,11 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="/templates/modeloGeral.xhtml">
-	<ui:define name="metadata" />
+	<ui:define name="metadata">
 	<f:metadata>
 		<f:event listener="#{vendaBean.listarProduto}" type="preRenderView" />
 	</f:metadata>
-
+	</ui:define>
 	<ui:define name="conteudo">
 
 		<h:form id="formCliente">
@@ -38,7 +38,7 @@
 			</p:inputMask>
 			
 
-			<p:commandButton value="Pesquisar"
+			<p:commandButton icon="ui-icon-search"
 				actionListener="#{vendaBean.selecionarClientePF}"
 				update=":msgInfo :formCliente:tblCliente :formVenda:pnlFinaliza">
 
@@ -116,7 +116,7 @@
 
 
 				<p:column headerText="Opções" class="centralizarTxtColuna">
-					<p:commandButton value="Adicionar"
+					<p:commandButton icon="ui-icon-plus"
 						actionListener="#{vendaBean.adicionarItens(produto)}"
 						update="formVenda:tblItens  :formVenda:pnlFinaliza" />
 				</p:column>
@@ -153,7 +153,7 @@
 				
 				
 				<p:column headerText="Opções" class="centralizarTxtColuna">
-					<p:commandButton value="Remover"
+					<p:commandButton icon="ui-icon-minus"
 						actionListener="#{vendaBean.removerItens(item)}"
 						update="formVenda:tblItens :formVenda:pnlFinaliza" />
 				</p:column>

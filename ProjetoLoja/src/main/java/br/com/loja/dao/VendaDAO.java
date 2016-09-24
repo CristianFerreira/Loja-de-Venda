@@ -104,19 +104,21 @@ public class VendaDAO {
 		List<Venda> vendas = null;
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT venda FROM Venda venda ");
-		
-		if(filtro.getDataInicial() != null && filtro.getDataFinal() != null){
+
+		if (filtro.getDataInicial() != null && filtro.getDataFinal() != null) {
 			sql.append("WHERE venda.data BETWEEN :dataInicial AND :dataFinal ");
 		}
 		sql.append("ORDER BY venda.data ");
-		
+
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
 		try {
 			Query consulta = sessao.createQuery(sql.toString());
-			consulta.setDate("dataInicial", filtro.getDataInicial());
-			consulta.setDate("dataFinal", filtro.getDataFinal() );
-			
+			if (filtro.getDataInicial() != null && filtro.getDataFinal() != null) {
+				consulta.setDate("dataInicial", filtro.getDataInicial());
+				consulta.setDate("dataFinal", filtro.getDataFinal());
+			}
+
 			vendas = consulta.list();
 		} catch (RuntimeException ex) {
 			throw ex;

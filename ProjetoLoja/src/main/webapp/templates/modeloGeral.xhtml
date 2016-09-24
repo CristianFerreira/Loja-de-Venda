@@ -17,6 +17,18 @@
 
 
 	<style>
+	
+	td{
+		text-align: center;
+	}
+	
+	
+	<!-- Impressao de relatorio -->
+	.div.ui-datatable-footer.ui-widget-header.ui-corner-bottom{
+text-align: right;
+
+}
+	
 <!--
 Dialog Funcionario-->span#j_idt42_title.ui-dialog-title {
 	font-family: sans-serif !important;
@@ -107,31 +119,33 @@ div.ui-dialog-content.ui-widget-content {
 				<p:menubar id="menuBarPrincipal">
 
 
-					<p:submenu label="Caixa"
+					<p:submenu label="Vendas"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-						<p:menuitem value="Venda" outcome="/pages/vendaCadastro.xhtml"></p:menuitem>
+						<p:menuitem value="Cadastrar" outcome="/pages/vendaCadastro.xhtml"></p:menuitem>
+						
 					</p:submenu>
 
 
 					<p:submenu label="Clientes"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-						<p:menuitem value="Cadastro Pessoa Fisica"></p:menuitem>
+						<p:menuitem value="Cadastro Pessoa Fisica" outcome="/pages/pessoaFisica.xhtml"></p:menuitem>
 
-						<p:menuitem value="Cadastro Pessoa Juridica"></p:menuitem>
+						<p:menuitem value="Cadastro Pessoa Juridica" outcome="/pages/pessoaJuridica.xhtml"></p:menuitem>
 					</p:submenu>
 
-					<p:submenu label="Estoque"
+					<p:submenu label="Produtos"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-						<p:menuitem value="Cadastro"></p:menuitem>
+						<p:menuitem value="Lista de produtos" outcome="/pages/produtos.xhtml"></p:menuitem>
 					</p:submenu>
 					<p:submenu label="Gerenciamento"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}">
 						<p:menuitem value="Funcionarios"
 							outcome="/pages/funcionarios.xhtml" />
 					</p:submenu>
-
-					<p:menuitem value="Fabricantes" outcome="/pages/fabricantes.xhtml"
-						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}"></p:menuitem>
+					
+					<p:submenu label="Fabricantes" rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+					<p:menuitem value="Lista de fabricantes" outcome="/pages/fabricantes.xhtml"></p:menuitem>
+					</p:submenu>
 
 
 
