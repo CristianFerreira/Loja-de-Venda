@@ -20,7 +20,7 @@
 	<ui:define name="conteudo">
 
 		<h:form id="formPessoaFisica">
-			<div align="center" style="text-align: center !important;">
+			<div align="center" style="text-align: center !important;margin-bottom: 10px;">
 				<h2>Lista de Clientes</h2>
 			</div>
 
@@ -34,31 +34,31 @@
 
 				<p:column headerText="Código" class="centralizarTxtColuna"
 					filterBy="#{pessoaFisica.codigo}" sortBy="#{pessoaFisica.codigo}"
-					style="width:80px">
+					style="width:100px">
 					<h:outputText value="#{pessoaFisica.codigo}" />
 				</p:column>
 
 				<p:column headerText="Nome" class="centralizarTxtColuna"
 					filterBy="#{pessoaFisica.nome}" sortBy="#{pessoaFisica.nome}"
-					style="width:300px">
+					style="width:200px">
 					<h:outputText value="#{pessoaFisica.nome}" />
 				</p:column>
 
 				<p:column headerText="Telefone" class="centralizarTxtColuna"
 					filterBy="#{pessoaFisica.telefone}"
-					sortBy="#{pessoaFisica.telefone}" style="width:300px">
+					sortBy="#{pessoaFisica.telefone}" style="width:200px">
 					<h:outputText value="#{pessoaFisica.telefone}" />
 				</p:column>
 
 				<p:column headerText="CPF" class="centralizarTxtColuna"
 					filterBy="#{pessoaFisica.cpf}" sortBy="#{pessoaFisica.cpf}"
-					style="width:300px">
+					style="width:200px">
 					<h:outputText value="#{pessoaFisica.cpf}" />
 				</p:column>
 
 
 				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 80px">
+					style="width: 100px">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						oncomplete="PF('dlgPessoaFisicaEditar').show();"
 						update=":formPessoaFisicaEditar:pnlPessoaFisicaEditar">
