@@ -14,27 +14,59 @@
 	<h:outputStylesheet library="css" name="estilos.css" />
 
 	<h:outputStylesheet library="stylesheet" name="estilos.css" />
+	
 
 
 	<style>
-	
-	td{
-		text-align: center;
-	}
-	
-	
-	<!-- Impressao de relatorio -->
-	.div.ui-datatable-footer.ui-widget-header.ui-corner-bottom{
-text-align: right;
-
+td {
+	text-align: center;
+	font-size: medium !important;
+    font-weight: 100 !important;
+    font-family: sans-serif;
 }
-	
+
+h2{
+	font-size: 24px;
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+<!--
+Column tabelas -->
+
+.ui-column-title {
+	font-size: medium !important;
+	font-weight: 100 !important;
+	font-family: sans-serif;
+}
+
+<!-- Column tabelas -->
+.ui-datatable-scrollable-theadclone th span.ui-column-title {
+ font-size: medium;
+	font-weight: 100;
+	font-family: sans-serif;
+}
+
+span.ui-column-title{
+
+    font-size: medium;
+	font-weight: 100;
+	font-family: sans-serif;
+}
+
+<!--
+Impressao de relatorio -->.div.ui-datatable-footer.ui-widget-header.ui-corner-bottom
+	{
+	text-align: right;
+}
+
 <!--
 Dialog Funcionario-->span#j_idt42_title.ui-dialog-title {
 	font-family: sans-serif !important;
 	font-size: 18px !important;
 	font-weight: 400;
 }
+
 
 div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
 	{
@@ -45,7 +77,8 @@ div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-contai
 }
 
 <!--
-Login -->div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
+Login -->
+div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
 	{
 	width: 400px;
 	height: 400px
@@ -97,8 +130,6 @@ div.ui-dialog-content.ui-widget-content {
 	border: none;
 }
 
-
-
 .ui-menu.ui-widget a {
 	display: inline !important;
 }
@@ -122,29 +153,34 @@ div.ui-dialog-content.ui-widget-content {
 					<p:submenu label="Vendas"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
 						<p:menuitem value="Cadastrar" outcome="/pages/vendaCadastro.xhtml"></p:menuitem>
-						
+
 					</p:submenu>
 
 
 					<p:submenu label="Clientes"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-						<p:menuitem value="Cadastro Pessoa Fisica" outcome="/pages/pessoaFisica.xhtml"></p:menuitem>
+						<p:menuitem value="Cadastro Pessoa Fisica"
+							outcome="/pages/pessoaFisica.xhtml"></p:menuitem>
 
-						<p:menuitem value="Cadastro Pessoa Juridica" outcome="/pages/pessoaJuridica.xhtml"></p:menuitem>
+						<p:menuitem value="Cadastro Pessoa Juridica"
+							outcome="/pages/pessoaJuridica.xhtml"></p:menuitem>
 					</p:submenu>
 
 					<p:submenu label="Produtos"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-						<p:menuitem value="Lista de produtos" outcome="/pages/produtos.xhtml"></p:menuitem>
+						<p:menuitem value="Lista de produtos"
+							outcome="/pages/produtos.xhtml"></p:menuitem>
 					</p:submenu>
 					<p:submenu label="Gerenciamento"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}">
 						<p:menuitem value="Funcionarios"
 							outcome="/pages/funcionarios.xhtml" />
 					</p:submenu>
-					
-					<p:submenu label="Fabricantes" rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-					<p:menuitem value="Lista de fabricantes" outcome="/pages/fabricantes.xhtml"></p:menuitem>
+
+					<p:submenu label="Fabricantes"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+						<p:menuitem value="Lista de fabricantes"
+							outcome="/pages/fabricantes.xhtml"></p:menuitem>
 					</p:submenu>
 
 
@@ -152,11 +188,11 @@ div.ui-dialog-content.ui-widget-content {
 
 
 					<f:facet name="options">
-						
+
 						<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
 							style="margin-right: 15px;"></p:link>
 						<p:commandButton value="Sair"
-							action="#{autenticacaoBean.sairDoSistema}" icon="ui-icon-extlink"/>
+							action="#{autenticacaoBean.sairDoSistema}" icon="ui-icon-extlink" />
 					</f:facet>
 
 				</p:menubar>

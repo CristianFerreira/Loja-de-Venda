@@ -32,33 +32,34 @@
 				var="pessoaFisica" rows="10" paginator="true">
 
 
-				<p:column headerText="Código" class="centralizarTxtColuna"
+				<p:column headerText="Código" class="centralizarTxtColuna fonteTabela"
 					filterBy="#{pessoaFisica.codigo}" sortBy="#{pessoaFisica.codigo}"
-					style="width:100px">
+					style="width:100px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<h:outputText value="#{pessoaFisica.codigo}" />
 				</p:column>
 
 				<p:column headerText="Nome" class="centralizarTxtColuna"
 					filterBy="#{pessoaFisica.nome}" sortBy="#{pessoaFisica.nome}"
-					style="width:200px">
+					style="width:270px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<h:outputText value="#{pessoaFisica.nome}" />
 				</p:column>
 
-				<p:column headerText="Telefone" class="centralizarTxtColuna"
+				<p:column headerText="Telefone"
 					filterBy="#{pessoaFisica.telefone}"
-					sortBy="#{pessoaFisica.telefone}" style="width:200px">
+					sortBy="#{pessoaFisica.telefone}" 
+					style="width:260px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<h:outputText value="#{pessoaFisica.telefone}" />
 				</p:column>
 
-				<p:column headerText="CPF" class="centralizarTxtColuna"
+				<p:column headerText="CPF" class="centralizarTxtColuna fonteTabela"
 					filterBy="#{pessoaFisica.cpf}" sortBy="#{pessoaFisica.cpf}"
-					style="width:200px">
+					style="width:270px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<h:outputText value="#{pessoaFisica.cpf}" />
 				</p:column>
 
 
-				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 100px">
+				<p:column headerText="Opções" class="centralizarTxtColuna fonteTabela"
+					style="width: 100px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						oncomplete="PF('dlgPessoaFisicaEditar').show();"
 						update=":formPessoaFisicaEditar:pnlPessoaFisicaEditar">
@@ -81,7 +82,8 @@
 					<p:commandButton value="Novo Cadastro"
 						actionListener="#{pessoaFisicaBean.prepararNovaPessoaFisica}"
 						oncomplete="PF('dlgPessoaFisicaNovo').show();"
-						update=":formCriarPessoaFisica:pnlPessoaFisica">
+						update=":formCriarPessoaFisica:pnlPessoaFisica"
+						style="font-size: medium;">
 						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
 				</f:facet>

@@ -98,7 +98,8 @@
 					<p:commandButton value="Novo Cadastro"
 						actionListener="#{produtoBean.prepararNovoProduto}"
 						oncomplete="PF('dlgProdutoNovo').show();"
-						update=":formCriarProduto:pnlProduto" >
+						update=":formCriarProduto:pnlProduto" 
+						style="font-size: medium;">
 						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
 				</f:facet>

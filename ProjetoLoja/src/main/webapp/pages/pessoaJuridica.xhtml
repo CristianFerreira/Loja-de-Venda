@@ -102,7 +102,8 @@
 					<p:commandButton value="Novo Cadastro"
 						actionListener="#{pessoaJuridicaBean.prepararNovaPessoaJuridica}"
 						oncomplete="PF('dlgPessoaJuridicaNovo').show();"
-						update=":formCriarPessoaJuridica:pnlPessoaJuridica">
+						update=":formCriarPessoaJuridica:pnlPessoaJuridica"
+						style="font-size: medium;">
 						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
 				</f:facet>

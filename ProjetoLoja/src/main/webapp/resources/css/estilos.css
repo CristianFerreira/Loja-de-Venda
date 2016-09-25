@@ -5,6 +5,13 @@
 	text-align: center;
 }
 
+.fonteTabela{
+	
+	font-size: medium;
+	font-weight: 100;
+	font-family: sans-serif;
+}
+
 .ui-widget, .ui-widget .ui-widget{
 	font-size: 95%;
 }

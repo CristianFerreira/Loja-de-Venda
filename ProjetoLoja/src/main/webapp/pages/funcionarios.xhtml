@@ -85,7 +85,8 @@
 				<f:facet name="footer">
 					<p:commandButton value="Novo Cadastro" actionListener="#{funcionarioBean.prepararNovoFuncionario}"
 						oncomplete="PF('dlgFuncionarioNovo').show();"
-						update=":formCriarFuncionario:pnlFuncionario" >
+						update=":formCriarFuncionario:pnlFuncionario"
+						style="font-size: medium;" >
 						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
 				</f:facet>

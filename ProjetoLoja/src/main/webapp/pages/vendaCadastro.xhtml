@@ -180,7 +180,8 @@
 					rendered="#{vendaBean.venda.valor != '0.00' and vendaBean.clienteFinal.codigo != null}"
 					actionListener="#{vendaBean.prepararNovaVenda}"
 					oncomplete="PF('dlgFinalizarVenda').show();"
-					update=":formFinalizarVenda:pnlFinalizarVenda" />
+					update=":formFinalizarVenda:pnlFinalizarVenda" 
+					style="font-size: medium;"/>
 
 			</h:panelGrid>
 

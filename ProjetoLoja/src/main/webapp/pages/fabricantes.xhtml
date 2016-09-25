@@ -70,7 +70,8 @@
 					<p:commandButton value="Novo Cadastro" actionListener="#{fabricanteBean.prepararNovoFabricante}"
 						oncomplete="PF('dlgFabricanteNovo').show();"
 						update=":formCriarFabricante:pnlFabricante"
-						rendered="#{autenticacaoBean.funcionarioLogado.tipo != 'Caixa'}" />
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != 'Caixa'}"
+						style="font-size: medium;" />
 				</f:facet>
 
 			</p:dataTable>
