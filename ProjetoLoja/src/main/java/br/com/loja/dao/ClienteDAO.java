@@ -28,6 +28,27 @@ public class ClienteDAO {
 	}
 	
 	
+	public String buscarPorTipo(Long codigo) {
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		
+		Cliente cliente = null;
+		String tipoCliente = "";
+		
+		try{
+			Query consulta = sessao.getNamedQuery("Cliente.buscarPorCodigo");
+			consulta.setLong("codigo", codigo);
+			cliente = (Cliente) consulta.uniqueResult();
+			tipoCliente = cliente.getTipo();
+			
+		} catch(RuntimeException ex){
+			throw ex;
+		}finally {
+			sessao.close();
+		}
+		return tipoCliente;
+	}
+	
+	
 	public void excluir(Cliente cliente) {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction transacao = null;

@@ -9,68 +9,58 @@
 
 <ui:composition template="/templates/modeloGeral.xhtml">
 	<ui:define name="metadata">
-	<f:metadata>
-		<f:event listener="#{vendaBean.listarProduto}" type="preRenderView" />
-	</f:metadata>
+		<f:metadata>
+			<f:event listener="#{vendaBean.listarProduto}" type="preRenderView" />
+		</f:metadata>
 	</ui:define>
 	<ui:define name="conteudo">
 
 		<h:form id="formCliente">
 
 
+			<div align="center"
+				style="text-align: center !important; margin-bottom: 50px;">
+				<h2>Cadastro de Vendas</h2>
+			</div>
+
+
 			<h:panelGrid columns="4">
-			<p:selectOneMenu value="#{vendaBean.tipoCliente}"
-				style="width: 218px;">
-				<f:validateBean />
-				<f:selectItem itemValue="" itemLabel="Selecione um Cliente" />
-				<f:selectItem itemLabel="CPF" itemValue="cpf" />
-				<f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
-			</p:selectOneMenu>
+				<p:selectOneMenu value="#{vendaBean.tipoCliente}"
+					style="width: 218px;">
+					<f:validateBean />
+					<f:selectItem itemValue="" itemLabel="Selecione um Cliente" />
+					<f:selectItem itemLabel="CPF" itemValue="cpf" />
+					<f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
+				</p:selectOneMenu>
 
-			<p:inputMask mask="999.999.999-99" style="width: 240px;"
-				value="#{vendaBean.buscarClientePeloTipoPF}">
-				<f:validateBean />
-			</p:inputMask>
+				<p:inputMask mask="999.999.999-99" style="width: 240px;"
+					value="#{vendaBean.buscarClientePeloTipoPF}">
+					<f:validateBean />
+				</p:inputMask>
 
-			<p:inputMask mask="99.999.999/9999-99" style="width: 240px;"
-				value="#{vendaBean.buscarClientePeloTipoPJ}">
-				<f:validateBean />
-			</p:inputMask>
-			
+				<p:inputMask mask="99.999.999/9999-99" style="width: 240px;"
+					value="#{vendaBean.buscarClientePeloTipoPJ}">
+					<f:validateBean />
+				</p:inputMask>
 
-			<p:commandButton icon="ui-icon-search"
-				actionListener="#{vendaBean.selecionarClientePF}"
-				update=":msgInfo :formCliente:tblCliente :formVenda:pnlFinaliza">
 
-			</p:commandButton>
-			
+				<p:commandButton icon="ui-icon-search"
+					actionListener="#{vendaBean.selecionarCliente}"
+					update=":msgInfo :formCliente:pnlCliente :formVenda:pnlFinaliza">
+
+				</p:commandButton>
 			</h:panelGrid>
+			<h:panelGrid columns="5" id="pnlCliente"
+				style="margin-top:10px;margin-bottom: 10px;">
 
-
-
-
-			<p:dataTable emptyMessage="" id="tblCliente"
-				value="#{vendaBean.clienteFinal}" var="cliente" rows="1">
-
-				<p:column cowspan="7" headerText="Cliente">
-
-					<p:row>
-						<p:column>
-							<h:outputText value="#{cliente.nome} " />
-
-						</p:column>
-
-
-
-					</p:row>
-				</p:column>
-
-			</p:dataTable>
-
-
-
-
-
+				<h:outputText value="Cliente: "
+					rendered="#{vendaBean.clienteFinal.nome != null}"
+					style="font-size: 14px;font-weight: 700;font-family: sans-serif;" />
+				<h:outputText value="#{vendaBean.clienteFinal.nome} " />
+				<h:outputText value=" - "
+					rendered="#{vendaBean.clienteFinal.nome != null}" />
+				<h:outputText value="#{vendaBean.tipoDadoCliente} " />
+			</h:panelGrid>
 
 
 
@@ -78,18 +68,24 @@
 
 
 		<h:form id="formVenda">
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Produtos" />
+				</f:facet>
 
-
+			</p:toolbar>
 
 			<p:dataTable id="tblProduto"
 				emptyMessage="Nenhum registro encontrado."
 				value="#{vendaBean.listaDeProdutos}"
 				filteredValue="#{vendaBean.listaFiltrarProdutos}" var="produto"
-				rows="4" paginator="true">
+				rows="4" paginator="true"
+				paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+
 
 				<p:column headerText="Código" class="centralizarTxtColuna"
 					filterBy="#{produto.codigo}" sortBy="#{produto.codigo}"
-					style="width:80px">
+					style="width:100px">
 					<h:outputText value="#{produto.codigo}" />
 				</p:column>
 				<p:column headerText="Descrição" class="centralizarTxtColuna"
@@ -98,24 +94,23 @@
 					<h:outputText value="#{produto.descricao}" />
 
 				</p:column>
-				<p:column headerText="Preço" class="centralizarTxtColuna"
-					sortBy="#{produto.preco}" style="width:300px">
-					<h:outputText value="#{produto.preco}" />
+				<p:column headerText="Preço unitário" class="centralizarTxtColuna"
+					sortBy="#{produto.preco}" style="width:100px">
+					<h:outputText value="R$ #{produto.preco}">
+						<f:convertNumber pattern="0.00" />
+					</h:outputText>
 				</p:column>
 
-				<p:column headerText="Quantidade" class="centralizarTxtColuna"
-					style="width:300px">
-					<h:outputText value="#{produto.quantidade}" />
-				</p:column>
-
-				<p:column headerText="Fabricante" class="centralizarTxtColuna"
-					style="width:300px" filterBy="#{produto.fabricante.nome}"
-					sortBy="##{produto.fabricante.nome}">
-					<h:outputText value="#{produto.fabricante.nome}" />
+				<p:column headerText="Quantidade em estoque"
+					class="centralizarTxtColuna" sortBy="#{produto.quantidade}"
+					style="width:100px">
+					<h:outputText value="#{produto.quantidade}">
+					</h:outputText>
 				</p:column>
 
 
-				<p:column headerText="Opções" class="centralizarTxtColuna">
+				<p:column headerText="Adicionar" class="centralizarTxtColuna"
+					style="width:50px">
 					<p:commandButton icon="ui-icon-plus"
 						actionListener="#{vendaBean.adicionarItens(produto)}"
 						update="formVenda:tblItens  :formVenda:pnlFinaliza" />
@@ -124,35 +119,53 @@
 
 			</p:dataTable>
 
+			<h:panelGrid style="margin-top: 10px;" />
 			<p:separator />
+			<h:panelGrid style="margin-bottom: 10px;" />
+
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Carrinho de compras" />
+					<p:graphicImage library="images" name="/carrinho1.png" width="20"
+						height="16" style="margin-left: 10px" />
+
+				</f:facet>
+
+			</p:toolbar>
+
+
 			<p:dataTable id="tblItens" emptyMessage="Nenhum registro encontrado."
 				value="#{vendaBean.listaDeItens}" var="item" rows="4"
 				paginator="true">
 
-				<p:column headerText="Produto" class="centralizarTxtColuna">
+				<p:column headerText="Produto" class="centralizarTxtColuna"
+					style="width:300px">
 					<h:outputText value="#{item.produto.descricao}" />
 				</p:column>
 
-				<p:column headerText="Quantidade" 
-				footerText= "Quantidade Total: #{vendaBean.venda.quantidadeTotal}"	
-				 class="centralizarTxtColuna"
-					style="width:300px">
+				<p:column headerText="Quantidade"
+					footerText="Quantidade Total: #{vendaBean.venda.quantidadeTotal}"
+					class="centralizarTxtColuna" style="width:100px">
 					<h:outputText value="#{item.quantidade}" />
 				</p:column>
 
-				<p:column headerText="Valor Parcial" footerText="Valor Total: R$ #{vendaBean.venda.valor}" class="centralizarTxtColuna"
-					style="width:300px">
+				<p:column headerText="Valor Parcial"
+					footerText="Valor Total: R$ #{vendaBean.venda.valor}"
+					class="centralizarTxtColuna" style="width:100px">
 					<f:facet name="footer">
-						<h:outputText value="Valor Total: R$ "/>
-						<h:outputText value="#{vendaBean.venda.valor}">
+						<h:outputText value="Valor Total:" />
+						<h:outputText value=" R$ #{vendaBean.venda.valor}">
 							<f:convertNumber pattern="0.00" />
 						</h:outputText>
 					</f:facet>
-					<h:outputText value="#{item.valor}" />
+					<h:outputText value="R$ #{item.valor}">
+						<f:convertNumber pattern="0.00" />
+					</h:outputText>
 				</p:column>
-				
-				
-				<p:column headerText="Opções" class="centralizarTxtColuna">
+
+
+				<p:column headerText="Remover" class="centralizarTxtColuna"
+					style="width:50px">
 					<p:commandButton icon="ui-icon-minus"
 						actionListener="#{vendaBean.removerItens(item)}"
 						update="formVenda:tblItens :formVenda:pnlFinaliza" />
@@ -163,7 +176,8 @@
 			<p:separator />
 
 			<h:panelGrid columns="1" id="pnlFinaliza">
-				<p:commandButton value="Finalizar Venda" rendered="#{vendaBean.venda.valor != '0.00' and vendaBean.clienteFinal.codigo != null}"
+				<p:commandButton value="Finalizar Venda"
+					rendered="#{vendaBean.venda.valor != '0.00' and vendaBean.clienteFinal.codigo != null}"
 					actionListener="#{vendaBean.prepararNovaVenda}"
 					oncomplete="PF('dlgFinalizarVenda').show();"
 					update=":formFinalizarVenda:pnlFinalizarVenda" />

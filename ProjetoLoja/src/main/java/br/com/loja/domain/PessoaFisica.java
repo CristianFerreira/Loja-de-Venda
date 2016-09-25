@@ -14,7 +14,9 @@ import org.hibernate.validator.constraints.br.CPF;
 @Table(name="db_pessoaFisica")
 @NamedQueries({ @NamedQuery(name = "PessoaFisica.listar", query = "SELECT pessoaFisica FROM PessoaFisica pessoaFisica"),
 @NamedQuery(name="PessoaFisica.buscarPorCPF", query = "SELECT pessoaFisica FROM PessoaFisica pessoaFisica"
-		+ " WHERE pessoaFisica.cpf = :cpf")
+		+ " WHERE pessoaFisica.cpf = :cpf"),
+@NamedQuery(name = "PessoaFisica.buscarPorCodigo", query = "SELECT pessoaFisica FROM PessoaFisica pessoaFisica"
+		+ " WHERE pessoaFisica.codigo = :codigo")
 		})
 public class PessoaFisica extends Cliente {
 	

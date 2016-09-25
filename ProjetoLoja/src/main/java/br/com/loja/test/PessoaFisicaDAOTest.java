@@ -5,9 +5,11 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import br.com.loja.dao.ClienteDAO;
 import br.com.loja.dao.FabricanteDAO;
 import br.com.loja.dao.FuncionarioDAO;
 import br.com.loja.dao.PessoaFisicaDAO;
+import br.com.loja.dao.PessoaJuridicaDAO;
 import br.com.loja.domain.Fabricante;
 import br.com.loja.domain.Funcionario;
 import br.com.loja.domain.PessoaFisica;
@@ -44,7 +46,7 @@ public class PessoaFisicaDAOTest {
 	}
 
 	@Test
-	
+	@Ignore
 	public void buscarPorCPF() {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO();
 		PessoaFisica f1 = dao.buscarPorCPF("031.831.200-02");
@@ -71,6 +73,18 @@ public class PessoaFisicaDAOTest {
 		f1.setBairro("sarandi");
 
 		dao.editar(f1);	
+	}
+	
+	@Test
+	public void procuraTipoCliente(){
+		PessoaFisicaDAO pfDAO = new PessoaFisicaDAO();
+		PessoaJuridicaDAO pjDAO = new PessoaJuridicaDAO();
+		ClienteDAO cDAO = new ClienteDAO();
+		
+		String tipoCliente = cDAO.buscarPorTipo(2L);
+		
+		System.out.println(tipoCliente);
+		
 	}
 	
 	

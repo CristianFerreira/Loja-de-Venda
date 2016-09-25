@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import br.com.loja.dao.ClienteDAO;
 import br.com.loja.dao.FuncionarioDAO;
 import br.com.loja.dao.ItemDAO;
 import br.com.loja.dao.PessoaFisicaDAO;
@@ -37,6 +38,8 @@ public class VendaBean {
 	private PessoaFisica clientePF;
 	private PessoaJuridica clientePJ;
 
+	private String tipoDadoCliente;
+
 	@ManagedProperty(value = "#{autenticacaoBean}")
 	private AutenticacaoBean autenticacaoBean;
 
@@ -47,6 +50,14 @@ public class VendaBean {
 	private List<Venda> listaDeVendasFiltradas;
 
 	private VendaFilter filtro;
+
+	public String getTipoDadoCliente() {
+		return tipoDadoCliente;
+	}
+
+	public void setTipoDadoCliente(String tipoDadoCliente) {
+		this.tipoDadoCliente = tipoDadoCliente;
+	}
 
 	public Cliente getClienteFinal() {
 		return clienteFinal;
@@ -276,33 +287,32 @@ public class VendaBean {
 		}
 	}
 
-
 	public void buscarVenda() {
 
 		try {
 			VendaDAO vendaDAO = new VendaDAO();
-			
-			
-			if(listaDeVendasFiltradas == null){
+
+			if (listaDeVendasFiltradas == null) {
 				listaDeVendasFiltradas = vendaDAO.listar();
-			}else{
+			} else {
 				listaDeVendasFiltradas = vendaDAO.buscarVendas(filtro);
 			}
-			
+
 		} catch (RuntimeException ex) {
 			FacesUtil.adicionarMsgErro("Erro ao tentar buscar a venda: " + ex.getMessage());
 		}
 	}
 
-	public void selecionarClientePF() {
+	public void selecionarCliente() {
 
 		try {
-
+			
 			if (tipoCliente.equals("cpf")) {
 				PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
 				clientePF = pessoaFisicaDAO.buscarPorCPF(buscarClientePeloTipoPF);
 				if (clientePF.getCpf() != null) {
 					clienteFinal = clientePF;
+					tipoDadoCliente = clientePF.getCpf();
 					FacesUtil.adicionarMsgSucesso("Cliente adicionado ao registro de venda");
 				}
 			}
@@ -315,13 +325,18 @@ public class VendaBean {
 				clientePJ = pessoaJuridicaDAO.buscarPorCNPJ(buscarClientePeloTipoPJ);
 				if (clientePJ.getCnpj() != null) {
 					clienteFinal = clientePJ;
+					tipoDadoCliente = clientePJ.getCnpj();
 					FacesUtil.adicionarMsgSucesso("Cliente adicionado ao registro de venda");
 				}
 			}
 			if (tipoCliente.equals("cpf")) {
 				clientePJ = new PessoaJuridica();
 			}
-
+			
+			if(tipoCliente.equals("")){
+				FacesUtil.adicionarMsgErro("Informe o CPF ou CNPJ do cliente");
+			}
+			
 		} catch (RuntimeException ex) {
 			FacesUtil.adicionarMsgErro("Cliente não foi encontrado");
 		}

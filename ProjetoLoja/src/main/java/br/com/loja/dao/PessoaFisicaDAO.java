@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import br.com.loja.domain.Cliente;
 import br.com.loja.domain.PessoaFisica;
 import br.com.loja.util.FacesUtil;
 import br.com.loja.util.HibernateUtil;
@@ -64,6 +65,24 @@ public class PessoaFisicaDAO {
 			sessao.close();
 		}
 		return pf;
+	}
+	
+	
+	public PessoaFisica buscarPorCodigo(Long codigo) {
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		
+		PessoaFisica pessoaFisica = null;
+		
+		try{
+			Query consulta = sessao.getNamedQuery("PessoaFisica.buscarPorCodigo");
+			consulta.setLong("codigo", codigo);
+			pessoaFisica = (PessoaFisica) consulta.uniqueResult();
+		} catch(RuntimeException ex){
+			throw ex;
+		}finally {
+			sessao.close();
+		}
+		return pessoaFisica;
 	}
 	
 	

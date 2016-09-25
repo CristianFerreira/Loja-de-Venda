@@ -86,5 +86,23 @@ public class PessoaJuridicaDAO {
 
 	}
 	
+	
+	public PessoaJuridica buscarPorCodigo(Long codigo) {
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		
+		PessoaJuridica pessoaJuridica = null;
+		
+		try{
+			Query consulta = sessao.getNamedQuery("PessoaJuridica.buscarPorCodigo");
+			consulta.setLong("codigo", codigo);
+			pessoaJuridica = (PessoaJuridica) consulta.uniqueResult();
+		} catch(RuntimeException ex){
+			throw ex;
+		}finally {
+			sessao.close();
+		}
+		return pessoaJuridica;
+	}
+	
 
 }

@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "db_cliente")
 @NamedQueries({ @NamedQuery(name = "Cliente.listar", query = "SELECT cliente FROM Cliente cliente"),
 		@NamedQuery(name = "Cliente.buscarPorCodigo", query = "SELECT cliente FROM Cliente cliente"
-				+ " WHERE cliente.codigo = :codigo") })
+				+ " WHERE cliente.codigo = :codigo")})
 
 public class Cliente implements Serializable {
 	@Id

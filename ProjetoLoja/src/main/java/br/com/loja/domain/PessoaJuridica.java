@@ -17,7 +17,9 @@ import org.hibernate.validator.constraints.br.CNPJ;
 @Table(name="db_pessoaJuridica")
 @NamedQueries({ @NamedQuery(name = "PessoaJuridica.listar", query = "SELECT pessoaJuridica FROM PessoaJuridica pessoaJuridica"),
 @NamedQuery(name="PessoaJuridica.buscarPorCNPJ", query = "SELECT pessoaJuridica FROM PessoaJuridica pessoaJuridica"
-		+ " WHERE pessoaJuridica.cnpj = :cnpj")
+		+ " WHERE pessoaJuridica.cnpj = :cnpj"),
+@NamedQuery(name = "PessoaJuridica.buscarPorCodigo", query = "SELECT pessoaJuridica FROM PessoaJuridica pessoaJuridica"
+		+ " WHERE pessoaJuridica.codigo = :codigo")
 		})
 
 public class PessoaJuridica extends Cliente {
