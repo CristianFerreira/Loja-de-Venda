@@ -96,21 +96,22 @@
 
 		<p:dialog widgetVar="dlgPessoaFisicaExcluir" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
-			header="Pessoa Fisica - Excluir">
+			header="Excluir esse cliente?">
 
 			<h:form id="formPessoaFisicaExcluir">
 
-				<h:panelGrid id="pnlPessoaFisicaExcluir" columns="2">
+				<h:panelGrid id="pnlPessoaFisicaExcluir" columns="2" style="text-align: justify;
+    margin-left: 100px;">
 					<h:outputText value="Código:" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.codigo}" />
 
 					<h:outputText value="Nome:" />
-					<h:outputText value="#{PessoaFisicaBean.pessoaFisica.nome}" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.nome}" />
 
 				</h:panelGrid>
 
-				<h:panelGrid columns="2">
-					<p:commandButton style="color:#700000;" value="Excluir"
+				<h:panelGrid columns="2" style="margin-left: 100px;">
+					<p:commandButton style="" value="Excluir"
 						actionListener="#{pessoaFisicaBean.excluirPessoaFisica}"
 						update=":msgInfo :formPessoaFisica:tblPessoaFisica"
 						oncomplete="PF('dlgPessoaFisicaExcluir').hide(); PF('tabelaPessoaFisica').clearFilters(); " />

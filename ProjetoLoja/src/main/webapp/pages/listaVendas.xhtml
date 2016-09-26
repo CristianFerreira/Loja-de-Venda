@@ -47,36 +47,36 @@
 
 
 				<p:column headerText="Código" class="centralizarTxtColuna"
-					style="width:100px">
+					style="width:110px">
 					<h:outputText value="#{venda.codigo}" />
 				</p:column>
 
 				<p:column headerText="Data" class="centralizarTxtColuna"
-					style="width:300px">
+					style="width:150px">
 					<h:outputText value="#{venda.data}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Valor" class="centralizarTxtColuna"
-					style="width:300px">
+					style="width:150px">
 					<h:outputText value="#{venda.valor}">
 						<f:convertNumber pattern="0.00" />
 					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Cliente" class="centralizarTxtColuna"
-					style="width:300px">
+					style="width:240px">
 					<h:outputText value="#{venda.cliente.nome}" />
 				</p:column>
 
 				<p:column headerText="Vendedor" class="centralizarTxtColuna"
-					style="width:300px">
+					style="width:240px">
 					<h:outputText value="#{venda.funcionario.nome}" />
 				</p:column>
 
 				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 80px">
+					style="width: 110px">
 
 					<p:commandButton style="color:#red;" icon="ui-icon-zoomin"
 						title="Detalhes" oncomplete="PF('dlgDetalhesVenda').show();"
@@ -107,12 +107,12 @@
 
 			<p:dialog widgetVar="dlgDetalhesVenda" closable="true"
 				draggable="false" resizable="false" modal="true" appendTo="@(body)"
-				style="margin-top: -50px;">
+				style="margin-top: -50px; width: 1000px !important;">
 
-				<h:panelGrid columns="1">
+				<h:panelGrid columns="1" style="">
 					<h:outputText value="Detalhes da venda"
 						styleClass=".ui-dialog.ui-widget-content .ui-dialog-titlebar"
-						style="margin-left: 500px;font-family: sans-serif;font-weight: 500;font-size: 20px;" />
+						style="margin-left: 500px;font-family: sans-serif;font-weight: 500;font-size: 20px;width: 1000px !important;" />
 				</h:panelGrid>
 				<h:panelGrid style="margin-top:10px;">
 				</h:panelGrid>
