@@ -21,7 +21,7 @@
 
 		<h:form id="formFuncionario">
 			<div align="center" style="text-align: center !important;">
-				<h2>Lista de Funcionarios</h2>
+				<h2>Funcionários</h2>
 			</div>
 
 
@@ -32,7 +32,7 @@
 				var="funcionario" rows="10" paginator="true">
 
 				<p:column headerText="Código" class="centralizarTxtColuna"
-					style="width:110px" filterBy="#{funcionario.codigo}"
+					style="width:100px" filterBy="#{funcionario.codigo}"
 					sortBy="#{funcionario.codigo}">
 					<h:outputText value="#{funcionario.codigo}" />
 				</p:column>
@@ -63,7 +63,7 @@
 
 
 				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 110px">
+					style="width: 100px">
 					<p:commandButton icon="ui-icon-pencil"
 						oncomplete="PF('dlgFuncionarioEditar').show();"
 						update=":formFuncEditar:pnlFuncEditar">

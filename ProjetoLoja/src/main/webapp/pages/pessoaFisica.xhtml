@@ -21,7 +21,7 @@
 
 		<h:form id="formPessoaFisica">
 			<div align="center" style="text-align: center !important;margin-bottom: 10px;">
-				<h2>Lista de Clientes</h2>
+				<h2>Clientes - Pessoa Fisica</h2>
 			</div>
 
 
@@ -47,7 +47,7 @@
 				<p:column headerText="Telefone"
 					filterBy="#{pessoaFisica.telefone}"
 					sortBy="#{pessoaFisica.telefone}" 
-					style="width:260px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
+					style="width:260px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif; text-align: center;">
 					<h:outputText value="#{pessoaFisica.telefone}" />
 				</p:column>
 
@@ -130,7 +130,7 @@
 
 
 						<p:outputLabel value="Nome: "></p:outputLabel>
-						<p:inputText size="25" maxlength="50"
+						<p:inputText size="26" maxlength="50"
 							value="#{pessoaFisicaBean.pessoaFisica.nome}">
 							<f:validateBean />
 						</p:inputText>
@@ -150,7 +150,7 @@
 
 					<h:panelGrid columns="4" style="margin-left: auto;">
 						<p:outputLabel value="Rua: " />
-						<p:inputText size="15" maxlength="50"
+						<p:inputText size="14" maxlength="50"
 							value="#{pessoaFisicaBean.pessoaFisica.rua}">
 							<f:validateBean />
 						</p:inputText>
@@ -164,7 +164,7 @@
 
 					<h:panelGrid columns="2">
 						<p:outputLabel value="Bairro: " />
-						<p:inputText size="25" maxlength="50"
+						<p:inputText size="26" maxlength="50"
 							value="#{pessoaFisicaBean.pessoaFisica.bairro}">
 							<f:validateBean />
 						</p:inputText>
@@ -185,7 +185,7 @@
 						</p:selectOneMenu>
 
 						<p:outputLabel value="Observação: " />
-						<p:inputTextarea rows="2" cols="23" maxlength="50"
+						<p:inputTextarea rows="2" cols="28" maxlength="50"
 							value="#{pessoaFisicaBean.pessoaFisica.descricao}">
 							<f:validateBean />
 						</p:inputTextarea>
@@ -221,7 +221,7 @@
 
 
 						<p:outputLabel value="Nome: "></p:outputLabel>
-						<p:inputText size="25" maxlength="50"
+						<p:inputText size="26" maxlength="50"
 							value="#{pessoaFisicaBean.pessoaFisica.nome}">
 							<f:validateBean />
 						</p:inputText>
@@ -233,7 +233,7 @@
 						</p:inputMask>
 
 						<p:outputLabel value="Telefone: " />
-						<p:inputMask mask="(99)9999-9999" style="width: 240px;"
+						<p:inputMask mask="(99)9999-9999" style="width: 240px; "
 							value="#{pessoaFisicaBean.pessoaFisica.telefone}">
 							<f:validateBean />
 						</p:inputMask>
@@ -241,7 +241,7 @@
 
 					<h:panelGrid columns="4" style="margin-left: auto;">
 						<p:outputLabel value="Rua: " />
-						<p:inputText size="15" maxlength="50"
+						<p:inputText size="14" maxlength="50"
 							value="#{pessoaFisicaBean.pessoaFisica.rua}">
 							<f:validateBean />
 						</p:inputText>
@@ -255,7 +255,7 @@
 
 					<h:panelGrid columns="2">
 						<p:outputLabel value="Bairro: " />
-						<p:inputText size="25" maxlength="50"
+						<p:inputText size="26" maxlength="50"
 							value="#{pessoaFisicaBean.pessoaFisica.bairro}">
 							<f:validateBean />
 						</p:inputText>
@@ -276,7 +276,7 @@
 						</p:selectOneMenu>
 
 						<p:outputLabel value="Observação: " />
-						<p:inputTextarea rows="2" cols="23" maxlength="50"
+						<p:inputTextarea rows="2" cols="28" maxlength="50"
 							value="#{pessoaFisicaBean.pessoaFisica.descricao}">
 							<f:validateBean />
 						</p:inputTextarea>

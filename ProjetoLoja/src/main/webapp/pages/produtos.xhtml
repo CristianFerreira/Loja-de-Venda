@@ -20,7 +20,7 @@
 
 		<h:form id="formProduto">
 			<div align="center" style="text-align: center !important;">
-				<h2>Lista de Produtos</h2>
+				<h2>Produtos</h2>
 			</div>
 
 
@@ -28,12 +28,12 @@
 				emptyMessage="Nenhum registro encontrado."
 				value="#{produtoBean.listaDeProdutos}"
 				filteredValue="#{produtoBean.listaFiltrarProdutos}" var="produto"
-				rows="10" paginator="true" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}" 
+				rows="10" paginator="true" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} " 
 				rowsPerPageTemplate="5,10,15">
 
 				<p:column headerText="Código" class="centralizarTxtColuna"
 					filterBy="#{produto.codigo}" sortBy="#{produto.codigo}"
-					style="width:80px">
+					style="width:100px">
 					<h:outputText value="#{produto.codigo}" />
 				</p:column>
 				<p:column headerText="Descrição" class="centralizarTxtColuna"
@@ -42,26 +42,26 @@
 					<h:outputText value="#{produto.descricao}" />
 				</p:column>
 				<p:column headerText="Preço" class="centralizarTxtColuna"
-					sortBy="#{produto.preco}" style="width:300px">
+					sortBy="#{produto.preco}" style="width:120px">
 					<h:outputText value="R$ #{produto.preco}">
 						<f:convertNumber pattern="0.00" />
 					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Quantidade" class="centralizarTxtColuna"
-					style="width:300px">
+					style="width:120px">
 					<h:outputText value="#{produto.quantidade}" />
 				</p:column>
 
 				<p:column headerText="Fabricante" class="centralizarTxtColuna"
-					style="width:300px" filterBy="#{produto.fabricante.nome}"
+					style="width:200px" filterBy="#{produto.fabricante.nome}"
 					sortBy="##{produto.fabricante.nome}">
 					<h:outputText value="#{produto.fabricante.nome}" />
 				</p:column>
 
 
 				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 80px" exportable="false">
+					style="width: 100px" exportable="false">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						oncomplete="PF('dlgProdutoEditar').show();"
 						update=":formProdutoEditar:pnlProdutoEditar">

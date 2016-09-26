@@ -20,7 +20,7 @@
 
 			<div align="center"
 				style="text-align: center !important; margin-bottom: 10px;">
-				<h2>Cadastro de Vendas</h2>
+				<h2>Pedido de vendas</h2>
 			</div>
 
 
@@ -135,8 +135,7 @@
 
 
 			<p:dataTable id="tblItens" emptyMessage="Nenhum registro encontrado."
-				value="#{vendaBean.listaDeItens}" var="item" rows="4"
-				paginator="true">
+				value="#{vendaBean.listaDeItens}" var="item" scrollable="true" scrollHeight="80">
 
 				<p:column headerText="Produto" class="centralizarTxtColuna"
 					style="width:300px">

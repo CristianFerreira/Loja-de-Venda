@@ -22,7 +22,7 @@
 
 		<h:form id="formPessoaJuridica">
 			<div align="center" style="text-align: center !important;">
-				<h2>Lista de Clientes</h2>
+				<h2>Clientes - Pessoa Juridica</h2>
 			</div>
 
 
@@ -35,38 +35,38 @@
 
 				<p:column headerText="Código" class="centralizarTxtColuna"
 					filterBy="#{pessoaJuridica.codigo}"
-					sortBy="#{pessoaJuridica.codigo}" style="width:80px">
+					sortBy="#{pessoaJuridica.codigo}" style="width:100px">
 					<h:outputText value="#{pessoaJuridica.codigo}" />
 				</p:column>
 
 				<p:column headerText="Nome Fantasia" class="centralizarTxtColuna"
 					filterBy="#{pessoaJuridica.nomeFantasia}"
-					sortBy="#{pessoaJuridica.nomeFantasia}" style="width:300px">
+					sortBy="#{pessoaJuridica.nomeFantasia}" style="width:200px">
 					<h:outputText value="#{pessoaJuridica.nomeFantasia}" />
 				</p:column>
 
 				<p:column headerText="Nome" class="centralizarTxtColuna"
 					filterBy="#{pessoaJuridica.nome}" sortBy="#{pessoaJuridica.nome}"
-					style="width:300px">
+					style="width:200px">
 					<h:outputText value="#{pessoaJuridica.nome}" />
 				</p:column>
 
 
 				<p:column headerText="Telefone" class="centralizarTxtColuna"
 					filterBy="#{pessoaJuridica.telefone}"
-					sortBy="#{pessoaJuridica.telefone}" style="width:300px">
+					sortBy="#{pessoaJuridica.telefone}" style="width:200px">
 					<h:outputText value="#{pessoaJuridica.telefone}" />
 				</p:column>
 
 				<p:column headerText="CNPJ" class="centralizarTxtColuna"
 					filterBy="#{pessoaJuridica.cnpj}" sortBy="#{pessoaJuridica.cnpj}"
-					style="width:300px">
+					style="width:200px">
 					<h:outputText value="#{pessoaJuridica.cnpj}" />
 				</p:column>
 
 
 				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 80px">
+					style="width: 100px">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						oncomplete="PF('dlgPessoaJuridicaEditar').show();"
 						update=":formPessoaJuridicaEditar:pnlPessoaJuridicaEditar">

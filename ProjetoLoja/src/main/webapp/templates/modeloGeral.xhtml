@@ -19,7 +19,7 @@
 
 	<style>
 td {
-	text-align: center;
+
 	font-size: medium !important;
     font-weight: 100 !important;
     font-family: sans-serif;
@@ -46,6 +46,21 @@ Column tabelas -->
 	font-weight: 100;
 	font-family: sans-serif;
 }
+
+
+<!-- Modal titulo-->
+
+.ui-dialog-title-dialog{
+	font-size: 20px;
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+	.ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top ui-dialog-title{
+	font-size: 20px;
+    font-family: sans-serif;
+    font-weight: 400;
+	}
 
 span.ui-column-title{
 
@@ -152,7 +167,8 @@ div.ui-dialog-content.ui-widget-content {
 
 					<p:submenu label="Vendas"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-						<p:menuitem value="Cadastrar" outcome="/pages/vendaCadastro.xhtml"></p:menuitem>
+						<p:menuitem value="Pedido de venda" outcome="/pages/vendaCadastro.xhtml"></p:menuitem>
+						<p:menuitem value="Lista de Vendas" outcome="/pages/listaVendas.xhtml"></p:menuitem>
 
 					</p:submenu>
 
