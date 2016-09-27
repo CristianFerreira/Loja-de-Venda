@@ -1,3 +1,10 @@
+.ui-dialog.ui-widget-content .ui-dialog-content {
+    width: auto !important;
+    padding: 15px;
+    font-size: 14px;
+}
+
+
 td {
 
 	font-size: medium !important;

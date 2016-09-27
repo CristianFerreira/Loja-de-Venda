@@ -6,203 +6,313 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<ui:composition template="/templates/modeloGeral.xhtml">
-	<ui:define name="metadata">
-		<f:metadata>
-			<f:event listener="#{vendaBean.buscarVenda}" type="preRenderView" />
-		</f:metadata>
+<h:head>
+	<h:outputStylesheet library="css" name="listaVenda.css" />
+	<h:outputStylesheet library="css" name="estilos.css" />
+	
+	<style>
+#teste{
+margin-left: 63px;
+    margin-right: 40px;
 
-	</ui:define>
-
-	<ui:define name="conteudo">
-		<h:form id="formListaVenda">
-		
-		<div align="center"
-				style="text-align: center !important; margin-bottom: 10px;">
-				<h2>Vendas</h2>
-			</div>
+}
 
 
+	
+	</style>
+</h:head>
+<ui:define name="metadata">
+	<f:metadata>
+		<f:event listener="#{vendaBean.buscarVenda}" type="preRenderView" />
+	</f:metadata>
 
-			<h:panelGrid columns="7" style="margin-buttom: 10px;">
-				<p:outputLabel value="Data Inicial: " />
-				<p:calendar value="#{vendaBean.filtro.dataInicial}" />
+</ui:define>
 
-				<p:outputLabel value="Data Final: " />
-				<p:calendar value="#{vendaBean.filtro.dataFinal}" />
+<h:body style="background-color: #fff!important">
+	<p:growl id="msgInfo" life="5000" />
 
-				<p:commandButton icon="ui-icon-search"
-					actionListener="#{vendaBean.buscarVenda}"
-					update=":msgInfo :formListaVenda:tblListaVenda" />
-
-
-			</h:panelGrid>
-
-			<p:dataTable id="tblListaVenda"
-				emptyMessage="Nenhum registro encontrado."
-				value="#{vendaBean.listaDeVendasFiltradas}" var="venda" rows="10"
-				style="margin-bottom:20px" paginator="true"
-				paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}" 
-				rowsPerPageTemplate="5,10,15">
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" resizable="false" closable="false"
+			collapsible="false">
+			<h:outputText value="" />
 
 
-				<p:column headerText="Código" class="centralizarTxtColuna"
-					style="width:110px">
-					<h:outputText value="#{venda.codigo}" />
-				</p:column>
+			<h:form id="formMenuPrincipal">
 
-				<p:column headerText="Data" class="centralizarTxtColuna"
-					style="width:150px">
-					<h:outputText value="#{venda.data}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:column>
-
-				<p:column headerText="Valor" class="centralizarTxtColuna"
-					style="width:150px">
-					<h:outputText value="#{venda.valor}">
-						<f:convertNumber pattern="0.00" />
-					</h:outputText>
-				</p:column>
-
-				<p:column headerText="Cliente" class="centralizarTxtColuna"
-					style="width:240px">
-					<h:outputText value="#{venda.cliente.nome}" />
-				</p:column>
-
-				<p:column headerText="Vendedor" class="centralizarTxtColuna"
-					style="width:240px">
-					<h:outputText value="#{venda.funcionario.nome}" />
-				</p:column>
-
-				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 110px">
-
-					<p:commandButton style="color:#red;" icon="ui-icon-zoomin"
-						title="Detalhes" oncomplete="PF('dlgDetalhesVenda').show();"
-						update=":formListaVenda:tblVenda :formListaVenda:tblItens">
-						<f:setPropertyActionListener target="#{vendaBean.venda }"
-							value="#{venda}" />
-
-					</p:commandButton>
-
-				</p:column>
-
-				<f:facet name="{Exporters}">
-					<h:commandLink style="float: right;">
-						<p:graphicImage library="images" name="/pdf1.png" width="24" />
-						<p:dataExporter type="pdf" target="tblListaVenda" fileName="venda"
-							encoding="ISO-8859-1" />
-					</h:commandLink>
-
-					<h:commandLink style="float: right;">
-						<p:graphicImage library="images" name="/excel.png" width="24" />
-						<p:dataExporter type="xls" target="tblListaVenda" fileName="venda" />
-					</h:commandLink>
-				</f:facet>
+				<p:menubar id="menuBarPrincipal">
 
 
-			</p:dataTable>
+					<p:submenu label="Vendas"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+						<p:menuitem value="Pedido de venda"
+							outcome="/pages/vendaCadastro.xhtml"></p:menuitem>
+						<p:menuitem value="Lista de Vendas"
+							outcome="/pages/listaVendas.xhtml"></p:menuitem>
+
+					</p:submenu>
 
 
-			<p:dialog widgetVar="dlgDetalhesVenda" closable="true"
-				draggable="false" resizable="false" modal="true" appendTo="@(body)"
-				style="margin-top: -50px; width: 1000px !important;">
+					<p:submenu label="Clientes"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+						<p:menuitem value="Cadastro Pessoa Fisica"
+							outcome="/pages/pessoaFisica.xhtml"></p:menuitem>
 
-				<h:panelGrid columns="1" style="">
-					<h:outputText value="Detalhes da venda"
-						styleClass=".ui-dialog.ui-widget-content .ui-dialog-titlebar"
-						style="margin-left: 500px;font-family: sans-serif;font-weight: 500;font-size: 20px;width: 1000px !important;" />
+						<p:menuitem value="Cadastro Pessoa Juridica"
+							outcome="/pages/pessoaJuridica.xhtml"></p:menuitem>
+					</p:submenu>
+
+					<p:submenu label="Produtos"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+						<p:menuitem value="Lista de produtos"
+							outcome="/pages/produtos.xhtml"></p:menuitem>
+					</p:submenu>
+					<p:submenu label="Gerenciamento"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}">
+						<p:menuitem value="Funcionarios"
+							outcome="/pages/funcionarios.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="Fabricantes"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
+						<p:menuitem value="Lista de fabricantes"
+							outcome="/pages/fabricantes.xhtml"></p:menuitem>
+					</p:submenu>
+
+					<f:facet name="options">
+
+						<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
+							style="margin-right: 15px;"></p:link>
+						<p:commandButton value="Sair"
+							action="#{autenticacaoBean.sairDoSistema}" icon="ui-icon-extlink" />
+					</f:facet>
+
+				</p:menubar>
+			</h:form>
+		</p:layoutUnit>
+
+
+		<p:layoutUnit position="west" size="100" resizable="false"
+			closable="false" collapsible="false">
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="east" size="100" resizable="false"
+			closable="false" collapsible="false">
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center" resizable="false" closable="false"
+			collapsible="false">
+
+			<!-- inicio BODY -->
+
+
+			<h:form id="formListaVenda">
+
+				<div align="center"
+					style="text-align: center !important; margin-bottom: 10px;">
+					<h2>Vendas</h2>
+				</div>
+
+
+
+				<h:panelGrid columns="7" style="margin-buttom: 10px;">
+					<p:outputLabel value="Data Inicial: " />
+					<p:calendar value="#{vendaBean.filtro.dataInicial}" />
+
+					<p:outputLabel value="Data Final: " />
+					<p:calendar value="#{vendaBean.filtro.dataFinal}" />
+
+					<p:commandButton icon="ui-icon-search"
+						actionListener="#{vendaBean.buscarVenda}"
+						update=":msgInfo :formListaVenda:tblListaVenda" />
+
+
 				</h:panelGrid>
-				<h:panelGrid style="margin-top:10px;">
+
+				<h:panelGrid columns="2" style="float:right;margin-right:10px">
+					<p:outputLabel value=">> "/>
+					<p:commandLink oncomplete="PF('dlgRelatorio').show();">
+					 Emitir relatório</p:commandLink>
+			
 				</h:panelGrid>
-				<p:dataTable id="tblVenda"
+
+				<p:dataTable id="tblListaVenda"
 					emptyMessage="Nenhum registro encontrado."
-					value="#{vendaBean.venda}" var="venda" style="width: 1200px;">
+					value="#{vendaBean.listaDeVendasFiltradas}" var="venda" rows="10"
+					style="margin-bottom:20px" paginator="true"
+					paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					rowsPerPageTemplate="5,10,15">
+
+
 					<p:column headerText="Código" class="centralizarTxtColuna"
-						style="width:60px">
+						style="width:110px">
 						<h:outputText value="#{venda.codigo}" />
 					</p:column>
 
 					<p:column headerText="Data" class="centralizarTxtColuna"
-						style="width:200px">
+						style="width:150px">
 						<h:outputText value="#{venda.data}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="Valor Total" class="centralizarTxtColuna"
-						style="width:200px">
-						<h:outputText value="R$ #{venda.valor}">
+					<p:column headerText="Valor" class="centralizarTxtColuna"
+						style="width:150px">
+						<h:outputText value="#{venda.valor}">
 							<f:convertNumber pattern="0.00" />
 						</h:outputText>
 					</p:column>
 
 					<p:column headerText="Cliente" class="centralizarTxtColuna"
-						style="width:300px">
+						style="width:240px">
 						<h:outputText value="#{venda.cliente.nome}" />
 					</p:column>
 
 					<p:column headerText="Vendedor" class="centralizarTxtColuna"
-						style="width:300px">
+						style="width:240px">
 						<h:outputText value="#{venda.funcionario.nome}" />
 					</p:column>
+
+					<p:column headerText="Opções" class="centralizarTxtColuna"
+						style="width: 110px" exportable="false">
+
+						<p:commandButton style="color:#red;" icon="ui-icon-zoomin"
+							title="Detalhes" oncomplete="PF('dlgDetalhesVenda').show();"
+							update=":formListaVenda:tblVenda :formListaVenda:tblItens">
+							<f:setPropertyActionListener target="#{vendaBean.venda }"
+								value="#{venda}" />
+
+						</p:commandButton>
+
+					</p:column>
+
+
 				</p:dataTable>
 
-				<h:panelGrid style="margin-top:30px;">
-				</h:panelGrid>
+				<p:dialog widgetVar="dlgRelatorio" closable="true" draggable="false"
+					resizable="false" modal="true" appendTo="@(body)"
+					header="Emissão de Relatórios" >
+					<h:panelGrid columns="2" style="padding-left: 110px; ">
+						<h:panelGrid columns="1">
+							<h:commandLink value="Relatório em PDF" style="font-weight: 700;">
+								<p:dataExporter type="pdf" target="tblListaVenda"
+									fileName="venda" encoding="ISO-8859-1" />
+							</h:commandLink>
+						</h:panelGrid>
 
-				<h:panelGrid columns="1">
-					<h:outputText value="Itens da venda"
-						styleClass=".ui-dialog.ui-widget-content .ui-dialog-titlebar"
-						style="margin-left: 520px;
+						<h:commandLink style="float: right;">
+							<p:graphicImage library="images" name="/pdf1.png" width="30" />
+							<p:dataExporter type="pdf" target="tblListaVenda"
+								fileName="venda" encoding="ISO-8859-1" />
+						</h:commandLink>
+
+						<h:panelGrid columns="1">
+							<h:commandLink value="Relatório em XLS" style="font-weight: 700;">
+								<p:dataExporter type="xls" target="tblListaVenda"
+									fileName="venda" />
+							</h:commandLink>
+						</h:panelGrid>
+						<h:commandLink style="float: right;">
+							<p:graphicImage library="images" name="/excel.png" width="30" />
+							<p:dataExporter type="xls" target="tblListaVenda"
+								fileName="venda" />
+						</h:commandLink>
+					</h:panelGrid>
+					<h:panelGrid  style="width: 400px;"/>
+
+				</p:dialog>
+
+
+				<p:dialog widgetVar="dlgDetalhesVenda" closable="true"
+					draggable="false" resizable="false" modal="true" appendTo="@(body)"
+					style="margin-top: -50px; width: 1000px !important;">
+
+					<h:panelGrid columns="1" style="">
+						<h:outputText value="Detalhes da venda"
+							styleClass=".ui-dialog.ui-widget-content .ui-dialog-titlebar"
+							style="margin-left: 500px;font-family: sans-serif;font-weight: 500;font-size: 20px;width: 1000px !important;" />
+					</h:panelGrid>
+					<h:panelGrid style="margin-top:10px;">
+					</h:panelGrid>
+					<p:dataTable id="tblVenda"
+						emptyMessage="Nenhum registro encontrado."
+						value="#{vendaBean.venda}" var="venda" style="width: 1200px;">
+						<p:column headerText="Código" class="centralizarTxtColuna"
+							style="width:60px">
+							<h:outputText value="#{venda.codigo}" />
+						</p:column>
+
+						<p:column headerText="Data" class="centralizarTxtColuna"
+							style="width:200px">
+							<h:outputText value="#{venda.data}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="Valor Total" class="centralizarTxtColuna"
+							style="width:200px">
+							<h:outputText value="R$ #{venda.valor}">
+								<f:convertNumber pattern="0.00" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="Cliente" class="centralizarTxtColuna"
+							style="width:300px">
+							<h:outputText value="#{venda.cliente.nome}" />
+						</p:column>
+
+						<p:column headerText="Vendedor" class="centralizarTxtColuna"
+							style="width:300px">
+							<h:outputText value="#{venda.funcionario.nome}" />
+						</p:column>
+					</p:dataTable>
+
+					<h:panelGrid style="margin-top:30px;">
+					</h:panelGrid>
+
+					<h:panelGrid columns="1">
+						<h:outputText value="Itens da venda"
+							styleClass=".ui-dialog.ui-widget-content .ui-dialog-titlebar"
+							style="margin-left: 520px;
 	    font-family: sans-serif;
     font-weight: 500;
     font-size: 20px;" />
-				</h:panelGrid>
-				<h:panelGrid style="margin-top:10px;">
-				</h:panelGrid>
-				<p:dataTable id="tblItens"
-					emptyMessage="Nenhum registro encontrado."
-					value="#{vendaBean.venda.itensDaVenda}" var="itemVenda"
-					style="width: 1200px;" scrollable="true" scrollHeight="150">
-					<p:column headerText="Produto">
-						<h:outputText value="#{itemVenda.produto.descricao}"
-							style="text-align:center" />
-					</p:column>
+					</h:panelGrid>
+					<h:panelGrid style="margin-top:10px;">
+					</h:panelGrid>
+					<p:dataTable id="tblItens"
+						emptyMessage="Nenhum registro encontrado."
+						value="#{vendaBean.venda.itensDaVenda}" var="itemVenda"
+						style="width: 1200px;" scrollable="true" scrollHeight="150">
+						<p:column headerText="Produto">
+							<h:outputText value="#{itemVenda.produto.descricao}"
+								style="text-align:center" />
+						</p:column>
 
-					<p:column headerText="Quantidade ">
-						<h:outputText value="#{itemVenda.quantidade} "
-							style="text-align:center" />
-					</p:column>
+						<p:column headerText="Quantidade ">
+							<h:outputText value="#{itemVenda.quantidade} "
+								style="text-align:center" />
+						</p:column>
 
-					<p:column headerText="Valor ">
-						<h:outputText value="R$ #{itemVenda.valor}"
-							style="text-align:center">
-							<f:convertNumber pattern="0.00" />
-						</h:outputText>
-					</p:column>
+						<p:column headerText="Valor ">
+							<h:outputText value="R$ #{itemVenda.valor}"
+								style="text-align:center">
+								<f:convertNumber pattern="0.00" />
+							</h:outputText>
+						</p:column>
 
-				</p:dataTable>
+					</p:dataTable>
 
-				<h:panelGrid style="margin-top:30px;">
-				</h:panelGrid>
-			</p:dialog>
-
-
-		</h:form>
+					<h:panelGrid style="margin-top:30px;">
+					</h:panelGrid>
+				</p:dialog>
 
 
+			</h:form>
 
 
-
-
-
-
-
-
-
-
-	</ui:define>
-</ui:composition>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
 </html>

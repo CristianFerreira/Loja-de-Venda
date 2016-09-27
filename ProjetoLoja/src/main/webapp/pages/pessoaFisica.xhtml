@@ -20,7 +20,8 @@
 	<ui:define name="conteudo">
 
 		<h:form id="formPessoaFisica">
-			<div align="center" style="text-align: center !important;margin-bottom: 10px;">
+			<div align="center"
+				style="text-align: center !important; margin-bottom: 10px;">
 				<h2>Clientes - Pessoa Fisica</h2>
 			</div>
 
@@ -32,7 +33,8 @@
 				var="pessoaFisica" rows="10" paginator="true">
 
 
-				<p:column headerText="Código" class="centralizarTxtColuna fonteTabela"
+				<p:column headerText="Código"
+					class="centralizarTxtColuna fonteTabela"
 					filterBy="#{pessoaFisica.codigo}" sortBy="#{pessoaFisica.codigo}"
 					style="width:100px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<h:outputText value="#{pessoaFisica.codigo}" />
@@ -44,9 +46,8 @@
 					<h:outputText value="#{pessoaFisica.nome}" />
 				</p:column>
 
-				<p:column headerText="Telefone"
-					filterBy="#{pessoaFisica.telefone}"
-					sortBy="#{pessoaFisica.telefone}" 
+				<p:column headerText="Telefone" filterBy="#{pessoaFisica.telefone}"
+					sortBy="#{pessoaFisica.telefone}"
 					style="width:260px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif; text-align: center;">
 					<h:outputText value="#{pessoaFisica.telefone}" />
 				</p:column>
@@ -58,13 +59,23 @@
 				</p:column>
 
 
-				<p:column headerText="Opções" class="centralizarTxtColuna fonteTabela"
+				<p:column headerText="Opções"
+					class="centralizarTxtColuna fonteTabela"
 					style="width: 100px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						oncomplete="PF('dlgPessoaFisicaEditar').show();"
 						update=":formPessoaFisicaEditar:pnlPessoaFisicaEditar">
 						<f:setPropertyActionListener
 							target="#{pessoaFisicaBean.pessoaFisica}" value="#{pessoaFisica}" />
+					</p:commandButton>
+
+					<p:commandButton style="color:#red;" icon="ui-icon-search"
+						title="Detalhes"
+						oncomplete="PF('dlgPessoaFisicaDetalhes').show();"
+						update=":formPessoaFisicaDetalhes:pnlPessoaFisicaDetalhes">
+						<f:setPropertyActionListener
+							target="#{pessoaFisicaBean.pessoaFisica}"
+							value="#{pessoaFisica}" />
 					</p:commandButton>
 
 
@@ -84,8 +95,9 @@
 						oncomplete="PF('dlgPessoaFisicaNovo').show();"
 						update=":formCriarPessoaFisica:pnlPessoaFisica"
 						style="font-size: medium;">
-						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
-						</p:commandButton>
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 
 			</p:dataTable>
@@ -100,7 +112,8 @@
 
 			<h:form id="formPessoaFisicaExcluir">
 
-				<h:panelGrid id="pnlPessoaFisicaExcluir" columns="2" style="text-align: justify;
+				<h:panelGrid id="pnlPessoaFisicaExcluir" columns="2"
+					style="text-align: justify;
     margin-left: 100px;">
 					<h:outputText value="Código:" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.codigo}" />
@@ -119,6 +132,55 @@
 						onclick="PF('dlgPessoaFisicaExcluir').hide();" />
 				</h:panelGrid>
 			</h:form>
+		</p:dialog>
+		
+		
+		
+		<p:dialog widgetVar="dlgPessoaFisicaDetalhes" closable="true"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Detalhes - Pessoa Fisica">
+			<h:form id="formPessoaFisicaDetalhes">
+				<h:panelGrid id="pnlPessoaFisicaDetalhes" columns="2"
+					style="text-align: left; margin-left: 60px;">
+
+					<h:outputLabel value="Código: " style="float: right;font-weight: 600;" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.codigo}" />
+
+					<h:outputLabel value="Nome: " style="float: right;font-weight: 600;"/>
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.nome}" />
+
+					<h:outputLabel value="Telefone:" style="float: right;font-weight: 600;" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.telefone}" />
+
+					<h:outputLabel value="Rua:" style="float: right;font-weight: 600;" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.rua}" />
+
+					<h:outputLabel value="N°: " style="float: right;font-weight: 600;" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.numero}" />
+
+					<h:outputLabel value="Bairro: " style="float: right;font-weight: 600;" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.bairro}" />
+
+					<h:outputLabel value="CEP:" style="float: right;font-weight: 600;" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.cep}" />
+
+					<h:outputLabel value="Estado:" style="float: right;font-weight: 600;" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.estado}" />
+
+					<h:outputLabel value="CPF: " style="float: right;font-weight: 600;" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.cpf}" />
+
+
+					<h:outputLabel value="Observações: " style="float: right;font-weight: 600;"/>
+					<h:outputText
+						value="#{pessoaFisicaBean.pessoaFisica.descricao}" />
+
+				</h:panelGrid>
+
+			
+
+			</h:form>
+
 		</p:dialog>
 
 
