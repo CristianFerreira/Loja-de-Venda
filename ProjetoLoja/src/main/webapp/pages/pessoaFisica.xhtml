@@ -42,26 +42,26 @@
 
 				<p:column headerText="Nome" class="centralizarTxtColuna"
 					filterBy="#{pessoaFisica.nome}" sortBy="#{pessoaFisica.nome}"
-					style="width:270px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
+					style="width:265px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<h:outputText value="#{pessoaFisica.nome}" />
 				</p:column>
 
 				<p:column headerText="Telefone" filterBy="#{pessoaFisica.telefone}"
 					sortBy="#{pessoaFisica.telefone}"
-					style="width:260px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif; text-align: center;">
+					style="width:265px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif; text-align: center;">
 					<h:outputText value="#{pessoaFisica.telefone}" />
 				</p:column>
 
 				<p:column headerText="CPF" class="centralizarTxtColuna fonteTabela"
 					filterBy="#{pessoaFisica.cpf}" sortBy="#{pessoaFisica.cpf}"
-					style="width:270px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
+					style="width:260px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<h:outputText value="#{pessoaFisica.cpf}" />
 				</p:column>
 
 
 				<p:column headerText="Opções"
 					class="centralizarTxtColuna fonteTabela"
-					style="width: 100px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
+					style="width: 110px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						oncomplete="PF('dlgPessoaFisicaEditar').show();"
 						update=":formPessoaFisicaEditar:pnlPessoaFisicaEditar">
@@ -115,10 +115,10 @@
 				<h:panelGrid id="pnlPessoaFisicaExcluir" columns="2"
 					style="text-align: justify;
     margin-left: 100px;">
-					<h:outputText value="Código:" />
+					<h:outputText value="Código:" style="font-weight: 700;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.codigo}" />
 
-					<h:outputText value="Nome:" />
+					<h:outputText value="Nome:" style="font-weight: 700;"/>
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.nome}" />
 
 				</h:panelGrid>

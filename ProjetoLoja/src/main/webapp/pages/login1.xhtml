@@ -6,60 +6,21 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<ui:composition template="/templates/modeloGeral.xhtml">
-	<ui:define name="conteudo">
-		<ui:define name="metadata"></ui:define>
+<h:head>
 
+</h:head>
+
+<h:form >
 		
-		<p:layoutUnit position="west" size="100" resizable="false"
-			closable="false" collapsible="false">
 
-		</p:layoutUnit>
-
-		<p:layoutUnit position="east" size="100" resizable="false"
-			closable="false" collapsible="false">
-
-		</p:layoutUnit>
-
-		<!--  	<p:toolbar>
-				<f:facet name="left">
-					<h:outputText value="Login"></h:outputText>
-				</f:facet>
-			</p:toolbar>-->
-
-		<p:dialog widgetVar="dlgLogin" closable="false" draggable="false"
-			resizable="false" visible="true" modal="false" appendTo="@(body)">
-
-			<h:form>
-				<h:panelGrid columns="2" cellpadding="5">
-
-
-					<p:outputLabel value="CPF: " />
-					<p:inputMask size="20" mask="999.999.999-99"
-						value="#{autenticacaoBean.funcionarioLogado.cpf}">
-						<f:validateBean />
-					</p:inputMask>
-
-
-					<p:outputLabel value="Senha:"></p:outputLabel>
-					<p:password maxlength="8" size="20"
-						value="#{autenticacaoBean.funcionarioLogado.senha}">
-						<f:validateBean />
-					</p:password>
-				</h:panelGrid>
-
-				<h:panelGrid columns="1">
-					<p:commandButton value="Entrar"
-						update=":msgInfo "
-						action="#{autenticacaoBean.autenticarFuncionario}" />
-				</h:panelGrid>
-
-			</h:form>
-		</p:dialog>
-
-
-
-
-	</ui:define>
-</ui:composition>
+</h:form>
+<h:body>
+		<h:form>
+			<h1>Hello Word</h1>
+			
+			
+		
+		</h:form>
+		
+</h:body>
 </html>
