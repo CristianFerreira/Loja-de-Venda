@@ -11,11 +11,15 @@
 	<h:outputStylesheet library="css" name="estilos.css" />
 	
 	<style>
-		td{
-			text-align: center;
-		}
-	</style>
+#teste{
+margin-left: 63px;
+    margin-right: 40px;
 
+}
+
+
+	
+	</style>
 </h:head>
 <ui:define name="metadata">
 	<f:metadata>
@@ -127,10 +131,10 @@
 				</h:panelGrid>
 
 				<h:panelGrid columns="2" style="float:right;margin-right:10px">
-					<p:outputLabel value=">> " />
+					<p:outputLabel value=">> "/>
 					<p:commandLink oncomplete="PF('dlgRelatorio').show();">
 					 Emitir relatório</p:commandLink>
-
+			
 				</h:panelGrid>
 
 				<p:dataTable id="tblListaVenda"
@@ -188,7 +192,7 @@
 
 				<p:dialog widgetVar="dlgRelatorio" closable="true" draggable="false"
 					resizable="false" modal="true" appendTo="@(body)"
-					header="Emissão de Relatórios">
+					header="Emissão de Relatórios" >
 					<h:panelGrid columns="2" style="padding-left: 110px; ">
 						<h:panelGrid columns="1">
 							<h:commandLink value="Relatório em PDF" style="font-weight: 700;">
@@ -215,7 +219,7 @@
 								fileName="venda" />
 						</h:commandLink>
 					</h:panelGrid>
-					<h:panelGrid style="width: 400px;" />
+					<h:panelGrid  style="width: 400px;"/>
 
 				</p:dialog>
 
@@ -283,7 +287,7 @@
 						style="width: 1200px;" scrollable="true" scrollHeight="150">
 						<p:column headerText="Produto">
 							<h:outputText value="#{itemVenda.produto.descricao}"
-								style="text-align:center;" />
+								style="text-align:center" />
 						</p:column>
 
 						<p:column headerText="Quantidade ">

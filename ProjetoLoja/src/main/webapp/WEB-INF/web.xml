@@ -8,7 +8,7 @@
 	
 	<!-- Arquivo Principal da Aplicação -->
 	<welcome-file-list>
-		<welcome-file>pages/login.xhtml</welcome-file>
+		<welcome-file>login.xhtml</welcome-file>
 	</welcome-file-list>
 	
 	<!-- configuração do Servlet JSF -->

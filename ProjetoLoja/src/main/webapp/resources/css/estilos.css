@@ -46,13 +46,6 @@ font-size: 20px !important;
 }
 
 
-.ui-dialog.ui-widget-content .ui-dialog-content {
-    width: 400px;
-    padding: 15px;
-    font-size: 14px;
-}
-
-
 	.ui-dialog-titlebar .ui-widget-header .ui-helper-clearfix .ui-corner-top .ui-dialog-title{
 	font-size: 20px !important;
     font-family: sans-serif;
