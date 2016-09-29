@@ -23,12 +23,19 @@
 				<h2>Produtos</h2>
 			</div>
 
+			<h:panelGrid columns="2" style="float:right;margin-right:10px">
+				<p:outputLabel value=">> " />
+				<p:commandLink oncomplete="PF('dlgRelatorio').show();">
+					 Emitir relatório</p:commandLink>
+
+			</h:panelGrid>
 
 			<p:dataTable id="tblProduto" widgetVar="tabelaProduto"
 				emptyMessage="Nenhum registro encontrado."
 				value="#{produtoBean.listaDeProdutos}"
 				filteredValue="#{produtoBean.listaFiltrarProdutos}" var="produto"
-				rows="10" paginator="true" paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} " 
+				rows="10" paginator="true"
+				paginatorTemplate=" {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
 				rowsPerPageTemplate="5,10,15">
 
 				<p:column headerText="Código" class="centralizarTxtColuna"
@@ -63,8 +70,11 @@
 				<p:column headerText="Opções" class="centralizarTxtColuna"
 					style="width: 100px" exportable="false">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						actionListener="#{produtoBean.prepararNovoProduto}"
 						oncomplete="PF('dlgProdutoEditar').show();"
 						update=":formProdutoEditar:pnlProdutoEditar">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						<f:setPropertyActionListener target="#{produtoBean.produto}"
 							value="#{produto}" />
 					</p:commandButton>
@@ -98,15 +108,49 @@
 					<p:commandButton value="Novo Cadastro"
 						actionListener="#{produtoBean.prepararNovoProduto}"
 						oncomplete="PF('dlgProdutoNovo').show();"
-						update=":formCriarProduto:pnlProduto" 
-						style="font-size: medium;">
-						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
-						</p:commandButton>
+						update=":formCriarProduto:pnlProduto" style="font-size: medium;">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 
 			</p:dataTable>
 
+			<p:dialog widgetVar="dlgRelatorio" closable="true" draggable="false"
+				resizable="false" modal="true" appendTo="@(body)"
+				header="Emissão de Relatórios">
+				<h:panelGrid columns="2" style="padding-left: 110px; ">
+					<h:panelGrid columns="1">
+						<h:commandLink value="Relatório em PDF" style="font-weight: 700;">
+							<p:dataExporter type="pdf" target="tblProduto"
+								fileName="produtos" encoding="ISO-8859-1" />
+						</h:commandLink>
+					</h:panelGrid>
+
+					<h:commandLink style="float: right;">
+						<p:graphicImage library="images" name="/pdf1.png" width="30" />
+						<p:dataExporter type="pdf" target="tblProduto" fileName="produtos"
+							encoding="ISO-8859-1" />
+					</h:commandLink>
+
+					<h:panelGrid columns="1">
+						<h:commandLink value="Relatório em XLS" style="font-weight: 700;">
+							<p:dataExporter type="xls" target="tblProduto"
+								fileName="produtos" />
+						</h:commandLink>
+					</h:panelGrid>
+					<h:commandLink style="float: right;">
+						<p:graphicImage library="images" name="/excel.png" width="30" />
+						<p:dataExporter type="xls" target="tblProduto" fileName="produtos" />
+					</h:commandLink>
+				</h:panelGrid>
+				<h:panelGrid style="width: 400px;" />
+
+			</p:dialog>
+
+
 		</h:form>
+
 
 
 
@@ -139,19 +183,53 @@
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
 			header="Produto - Editar">
 			<h:form id="formProdutoEditar">
-				<h:panelGrid id="pnlProdutoEditar" columns="2">
-					<p:outputLabel value="Descrição: "></p:outputLabel>
-					<p:inputText size="30" maxlength="50"
-						value="#{produtoBean.produto.descricao}" />
-				</h:panelGrid>
+				<h:panelGrid id="pnlProdutoEditar">
 
-				<h:panelGrid columns="2">
-					<p:commandButton value="Editar"
-						actionListener="#{produtoBean.editarProduto}"
-						update=":msgInfo :formProduto:tblProduto"
-						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
-					<p:commandButton value="Cancelar"
-						onclick="PF('dlgProdutoEditar').hide();" />
+					<h:panelGrid columns="2" style="margin-left: auto;">
+						<p:outputLabel value="Descrição: " />
+						<p:inputText maxlength="50" size="29"
+							value="#{produtoBean.produto.descricao}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
+					<h:panelGrid columns="4" style="margin-left: auto;">
+						<p:outputLabel value="Preço: " />
+						<p:inputText maxlength="15" size="6"
+							value="#{produtoBean.produto.preco}"
+							converterMessage="Informe um valor válido para o campo preço">
+							<f:validateBean />
+							<f:convertNumber pattern="0.00" />
+						</p:inputText>
+
+						<p:outputLabel value="Quantidade: " style="margin-left: 7px;" />
+						<p:inputText maxlength="15" size="6"
+							value="#{produtoBean.produto.quantidade}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
+
+				<h:panelGrid columns="2" style="margin-left: auto;">
+						<p:outputLabel value="Fabricante: " />
+						<p:selectOneMenu value="#{produtoBean.produto.fabricante}"
+							style="width: 244px;" converter="fabricanteConverter">
+
+							<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
+							<f:selectItems value="#{produtoBean.listaDeFabricantes}"
+								var="fabricante" itemValue="#{fabricante}"
+								itemLabel="#{fabricante.nome}" />
+							<f:validateBean />
+						</p:selectOneMenu>
+					</h:panelGrid>
+
+					<h:panelGrid columns="2">
+						<p:commandButton value="Editar" style="margin-left: 78px;"
+							actionListener="#{produtoBean.editarProduto}"
+							update=":msgInfo :formProduto:tblProduto"
+							oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
+						<p:commandButton value="Cancelar"
+							onclick="PF('dlgProdutoEditar').hide();" />
+					</h:panelGrid>
+
 				</h:panelGrid>
 
 			</h:form>
@@ -166,46 +244,50 @@
 
 
 			<h:form id="formCriarProduto">
+				<h:panelGrid id="pnlProduto">
+					<h:panelGrid columns="2" style="margin-left: auto;">
+						<p:outputLabel value="Descrição: " />
+						<p:inputText maxlength="50" size="29"
+							value="#{produtoBean.produto.descricao}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
+					<h:panelGrid columns="4" style="margin-left: auto;">
+						<p:outputLabel value="Preço: " />
+						<p:inputText maxlength="15" size="6"
+							value="#{produtoBean.produto.preco}"
+							converterMessage="Informe um valor válido para o campo preço">
+							<f:validateBean />
+							<f:convertNumber pattern="0.00" />
+						</p:inputText>
 
-				<h:panelGrid id="pnlProduto" columns="2">
-					<p:outputLabel value="Descrição: " />
-					<p:inputText maxlength="50" size="30"
-						value="#{produtoBean.produto.descricao}">
-						<f:validateBean />
-					</p:inputText>
+						<p:outputLabel value="Quantidade: "  style="margin-left: 7px;"/>
+						<p:inputText maxlength="15" size="6" 
+							value="#{produtoBean.produto.quantidade}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
 
-					<p:outputLabel value="Preço: " />
-					<p:inputText maxlength="30" size="30"
-						value="#{produtoBean.produto.preco}"
-						converterMessage="Informe um valor válido para o campo preço">
-						<f:validateBean />
-						<f:convertNumber pattern="0.00"/>
-					</p:inputText>
+					<h:panelGrid columns="2" style="margin-left: auto;">
+						<p:outputLabel value="Fabricante: " />
+						<p:selectOneMenu value="#{produtoBean.produto.fabricante}"
+							style="width: 244px;" converter="fabricanteConverter">
 
-					<p:outputLabel value="Quantidade: " />
-					<p:inputText maxlength="30" size="30"
-						value="#{produtoBean.produto.quantidade}">
-						<f:validateBean />
-					</p:inputText>
-
-					<p:outputLabel value="Fabricante: " />
-					<p:selectOneMenu value="#{produtoBean.produto.fabricante}"
-						converter="fabricanteConverter">
-
-						<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
-						<f:selectItems value="#{produtoBean.listaDeFabricantes}"
-							var="fabricante" itemValue="#{fabricante}"
-							itemLabel="#{fabricante.nome}" />
-						<f:validateBean />
-					</p:selectOneMenu>
-				</h:panelGrid>
-				<h:panelGrid columns="2">
-					<p:commandButton value="Salvar"
-						actionListener="#{produtoBean.salvar}"
-						update=":msgInfo :formProduto:tblProduto"
-						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
-					<p:commandButton value="Sair"
-						onclick="PF('dlgProdutoNovo').hide();" />
+							<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
+							<f:selectItems value="#{produtoBean.listaDeFabricantes}"
+								var="fabricante" itemValue="#{fabricante}"
+								itemLabel="#{fabricante.nome}" />
+							<f:validateBean />
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:commandButton value="Salvar" style="margin-left: 78px;"
+							actionListener="#{produtoBean.salvar}"
+							update=":msgInfo :formProduto:tblProduto"
+							oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
+						<p:commandButton value="Sair"
+							onclick="PF('dlgProdutoNovo').hide();" />
+					</h:panelGrid>
 				</h:panelGrid>
 
 			</h:form>
