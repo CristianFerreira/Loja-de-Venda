@@ -82,19 +82,19 @@
 
 		<p:dialog widgetVar="dlgFabricanteExcluir" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
-			header="Paciente - Excluir">
+			header="Excluir esse fabricante?">
 
 			<h:form id="formFabExcluir">
-				<h:panelGrid id="pnlFabExcluir" columns="2">
-					<h:outputText value="Código:" />
+				<h:panelGrid id="pnlFabExcluir" columns="2" style="text-align: justify; margin-left: 100px;">
+					<h:outputText value="Código:" style="font-weight: 700;"/>
 					<h:outputText value="#{fabricanteBean.fabricante.codigo}"/>
 
-					<h:outputText value="Nome:" />
+					<h:outputText value="Nome:" style="font-weight: 700;" />
 					<h:outputText value="#{fabricanteBean.fabricante.nome}" />
 
 				</h:panelGrid>
 				<h:panelGrid columns="2">
-					<p:commandButton style="color:#700000;" value="Excluir"
+					<p:commandButton style="margin-left: 100px;" value="Excluir"
 						actionListener="#{fabricanteBean.excluirFabricante}"
 						update=":msgInfo :formFabricante:tblFabricante"
 						oncomplete="PF('dlgFabricanteExcluir').hide(); PF('tabelaFabricante').clearFilters(); " />
@@ -107,21 +107,21 @@
 
 		<p:dialog widgetVar="dlgFabricanteEditar" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
-			header="Paciente - Editar">
+			header="Fabricante - Editar" >
 			<h:form id="formFabEditar">
-				<h:panelGrid id="pnlFabEditar" columns="2">
+				<h:panelGrid id="pnlFabEditar" columns="2" style="margin-left: 35px;">
 					<p:outputLabel value="Nome: "></p:outputLabel>
-					<p:inputText size="30" maxlength="45"
+					<p:inputText size="24" maxlength="45"
 						value="#{fabricanteBean.fabricante.nome}" />
 
 					<p:outputLabel value="Descrição: " />
-					<p:inputTextarea rows="2" cols="28" maxlength="100"
+					<p:inputTextarea rows="2" cols="26" maxlength="100"
 						value="#{fabricanteBean.fabricante.descricao}" />
 
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
-					<p:commandButton value="Editar"
+					<p:commandButton value="Editar" style="margin-left: 110px;"
 						actionListener="#{fabricanteBean.editarFabricante}"
 						update=":msgInfo :formFabricante:tblFabricante"
 						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaFabricante').clearFilters(); " />
@@ -141,21 +141,21 @@
 
 
 			<h:form id="formCriarFabricante">	
-				<h:panelGrid id="pnlFabricante" columns="2">
-					<p:outputLabel value="Nome: "></p:outputLabel>
-					<p:inputText maxlength="50" size="30"
+				<h:panelGrid id="pnlFabricante" columns="2" style="margin-left: 35px;">
+					<p:outputLabel value="Nome: " />
+					<p:inputText maxlength="50" size="24"
 						value="#{fabricanteBean.fabricante.nome}">
 						<f:validateBean />
 					</p:inputText>
 					
-					<p:outputLabel value="Descrição: "></p:outputLabel>
-					<p:inputTextarea rows="2" cols="28" maxlength="100"
+					<p:outputLabel value="Descrição: " />
+					<p:inputTextarea rows="2" cols="26" maxlength="100"
 						value="#{fabricanteBean.fabricante.descricao}">
 						<f:validateBean />
 					</p:inputTextarea>
 				</h:panelGrid>
 				<h:panelGrid columns="2">
-					<p:commandButton value="Salvar"
+					<p:commandButton value="Salvar" style="margin-left: 110px;"
 						actionListener="#{fabricanteBean.salvar}"
 						update=":msgInfo :formFabricante:tblFabricante"
 						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaFabricante').clearFilters(); " />

@@ -62,6 +62,7 @@ public class FuncionarioBean {
 
 		// FacesUtil.adicionarMsgSucesso(fabricante.toString());
 		try {
+			
 			FuncionarioDAO fdao = new FuncionarioDAO();
 			funcionario.setSenha(DigestUtils.md5Hex(funcionario.getSenha()));
 			fdao.salvar(funcionario);
@@ -85,8 +86,10 @@ public class FuncionarioBean {
 
 	public void editarFuncionario() {
 		try {
+			
+			System.out.println("SENHA: "+funcionario.getSenha());
 			FuncionarioDAO fdao = new FuncionarioDAO();
-			funcionario.setSenha(DigestUtils.md5Hex(funcionario.getSenha()));
+//			funcionario.setSenha(DigestUtils.md5Hex(funcionario.getSenha()));
 			fdao.editar(funcionario);
 
 			funcionario = new Funcionario();

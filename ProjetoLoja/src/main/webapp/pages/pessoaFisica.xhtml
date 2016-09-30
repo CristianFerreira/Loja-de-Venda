@@ -258,7 +258,7 @@
 					</h:panelGrid>
 				</h:panelGrid>
 
-				<h:panelGrid columns="2" style="margin-left: 28%;">
+				<h:panelGrid columns="2" style="margin-left: 90px;">
 					<p:commandButton value="Editar"
 						actionListener="#{pessoaFisicaBean.editarPessoaFisica}"
 						update=":msgInfo :formPessoaFisica:tblPessoaFisica"
@@ -349,12 +349,12 @@
 					</h:panelGrid>
 				</h:panelGrid>
 
-				<h:panelGrid columns="2" style="margin-left: 28%;">
+				<h:panelGrid columns="2" style="margin-left: 90px;">
 					<p:commandButton value="Salvar"
 						actionListener="#{pessoaFisicaBean.salvarPessoaFisica}"
 						update=":msgInfo :formPessoaFisica:tblPessoaFisica"
 						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaPessoaFisica').clearFilters(); " />
-					<p:commandButton value="Sair"
+					<p:commandButton value="Cancelar"
 						onclick="PF('dlgPessoaFisicaNovo').hide();"></p:commandButton>
 				</h:panelGrid>
 

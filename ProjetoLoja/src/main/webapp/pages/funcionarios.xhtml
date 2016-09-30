@@ -107,7 +107,7 @@
 
 			<h:form id="formCriarFuncionario">
 				<h:panelGrid id="pnlFuncionario" columns="2">
-					<p:outputLabel value="Nome: "></p:outputLabel>
+					<p:outputLabel value="Nome: " />
 					<p:inputText maxlength="50" size="20"
 						value="#{funcionarioBean.funcionario.nome}">
 						<f:validateBean />
@@ -137,21 +137,19 @@
 					</p:inputMask>
 
 					<h:outputLabel for="senha1" value="Senha: *" />
-						<p:password id="senha1" size="20"
-							value="#{funcionarioBean.funcionario.senha}" match="senha2"
-							label="Senhas não correspondem" required="true"
-							validatorMessage="Os campos senhas são diferentes" />
+					<p:password id="senha1" size="20"
+						value="#{funcionarioBean.funcionario.senha}" match="senha2"
+						required="true" validatorMessage="Os campos senhas são diferentes" />
 
-						<h:outputLabel for="senha2" value="Repetir Senha: *" />
-						<p:password id="senha2" size="20"
-							value="#{funcionarioBean.funcionario.senha}"
-							label="Senhas não correspondem" required="true" />
+					<h:outputLabel for="senha2" value="Repetir Senha: *" />
+					<p:password id="senha2" size="20"
+						value="#{funcionarioBean.funcionario.senha}" required="true" />
 
 
 
 				</h:panelGrid>
 				<h:panelGrid columns="2">
-					<p:commandButton value="SALVAR"
+					<p:commandButton value="SALVAR" style="margin-left: 122px;"
 						actionListener="#{funcionarioBean.salvar}"
 						update="pnlFuncionario :msgInfo :formFuncionario:tblFuncionario"
 						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaFuncionario').clearFilters(); " />
@@ -169,19 +167,20 @@
 
 		<p:dialog widgetVar="dlgFuncionarioExcluir" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
-			header="Funcionario - Excluir">
+			header="Excluir esse funcionário?">
 
 			<h:form id="formFuncExcluir">
-				<h:panelGrid id="pnlFuncExcluir" columns="2">
-					<h:outputText value="Código: " />
+				<h:panelGrid id="pnlFuncExcluir" columns="2"
+				style="text-align: justify; margin-left: 100px;">
+					<h:outputText value="Código: " style="font-weight: 700;"/>
 					<h:outputText value="#{funcionarioBean.funcionario.codigo}" />
 
-					<h:outputText value="Nome: " />
+					<h:outputText value="Nome: " style="font-weight: 700;"/>
 					<h:outputText value="#{funcionarioBean.funcionario.nome}" />
 
 				</h:panelGrid>
 				<h:panelGrid columns="2">
-					<p:commandButton style="color:#700000;" value="Excluir"
+					<p:commandButton style="margin-left: 100px;" value="Excluir"
 						actionListener="#{funcionarioBean.excluirFuncionario}"
 						update=":msgInfo :formFuncionario:tblFuncionario"
 						oncomplete="PF('dlgFuncionarioExcluir').hide(); PF('tabelaFuncionario').clearFilters(); " />
@@ -196,45 +195,41 @@
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
 			header="Funcionario - Editar">
 			<h:form id="formFuncEditar">
-				<h:panelGrid id="pnlFuncEditar" columns="2">
-
-					<p:outputLabel value="Nome: "></p:outputLabel>
-					<p:inputText maxlength="50" size="25"
+				<h:panelGrid id="pnlFuncEditar" columns="2" style="margin-left: 32px;">
+					<p:outputLabel value="Nome: " />
+					<p:inputText maxlength="50" size="24"
 						value="#{funcionarioBean.funcionario.nome}">
 						<f:validateBean />
 					</p:inputText>
 
 					<p:outputLabel value="Telefone: "></p:outputLabel>
-					<p:inputMask size="25" mask="(99)9999-9999"
+					<p:inputMask size="24" mask="(99)9999-9999"
 						value="#{funcionarioBean.funcionario.telefone}">
 						<f:validateBean />
 					</p:inputMask>
 
-					<p:outputLabel value="CPF: " />
-					<p:inputMask size="25" mask="999.999.999-99"
-						value="#{funcionarioBean.funcionario.cpf}">
-						<f:validateBean />
-					</p:inputMask>
-
-					<p:outputLabel value="Senha:"></p:outputLabel>
-					<p:password maxlength="8" size="25"
-						value="#{funcionarioBean.funcionario.senha}">
-						<f:validateBean />
-					</p:password>
 
 					<p:outputLabel value="Função: " />
 					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}"
-						style="width: 218px;">
+						style="width: 203px;">
 						<f:validateBean />
 						<f:selectItem itemValue="" itemLabel="Selecione uma função" />
 						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
 						<f:selectItem itemLabel="Vendedor" itemValue="Vendedor" />
 						<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
 					</p:selectOneMenu>
-				</h:panelGrid>
 
+					<p:outputLabel value="CPF: " />
+					<p:inputMask size="24" mask="999.999.999-99"
+						value="#{funcionarioBean.funcionario.cpf}">
+						<f:validateBean />
+					</p:inputMask>
+				</h:panelGrid>
+				
+				
+				
 				<h:panelGrid columns="2">
-					<p:commandButton value="Editar"
+					<p:commandButton value="Editar" style="margin-left:95px;"
 						actionListener="#{funcionarioBean.editarFuncionario}"
 						update=":msgInfo :formFuncionario:tblFuncionario"
 						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaFuncionario').clearFilters(); " />

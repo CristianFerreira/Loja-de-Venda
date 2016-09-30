@@ -156,19 +156,20 @@
 
 		<p:dialog widgetVar="dlgProdutoExcluir" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
-			header="Produto - Excluir">
+			header="Excluir esse produto?">
 
 			<h:form id="formProdutoExcluir">
-				<h:panelGrid id="pnlProdutoExcluir" columns="2">
-					<h:outputText value="Código:" />
+				<h:panelGrid id="pnlProdutoExcluir" columns="2" 
+				style="text-align: justify; margin-left: 100px;">
+					<h:outputText value="Código:" style="font-weight: 700;" />
 					<h:outputText value="#{produtoBean.produto.codigo}" />
 
-					<h:outputText value="Descrição:" />
+					<h:outputText value="Descrição:" style="font-weight: 700;" />
 					<h:outputText value="#{produtoBean.produto.descricao}" />
 
 				</h:panelGrid>
 				<h:panelGrid columns="2">
-					<p:commandButton style="color:#700000;" value="Excluir"
+					<p:commandButton style="margin-left: 100px;" value="Excluir"
 						actionListener="#{produtoBean.excluirProduto}"
 						update=":msgInfo :formProduto:tblProduto"
 						oncomplete="PF('dlgProdutoExcluir').hide(); PF('tabelaProduto').clearFilters(); " />

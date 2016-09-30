@@ -89,6 +89,8 @@ div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-contai
 	text-align: right;
 }
 
+
+
 <!--
 Login -->
 div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
@@ -120,6 +122,8 @@ div.ui-dialog-content.ui-widget-content {
 	font-size: 95%;
 }
 
+
+
 .ui-layout-north {
 	z-index: 20 !important;
 	overflow: visible !important;
@@ -127,22 +131,24 @@ div.ui-dialog-content.ui-widget-content {
 
 .ui-layout-north .ui-layout-unit-content {
 	overflow: visible !important;
+	padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .ui-layout-unit-content {
-	background-color: #FFF !important;
+	
 	border: none !important;
+	
+	padding-left: 80px !important;
+    padding-right: 80px !important;
 }
 
-.ui-widget-content {
-	background: #FFF !important;
-}
+
 
 .ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap,
 	.ui-layout-bd, .ui-layout-hd {
 	border: none;
 }
-
 .ui-menu.ui-widget a {
 	display: inline !important;
 }
