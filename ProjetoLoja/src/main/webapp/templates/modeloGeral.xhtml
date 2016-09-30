@@ -13,32 +13,36 @@
 	<title>Happy Kids</title>
 	<h:outputStylesheet library="css" name="estilos.css" />
 	<h:outputStylesheet library="css" name="layoutGeral.css" />
-
-	<h:outputStylesheet library="stylesheet" name="estilos.css" />
 	
-
-
-
-
+	<style>
+	
+	.ui-menubar,.ui-menu-child,.ui-menu {
+    background: #775582 !important;
+    font-size: 16px !important;
+	border-color: #101010 !important;
+	padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+	</style>
 </h:head>
 <h:body>
 	<p:growl id="msgInfo" life="5000" />
 
-	<p:layout fullPage="true">
-		<p:layoutUnit position="north" resizable="false" closable="false" style="background-color: #FFFF !important;"
-			collapsible="false" styleClass="ui-north" gutter="0">
-			<h:outputText value="" />
-
-
-			<h:form id="formMenuPrincipal">
+		<p:layout fullPage="true">
+		<p:layoutUnit position="center" resizable="false" closable="false"
+			collapsible="false">
+			
+						<h:form id="formMenuPrincipal">
 
 				<p:menubar id="menuBarPrincipal">
 
 
 					<p:submenu label="Vendas"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
-						<p:menuitem value="Pedido de venda" outcome="/pages/vendaCadastro.xhtml"></p:menuitem>
-						<p:menuitem value="Lista de Vendas" outcome="/pages/listaVendas.xhtml"></p:menuitem>
+						<p:menuitem value="Pedido de venda"
+							outcome="/pages/vendaCadastro.xhtml"></p:menuitem>
+						<p:menuitem value="Lista de Vendas"
+							outcome="/pages/listaVendas.xhtml"></p:menuitem>
 
 					</p:submenu>
 
@@ -69,10 +73,6 @@
 							outcome="/pages/fabricantes.xhtml"></p:menuitem>
 					</p:submenu>
 
-
-
-
-
 					<f:facet name="options">
 
 						<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
@@ -83,14 +83,16 @@
 
 				</p:menubar>
 			</h:form>
+			
+
+			<ui:insert name="conteudo">
+			
+
+			
+			</ui:insert>
+
 		</p:layoutUnit>
-
-		<p:layoutUnit position="center" resizable="false" closable="false"
-			collapsible="false">
-
-			<ui:insert name="conteudo" />
-
-		</p:layoutUnit>
-	</p:layout>
+		</p:layout>
+	
 </h:body>
 </html>

@@ -3,3 +3,11 @@
     padding: 15px;
     font-size: 14px;
 }
+
+
+.ui-menu {
+	z-index: 20 !important;
+	overflow: visible !important;
+	background-color: blue !important;
+	
+}

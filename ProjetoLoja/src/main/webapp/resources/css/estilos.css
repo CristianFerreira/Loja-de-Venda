@@ -122,6 +122,17 @@ div.ui-dialog-content.ui-widget-content {
 	font-size: 95%;
 }
 
+.ui-menu {
+	z-index: 20 !important;
+	overflow: visible !important;
+	background-color: blue !important;
+	
+}
+
+
+.ui-widget-content {
+	background: #eeeeee !important;
+}
 
 
 .ui-layout-north {
@@ -133,14 +144,20 @@ div.ui-dialog-content.ui-widget-content {
 	overflow: visible !important;
 	padding-left: 0px !important;
     padding-right: 0px !important;
+    background: #eeeeee !important;
 }
 
 .ui-layout-unit-content {
-	
+
 	border: none !important;
-	
-	padding-left: 80px !important;
+	background: #eeeeee !important;
+
+}
+
+.ui-datatable{
+    padding-left: 80px!important;
     padding-right: 80px !important;
+    
 }
 
 
