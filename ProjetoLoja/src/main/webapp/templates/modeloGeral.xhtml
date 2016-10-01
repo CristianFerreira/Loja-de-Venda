@@ -13,29 +13,202 @@
 	<title>Happy Kids</title>
 	<h:outputStylesheet library="css" name="estilos.css" />
 	<h:outputStylesheet library="css" name="layoutGeral.css" />
-	
+
 	<style>
-	
-	.ui-menubar,.ui-menu-child,.ui-menu {
-    background: #775582 !important;
-    font-size: 16px !important;
+td {
+	font-size: medium !important;
+	font-weight: 100 !important;
+	font-family: sans-serif;
+}
+
+h2 {
+	font-size: 24px;
+	font-family: sans-serif;
+	font-weight: 400;
+}
+
+<!--
+Column tabelas -->.ui-column-title {
+	font-size: medium !important;
+	font-weight: 100 !important;
+	font-family: sans-serif;
+}
+
+<!--
+Column tabelas -->.ui-datatable-scrollable-theadclone th span.ui-column-title
+	{
+	font-size: medium;
+	font-weight: 100;
+	font-family: sans-serif;
+}
+
+<!--
+Modal titulo-->.ui-dialog-title-dialog {
+	font-size: 20px;
+	font-family: sans-serif;
+	font-weight: 400;
+	margin-left: 95px;
+}
+
+.ui-dialog.ui-widget-content .ui-dialog-title {
+	font-size: 20px !important;
+	font-family: sans-serif !important;
+	font-weight: 400 !important;
+	margin-left: 95px;
+}
+
+.ui-dialog-titlebar .ui-widget-header .ui-helper-clearfix .ui-corner-top .ui-dialog-title
+	{
+	font-size: 20px !important;
+	font-family: sans-serif;
+	font-weight: 400;
+	margin-left: 95px;
+}
+
+.ui-dialog-title {
+	font-size: 20px;
+	margin-left: 95px;
+	font-family: sans-serif;
+	font-weight: 400;
+}
+
+span.ui-column-title {
+	font-size: medium;
+	font-weight: 100;
+	font-family: sans-serif;
+}
+
+<!--
+Impressao de relatorio -->.div.ui-datatable-footer.ui-widget-header.ui-corner-bottom
+	{
+	text-align: right;
+}
+
+<!--
+Dialog Funcionario-->span#j_idt42_title.ui-dialog-title {
+	font-family: sans-serif !important;
+	font-size: 18px !important;
+	font-weight: 400;
+}
+
+div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
+	{
+	font-family: sans-serif !important;
+	font-size: 16px !important;
+	font-weight: 400;
+	text-align: right;
+}
+
+<!--
+Login -->div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
+	{
+	width: 400px;
+	height: 400px
+}
+
+<!--
+Dialog Fabricante-->div.ui-dialog-titlebar.ui-widget-header.ui-helper-clearfix.ui-corner-top
+	{
+	font-family: sans-serif !important;
+	font-size: 18px !important;
+	font-weight: 400;
+}
+
+div.ui-dialog-content.ui-widget-content {
+	font-family: sans-serif !important;
+	font-size: 16px !important;
+	font-weight: 400;
+	text-align: right;
+}
+
+.centralizarTxtColuna {
+	text-align: center;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 95%;
+}
+
+.ui-menu {
+	z-index: 20 !important;
+	overflow: visible !important;
+	background-color: blue !important;
+}
+
+.ui-widget-content {
+	background: #eeeeee !important;
+}
+
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	background: #eeeeee !important;
+}
+
+.ui-layout-unit-content {
+	border: none !important;
+	background-color: #eeeeee !important;
+}
+
+.ui-datatable {
+	padding-left: 80px !important;
+	padding-right: 80px !important;
+}
+
+.ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap,
+	.ui-layout-bd, .ui-layout-hd {
+	border: none;
+}
+
+.ui-menu.ui-widget a {
+	display: inline !important;
+}
+
+.ui-menubar, .ui-menu-child, .ui-menu {
+	background: #775582 !important;
+	font-size: 16px !important;
 	border-color: #101010 !important;
 	padding-left: 0px !important;
-    padding-right: 0px !important;
+	padding-right: 0px !important;
 }
-	</style>
+
+.ui-menu.ui-widget li>.ui-menuitem-link {
+	color: #ffffff !important;
+}
+
+<!--
+Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
+	.ui-corner-top {
+	background-color: #eeeeee !important;
+}
+
+.ui-paginator, .ui-paginator-bottom, .ui-widget-header {
+	background-color: #eeeeee !important;
+}
+</style>
 </h:head>
 <h:body>
 	<p:growl id="msgInfo" life="5000" />
 
-		<p:layout fullPage="true">
+	<p:layout fullPage="true">
 		<p:layoutUnit position="center" resizable="false" closable="false"
 			collapsible="false">
-			
-						<h:form id="formMenuPrincipal">
+
+			<h:form id="formMenuPrincipal">
 
 				<p:menubar id="menuBarPrincipal">
 
+					<p:menuitem>
+						<h:link>
+							<h:graphicImage name="/images/happy1.png" height="25" style="margin-top: -9px; margin-left: 20px;" />
+						</h:link>
+					</p:menuitem>
 
 					<p:submenu label="Vendas"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
@@ -74,25 +247,27 @@
 					</p:submenu>
 
 					<f:facet name="options">
-
-						<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
-							style="margin-right: 15px;"></p:link>
-						<p:commandButton value="Sair"
-							action="#{autenticacaoBean.sairDoSistema}" icon="ui-icon-extlink" />
+						<h:panelGrid columns="2" style="margin-top: 2px !important;">
+							<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
+								style="font-family: sans-serif;margin-right: 15px; color: #ffffff !important; text-decoration: none; font-size: 14px !important; font-family: sans-serif;"></p:link>
+							<p:commandLink
+								style="margin-right:20px; font-size: 14px !important; color: #ffffff !important; "
+								action="#{autenticacaoBean.sairDoSistema}">Sair</p:commandLink>
+						</h:panelGrid>
 					</f:facet>
 
 				</p:menubar>
 			</h:form>
-			
+
 
 			<ui:insert name="conteudo">
-			
 
-			
+
+
 			</ui:insert>
 
 		</p:layoutUnit>
-		</p:layout>
-	
+	</p:layout>
+
 </h:body>
 </html>
