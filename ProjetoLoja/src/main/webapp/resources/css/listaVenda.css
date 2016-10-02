@@ -118,38 +118,3 @@ div.ui-dialog-content.ui-widget-content {
 	font-weight: 400;
 	text-align: right;
 }
-
-.centralizarTxtColuna {
-	text-align: center;
-}
-
-.ui-widget, .ui-widget .ui-widget {
-	font-size: 95%;
-}
-
-.ui-layout-north {
-	z-index: 20 !important;
-	overflow: visible !important;
-}
-
-.ui-layout-north .ui-layout-unit-content {
-	overflow: visible !important;
-}
-
-.ui-layout-unit-content {
-	background-color: #FFF !important;
-	border: none !important;
-}
-
-.ui-widget-content {
-	background: #FFF !important;
-}
-
-.ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap,
-	.ui-layout-bd, .ui-layout-hd {
-	border: none;
-}
-
-.ui-menu.ui-widget a {
-	display: inline !important;
-}

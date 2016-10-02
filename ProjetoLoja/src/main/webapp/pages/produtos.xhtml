@@ -17,18 +17,18 @@
 		</f:metadata>
 	</ui:define>
 	<ui:define name="conteudo">
-
+		
 		<h:form id="formProduto">
-			<div align="center" style="text-align: center !important;">
+			<h:panelGrid columns="2" style="float:right; margin-right: 80px;">
+					<p:commandLink oncomplete="PF('dlgRelatorio').show();">
+						<h:graphicImage name="/images/relatorio.png" style="float:right; " />
+					</p:commandLink>
+
+				</h:panelGrid>
+			
+			<div align="center" style="text-align: center !important;margin-bottom: 40px; margin-top: 20px;margin-left: 160px;" >
 				<h2>Produtos</h2>
 			</div>
-
-			<h:panelGrid columns="2" style="float:right;margin-right:10px">
-				<p:outputLabel value=">> " />
-				<p:commandLink oncomplete="PF('dlgRelatorio').show();">
-					 Emitir relatório</p:commandLink>
-
-			</h:panelGrid>
 
 			<p:dataTable id="tblProduto" widgetVar="tabelaProduto"
 				emptyMessage="Nenhum registro encontrado."

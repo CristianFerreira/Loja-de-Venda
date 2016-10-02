@@ -16,6 +16,8 @@ import java.util.List;
 public class FuncionarioBean {
 
 	private Funcionario funcionario;
+	private String senhaAtual;
+	private Funcionario funcionarioLogado;
 	private List<Funcionario> listaFuncionario;
 	private List<Funcionario> listaFiltrarFuncionario;
 
@@ -25,6 +27,32 @@ public class FuncionarioBean {
 		}
 		return funcionario;
 	}
+	
+	
+
+	public Funcionario getFuncionarioLogado() {
+		return funcionarioLogado;
+	}
+
+
+
+	public void setFuncionarioLogado(Funcionario funcionarioLogado) {
+		this.funcionarioLogado = funcionarioLogado;
+	}
+
+
+
+	public String getSenhaAtual() {
+		return senhaAtual;
+	}
+
+
+
+	public void setSenhaAtual(String senhaAtual) {
+		this.senhaAtual = senhaAtual;
+	}
+
+
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
@@ -47,15 +75,7 @@ public class FuncionarioBean {
 	}
 
 	public void prepararNovoFuncionario() {
-		// System.out.println("FUNCIONARIO NOME ANTES: "
-		// +funcionario.getNome());
-		// System.out.println("FUNCIONARIO cpf anteS: " +funcionario.getCpf());
-
 		funcionario = new Funcionario();
-		// System.out.println("FUNCIONARIO NOME DEPOIS: "
-		// +funcionario.getNome());
-		// System.out.println("FUNCIONARIO cpf depois: " +funcionario.getCpf());
-
 	}
 
 	public void salvar() {
@@ -112,6 +132,8 @@ public class FuncionarioBean {
 			FacesUtil.adicionarMsgErro("Erro ao tentar excluir o funcionario:" + ex.getMessage());
 		}
 	}
+	
+	
 	
 
 }

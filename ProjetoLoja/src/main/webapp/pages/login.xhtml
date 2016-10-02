@@ -8,47 +8,6 @@
 <h:head>
 
 	<style>
-<!--
-Dialog Funcionario-->span#j_idt42_title.ui-dialog-title {
-	font-family: sans-serif !important;
-	font-size: 18px !important;
-	font-weight: 400;
-}
-
-div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
-	{
-	font-family: sans-serif !important;
-	font-size: 16px !important;
-	font-weight: 400;
-	text-align: right;
-}
-
-<!--
-Login -->div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
-	{
-	width: 400px;
-	height: 400px
-}
-
-<!--
-Dialog Fabricante-->div.ui-dialog-titlebar.ui-widget-header.ui-helper-clearfix.ui-corner-top
-	{
-	font-family: sans-serif !important;
-	font-size: 18px !important;
-	font-weight: 400;
-}
-
-div.ui-dialog-content.ui-widget-content {
-	font-family: sans-serif !important;
-	font-size: 16px !important;
-	font-weight: 400;
-	text-align: right;
-}
-
-.centralizarTxtColuna {
-	text-align: center;
-}
-
 .ui-widget, .ui-widget .ui-widget {
 	font-size: 95%;
 }
@@ -80,21 +39,51 @@ div.ui-dialog-content.ui-widget-content {
 	background-image: url('#{request.contextPath}img/imagemFundo.png');
 }
 
-.ui-growl{
-
+.ui-dialog.ui-widget-content .ui-dialog-content {
+	width: 350px;
+	padding: 15px;
+	font-size: 14px;
 }
 
-    
-
-#msgInfo{
-  position: fixed !important;
-    top: 250px !important;
-    right: 700px !important;
-    width: 301px !important;
-
+.ui-dialog.ui-widget-content .ui-dialog-title {
+	text-align: center;
+	font-size: 24px;
+	font-family: sans-serif;
+	font-weight: 400;
+	margin-left: 27px;
+	color: #fff;
 }
 
+.ui-dialog, .ui-widget-content .ui-dialog-titlebar {
+	background-color: #775582 !important;
+}
 
+#msgInfo {
+	position: fixed !important;
+	top: 250px !important;
+	right: 700px !important;
+	width: 301px !important;
+}
+
+.usuario {
+	padding-left: 35px; /* Largura da imagem possui 20px */
+	padding-top: 5px;
+	/* Só pra centralizar o texto verticalmente já que a altura da imagem é de 25px */
+	height: 25px;
+	/* O padding influencia no tamanho do componente (é como se fosse 20px + 5px da altura) */
+	background-repeat: no-repeat !important;
+	background-image: url("#{resource['images/usuario1.png']}") !important;
+}
+
+.cadeado {
+	padding-left: 35px; /* Largura da imagem possui 20px */
+	padding-top: 5px;
+	/* Só pra centralizar o texto verticalmente já que a altura da imagem é de 25px */
+	height: 20px;
+	/* O padding influencia no tamanho do componente (é como se fosse 20px + 5px da altura) */
+	background-repeat: no-repeat !important;
+	background-image: url("#{resource['images/cadeado1.png']}") !important;
+}
 </style>
 
 
@@ -108,38 +97,58 @@ div.ui-dialog-content.ui-widget-content {
 <h:body
 	style="background-image:url(#{request.contextPath}/resources/images/teste5.jpg);position:absolute;top:0;left:0;z-index:11;background-color:#000;
 background-size:cover;opacity:0.9;filer:alpha(opacity=65);">
-	
-
-
-	<p:growl id="msgInfo" life="5000"/>
+	<p:growl id="msgInfo" life="5000" />
 	<p:dialog widgetVar="dlgLogin" closable="false" draggable="false"
 		resizable="false" visible="true" modal="false" appendTo="@(body)"
 		style="position:absolute;top:0;left:0;z-index:11;background-color:#000;
-opacity:1;filer:alpha(opacity=100);">
+opacity:1;filer:alpha(opacity=100);"
+		header="Acesso Restrito ao Sistema">
 
 		<h:form>
-			<h:panelGrid columns="2" cellpadding="5">
+			<div align="center">
 
 
-				<p:outputLabel value="CPF: " />
-				<p:inputMask size="20" mask="999.999.999-99"
-					value="#{autenticacaoBean.funcionarioLogado.cpf}">
-					<f:validateBean />
-				</p:inputMask>
+				<div>
+					<p:outputLabel value="CPF: "
+						style=" font-size: 16px;font-weight: 400;font-family: sans-serif;
+						margin-right: 265px;color: #000;" />
+				</div>
+				<div>
+					<p:inputMask styleClass="usuario" size="20"
+						placeholder="Digite o seu CPF" mask="999.999.999-99"
+						value="#{autenticacaoBean.funcionarioLogado.cpf}"
+						style="height: 25px;border-radius: 5px; font-size: 17px;
+    width: 270px; font-family: sans-serif;margin-bottom: 15px;">
+						<f:validateBean />
+					</p:inputMask>
+				</div>
+				<div>
+					<p:outputLabel value="Senha:"
+						style=" font-size: 16px;font-weight: 400;font-family: sans-serif;
+						margin-right: 250px;color: #000;" />
+
+				</div>
+				<div>
+					<p:password styleClass="cadeado" maxlength="8" size="20"
+						placeholder="Digite a sua senha"
+						value="#{autenticacaoBean.funcionarioLogado.senha}"
+						style="height: 25px;border-radius: 5px; font-size: 17px;
+    width: 270px; font-family: sans-serif;">
+						<f:validateBean />
+					</p:password>
+				</div>
 
 
-				<p:outputLabel value="Senha:"></p:outputLabel>
-				<p:password maxlength="8" size="20"
-					value="#{autenticacaoBean.funcionarioLogado.senha}">
-					<f:validateBean />
-				</p:password>
-			</h:panelGrid>
-
-			<h:panelGrid columns="1">
-				<p:commandButton value="Entrar" 
-					action="#{autenticacaoBean.autenticarFuncionario}" update=":msgInfo"/>
-			</h:panelGrid>
-
+				<h:panelGrid columns="1">
+					<p:commandButton value="FAÇA O LOGIN"
+						style="background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
+    				border-color: #775582 #775582 #775582 !important; background-color: #775582 !important; font-size: 18px;font-family: sans-serif;font-weight: 400;
+   					 color: #ffffff !important;
+					width: 310px; margin-left: 3px;height: 40px;border-radius: 5px; margin-top: 20px;"
+						action="#{autenticacaoBean.autenticarFuncionario}"
+						update=":msgInfo" />
+				</h:panelGrid>
+			</div>
 		</h:form>
 	</p:dialog>
 

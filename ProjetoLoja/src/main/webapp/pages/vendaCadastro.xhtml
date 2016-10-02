@@ -16,64 +16,67 @@
 	<ui:define name="conteudo">
 
 		<h:form id="formCliente">
-
-
 			<div align="center"
 				style="text-align: center !important; margin-bottom: 10px;">
 				<h2>Pedido de vendas</h2>
 			</div>
 
+			<h:panelGrid
+				style="padding-left: 80px !important;
+	padding-right: 80px !important;">
+				<h:panelGrid columns="4">
+					<p:selectOneMenu value="#{vendaBean.tipoCliente}"
+						style="width: 218px;">
+						<f:validateBean />
+						<f:selectItem itemValue="" itemLabel="Selecione um Cliente" />
+						<f:selectItem itemLabel="CPF" itemValue="cpf" />
+						<f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
+					</p:selectOneMenu>
 
-			<h:panelGrid columns="4">
-				<p:selectOneMenu value="#{vendaBean.tipoCliente}"
-					style="width: 218px;">
-					<f:validateBean />
-					<f:selectItem itemValue="" itemLabel="Selecione um Cliente" />
-					<f:selectItem itemLabel="CPF" itemValue="cpf" />
-					<f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
-				</p:selectOneMenu>
+					<p:inputMask mask="999.999.999-99" style="width: 240px;"
+						value="#{vendaBean.buscarClientePeloTipoPF}">
+						<f:validateBean />
+					</p:inputMask>
 
-				<p:inputMask mask="999.999.999-99" style="width: 240px;"
-					value="#{vendaBean.buscarClientePeloTipoPF}">
-					<f:validateBean />
-				</p:inputMask>
-
-				<p:inputMask mask="99.999.999/9999-99" style="width: 240px;"
-					value="#{vendaBean.buscarClientePeloTipoPJ}">
-					<f:validateBean />
-				</p:inputMask>
+					<p:inputMask mask="99.999.999/9999-99" style="width: 240px;"
+						value="#{vendaBean.buscarClientePeloTipoPJ}">
+						<f:validateBean />
+					</p:inputMask>
 
 
-				<p:commandButton icon="ui-icon-search"
-					actionListener="#{vendaBean.selecionarCliente}"
-					update=":msgInfo :formCliente:pnlCliente :formVenda:pnlFinaliza">
+					<p:commandButton icon="ui-icon-search"
+						actionListener="#{vendaBean.selecionarCliente}"
+						update=":msgInfo :formCliente:pnlCliente :formVenda:pnlFinaliza">
 
-				</p:commandButton>
+					</p:commandButton>
+				</h:panelGrid>
+				<h:panelGrid columns="5" id="pnlCliente"
+					style="margin-top:10px;margin-bottom: 10px;">
+
+					<h:outputText value="Cliente: "
+						rendered="#{vendaBean.clienteFinal.nome != null}"
+						style="font-size: 14px;font-weight: 700;font-family: sans-serif;" />
+					<h:outputText value="#{vendaBean.clienteFinal.nome} " />
+					<h:outputText value=" - "
+						rendered="#{vendaBean.clienteFinal.nome != null}" />
+					<h:outputText value="#{vendaBean.tipoDadoCliente} " />
+				</h:panelGrid>
+
 			</h:panelGrid>
-			<h:panelGrid columns="5" id="pnlCliente"
-				style="margin-top:10px;margin-bottom: 10px;">
-
-				<h:outputText value="Cliente: "
-					rendered="#{vendaBean.clienteFinal.nome != null}"
-					style="font-size: 14px;font-weight: 700;font-family: sans-serif;" />
-				<h:outputText value="#{vendaBean.clienteFinal.nome} " />
-				<h:outputText value=" - "
-					rendered="#{vendaBean.clienteFinal.nome != null}" />
-				<h:outputText value="#{vendaBean.tipoDadoCliente} " />
-			</h:panelGrid>
-
-
 
 		</h:form>
 
 
 		<h:form id="formVenda">
-			<p:toolbar>
+
+			<p:toolbar
+				style=" padding: 0.4em !important;margin-left: 80px !important; margin-right: 80px !important;">
 				<f:facet name="left">
 					<h:outputText value="Produtos" />
 				</f:facet>
 
 			</p:toolbar>
+
 
 			<p:dataTable id="tblProduto"
 				emptyMessage="Nenhum registro encontrado."
@@ -120,10 +123,12 @@
 			</p:dataTable>
 
 			<h:panelGrid style="margin-top: 10px;" />
-			<p:separator />
+			<p:separator
+				style="margin-left: 80px !important;margin-right: 80px !important;" />
 			<h:panelGrid style="margin-bottom: 10px;" />
 
-			<p:toolbar>
+			<p:toolbar
+				style=" padding: 0.4em !important;margin-left: 80px !important; margin-right: 80px !important;">
 				<f:facet name="left">
 					<h:outputText value="Carrinho de compras" />
 					<p:graphicImage library="images" name="/carrinho1.png" width="20"
@@ -135,7 +140,8 @@
 
 
 			<p:dataTable id="tblItens" emptyMessage="Nenhum registro encontrado."
-				value="#{vendaBean.listaDeItens}" var="item" scrollable="true" scrollHeight="80">
+				value="#{vendaBean.listaDeItens}" var="item" scrollable="true"
+				scrollHeight="80">
 
 				<p:column headerText="Produto" class="centralizarTxtColuna"
 					style="width:300px">
@@ -172,15 +178,16 @@
 
 
 			</p:dataTable>
-			<p:separator />
+			<p:separator
+				style="margin-left: 80px !important;margin-right: 80px !important;" />
 
 			<h:panelGrid columns="1" id="pnlFinaliza">
 				<p:commandButton value="Finalizar Venda"
 					rendered="#{vendaBean.venda.valor != '0.00' and vendaBean.clienteFinal.codigo != null}"
 					actionListener="#{vendaBean.prepararNovaVenda}"
 					oncomplete="PF('dlgFinalizarVenda').show();"
-					update=":formFinalizarVenda:pnlFinalizarVenda" 
-					style="font-size: medium;"/>
+					update=":formFinalizarVenda:pnlFinalizarVenda"
+					style="font-size: medium;" />
 
 			</h:panelGrid>
 

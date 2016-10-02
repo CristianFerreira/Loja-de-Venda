@@ -10,7 +10,11 @@
 	<ui:define name="conteudo">
 	<div style="background-image:url(#{request.contextPath}/resources/images/teste9.jpg);position:absolute;top:0;left:0;z-index:11;background-color:#000;
 background-size:cover;opacity:0.9;filer:alpha(opacity=65); width: 100%;height: 100%; text-align: center;">
-		<h1 style="text-align:center; color:brown;font-size: 50px;font-family: sans-serif;">Bem vindo ao Sistema Happy Kids</h1>	
+		<h:panelGrid style="text-align:center;margin-top: 80px;">
+			<h:graphicImage name="/images/bemvindo.png"  style="position: absolute;left: 24%;margin-top: -50px; margin-left: -50px; margin-top: 1%; width: auto !important;
+    height: auto;" />
+		
+		</h:panelGrid>	
 	</div>
 	</ui:define>
 </ui:composition>

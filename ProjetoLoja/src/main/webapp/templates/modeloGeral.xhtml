@@ -173,9 +173,37 @@ div.ui-dialog-content.ui-widget-content {
 .ui-menubar, .ui-menu-child, .ui-menu {
 	background: #775582 !important;
 	font-size: 16px !important;
+	font-family: sans-serif;
 	border-color: #101010 !important;
 	padding-left: 0px !important;
 	padding-right: 0px !important;
+	margin-top: -3px;
+}
+
+<!--
+toolbar-->.ui-toolbar {
+	padding: 0.4em !important;
+	margin-left: 80px !important;
+	margin-right: 80px !important;
+}
+
+.ui-toolbar-group-left {
+	font-size: 18px;
+	float: none !important; text-align : center !important; font-family :
+	sans-serif;
+	font-weight: 400;
+	text-align: center !important;
+	font-family: sans-serif;
+}
+
+<!--
+Link happy kids-->.ui-menu.ui-widget li>.ui-menuitem-link,
+	.ui-state-hover {
+	/* background-image: linear-gradient(to bottom, #000, #775582) !important;
+	background-color: #775582 !important;*/
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05),
+		rgba(0, 0, 0, 0)) !important;
+	background-color: rgba(119, 85, 130, 0) !important;
 }
 
 .ui-menu.ui-widget li>.ui-menuitem-link {
@@ -204,9 +232,12 @@ Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
 
 				<p:menubar id="menuBarPrincipal">
 
-					<p:menuitem>
-						<h:link>
-							<h:graphicImage name="/images/happy1.png" height="25" style="margin-top: -9px; margin-left: 20px;" />
+					<p:menuitem
+						style="background-image: linear-gradient(to bottom, #775582, #775582) !important;
+	background-color: #775582 !important;">
+						<h:link outcome="/pages/principal.xhtml">
+							<h:graphicImage name="/images/happykids.png" height="25"
+								style="margin-top: -9px; margin-left: 20px;" />
 						</h:link>
 					</p:menuitem>
 
@@ -248,8 +279,10 @@ Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
 
 					<f:facet name="options">
 						<h:panelGrid columns="2" style="margin-top: 2px !important;">
-							<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
-								style="font-family: sans-serif;margin-right: 15px; color: #ffffff !important; text-decoration: none; font-size: 14px !important; font-family: sans-serif;"></p:link>
+							<p:submenu>
+								<p:link value="#{autenticacaoBean.funcionarioLogado.nome}" outcome="/pages/manage.xhtml"
+									style="font-family: sans-serif;margin-right: 15px; color: #ffffff !important; text-decoration: none; font-size: 14px !important; font-family: sans-serif;" />
+							</p:submenu>
 							<p:commandLink
 								style="margin-right:20px; font-size: 14px !important; color: #ffffff !important; "
 								action="#{autenticacaoBean.sairDoSistema}">Sair</p:commandLink>

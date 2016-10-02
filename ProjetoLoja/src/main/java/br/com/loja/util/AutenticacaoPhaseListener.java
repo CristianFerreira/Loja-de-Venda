@@ -23,39 +23,51 @@ public class AutenticacaoPhaseListener implements PhaseListener {
 		FacesContext facesContext = event.getFacesContext();
 		UIViewRoot uiViewRoot = facesContext.getViewRoot();
 		String pagina = uiViewRoot.getViewId();
-		
+
 		boolean ehPaginaAutenticacao = pagina.contains("login.xhtml");
-		
-		if(!ehPaginaAutenticacao){
+		boolean ehPaginaEditarSenha = pagina.contains("editarSenha.xhtml");
+
+		if (!ehPaginaAutenticacao) {
 			ExternalContext externalContext = facesContext.getExternalContext();
 			Map<String, Object> mapa = externalContext.getSessionMap();
-			AutenticacaoBean autenticacaoBean = (AutenticacaoBean)mapa.get("autenticacaoBean");
-			
+			AutenticacaoBean autenticacaoBean = (AutenticacaoBean) mapa.get("autenticacaoBean");
+
 			Funcionario funcionario = autenticacaoBean.getFuncionarioLogado();
-			
-			if(funcionario.getCodigo() == null){
-				FacesUtil.adicionarMsgErro("Acesso restrito! Efetue o login para acessar o sistema");			
-				
+
+			if (funcionario.getCodigo() == null) {
+				FacesUtil.adicionarMsgErro("Acesso restrito! Efetue o login para acessar o sistema");
+
 				Application application = facesContext.getApplication();
 				NavigationHandler navigationHandler = application.getNavigationHandler();
 				navigationHandler.handleNavigation(facesContext, null, "/pages/login.xhml?faces-redirect=true");
-				
+
 			}
-		
+
+		}
+
+		if (ehPaginaEditarSenha) {
+			ExternalContext externalContext = facesContext.getExternalContext();
+			Map<String, Object> mapa = externalContext.getSessionMap();
+			AutenticacaoBean autenticacaoBean = (AutenticacaoBean) mapa.get("autenticacaoBean");
+			boolean validaEditarSenha = autenticacaoBean.getValidaSenhaAtual();
+			if (!validaEditarSenha) {
+				FacesUtil.adicionarMsgErro("Informe sua Senha Atual");
+				Application application = facesContext.getApplication();
+				NavigationHandler navigationHandler = application.getNavigationHandler();
+				navigationHandler.handleNavigation(facesContext, null, "/pages/manage.xhml?faces-redirect=true");
+			}
 		}
 	}
 
 	@Override
 	public void beforePhase(PhaseEvent event) {
-	
-		
+
 	}
 
 	@Override
 	public PhaseId getPhaseId() {
 		return PhaseId.RESTORE_VIEW;
-		
+
 	}
-	
-		
+
 }

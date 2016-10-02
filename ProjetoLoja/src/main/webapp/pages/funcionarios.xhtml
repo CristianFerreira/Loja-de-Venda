@@ -139,11 +139,11 @@
 					<h:outputLabel for="senha1" value="Senha: *" />
 					<p:password id="senha1" size="20"
 						value="#{funcionarioBean.funcionario.senha}" match="senha2"
-						required="true" validatorMessage="Os campos senhas são diferentes" />
+						 validatorMessage="Não foi possivel salvar as alterações da Senha. Verifique se os campos foram preenchidos corretamente" />
 
-					<h:outputLabel for="senha2" value="Repetir Senha: *" />
+					<h:outputLabel for="senha2" value="Confirmar Senha: *" />
 					<p:password id="senha2" size="20"
-						value="#{funcionarioBean.funcionario.senha}" required="true" />
+						value="#{funcionarioBean.funcionario.senha}"/>
 
 
 

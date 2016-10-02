@@ -1,68 +1,69 @@
 td {
-
-	font-size: medium !important;
-    font-weight: 100 !important;
-    font-family: sans-serif;
-}
-
-h2{
-	font-size: 24px;
-    font-family: sans-serif;
-    font-weight: 400;
-}
-
-<!--
-Column tabelas -->
-
-.ui-column-title {
 	font-size: medium !important;
 	font-weight: 100 !important;
 	font-family: sans-serif;
 }
 
-<!-- Column tabelas -->
-.ui-datatable-scrollable-theadclone th span.ui-column-title {
- font-size: medium;
+h2 {
+	
+	font-size: 24px;
+	font-family: sans-serif;
+	font-weight: 400;
+}
+
+<!--
+Column tabelas -->.ui-column-title {
+	font-size: medium !important;
+	font-weight: 100 !important;
+	font-family: sans-serif;
+}
+
+<!--
+Column tabelas -->.ui-datatable-scrollable-theadclone th span.ui-column-title
+	{
+	font-size: medium;
 	font-weight: 100;
 	font-family: sans-serif;
 }
 
+.botao a:hover { 
+background: #666 url('botao_hover.gif') no-repeat 
+center center !important;
+color:#999 !important;
+               }
 
-<!-- Modal titulo-->
-
-.ui-dialog-title-dialog{
+<!--
+Modal titulo-->.ui-dialog-title-dialog {
 	font-size: 20px;
-    font-family: sans-serif;
-    font-weight: 400;
-    margin-left: 95px;
+	font-family: sans-serif;
+	font-weight: 400;
+	margin-left: 95px;
 }
 
 .ui-dialog.ui-widget-content .ui-dialog-title {
-font-size: 20px !important;
-    font-family: sans-serif !important;
-    font-weight: 400 !important;
-	margin-left: 95px;    
-
+	font-size: 20px !important;
+	font-family: sans-serif !important;
+	font-weight: 400 !important;
+	margin-left: 95px;
 }
 
-
-	.ui-dialog-titlebar .ui-widget-header .ui-helper-clearfix .ui-corner-top .ui-dialog-title{
+.ui-dialog-titlebar .ui-widget-header .ui-helper-clearfix .ui-corner-top .ui-dialog-title
+	{
 	font-size: 20px !important;
-    font-family: sans-serif;
-    font-weight: 400;
+	font-family: sans-serif;
+	font-weight: 400;
 	margin-left: 95px;
-	}
-	
-	.ui-dialog-title{
+}
+
+.ui-dialog-title {
 	font-size: 20px;
 	margin-left: 95px;
-    font-family: sans-serif;
-    font-weight: 400;
-	}
+	font-family: sans-serif;
+	font-weight: 400;
+}
 
-span.ui-column-title{
-
-    font-size: medium;
+span.ui-column-title {
+	font-size: medium;
 	font-weight: 100;
 	font-family: sans-serif;
 }
@@ -80,7 +81,6 @@ Dialog Funcionario-->span#j_idt42_title.ui-dialog-title {
 	font-weight: 400;
 }
 
-
 div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
 	{
 	font-family: sans-serif !important;
@@ -89,11 +89,8 @@ div#j_idt42.ui-dialog.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-contai
 	text-align: right;
 }
 
-
-
 <!--
-Login -->
-div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
+Login -->div#j_idt29:j_idt30.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ui-hidden-container
 	{
 	width: 400px;
 	height: 400px
@@ -126,14 +123,11 @@ div.ui-dialog-content.ui-widget-content {
 	z-index: 20 !important;
 	overflow: visible !important;
 	background-color: blue !important;
-	
 }
-
 
 .ui-widget-content {
 	background: #eeeeee !important;
 }
-
 
 .ui-layout-north {
 	z-index: 20 !important;
@@ -143,29 +137,74 @@ div.ui-dialog-content.ui-widget-content {
 .ui-layout-north .ui-layout-unit-content {
 	overflow: visible !important;
 	padding-left: 0px !important;
-    padding-right: 0px !important;
-    background: #eeeeee !important;
+	padding-right: 0px !important;
+	background: #eeeeee !important;
 }
 
 .ui-layout-unit-content {
-
 	border: none !important;
-	background: #eeeeee !important;
-
+	background-color: #eeeeee !important;
 }
 
-.ui-datatable{
-    padding-left: 80px!important;
-    padding-right: 80px !important;
-    
+.ui-datatable {
+	padding-left: 80px !important;
+	padding-right: 80px !important;
 }
-
-
 
 .ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap,
 	.ui-layout-bd, .ui-layout-hd {
 	border: none;
 }
+
 .ui-menu.ui-widget a {
 	display: inline !important;
+}
+
+.ui-menubar, .ui-menu-child, .ui-menu {
+	background: #775582 !important;
+	font-size: 16px !important;
+	font-family: sans-serif;
+	border-color: #101010 !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	margin-top: -3px;
+}
+
+<!--
+toolbar-->.ui-toolbar {
+	padding: 0.4em !important;
+	margin-left: 80px !important;
+	margin-right: 80px !important;
+}
+
+.ui-toolbar-group-left {
+	font-size: 18px;
+	float: none !important;
+	text-align: center !important;
+	font-family: sans-serif;
+	font-weight: 400;
+}
+
+<!--
+Link happy kids-->.ui-menu.ui-widget li>.ui-menuitem-link,
+	.ui-state-hover {
+	/* background-image: linear-gradient(to bottom, #000, #775582) !important;
+	background-color: #775582 !important;*/
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05),
+		rgba(0, 0, 0, 0)) !important;
+	background-color: rgba(119, 85, 130, 0) !important;
+}
+
+.ui-menu.ui-widget li>.ui-menuitem-link {
+	color: #ffffff !important;
+}
+
+<!--
+Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
+	.ui-corner-top {
+	background-color: #eeeeee !important;
+}
+
+.ui-paginator, .ui-paginator-bottom, .ui-widget-header {
+	background-color: #eeeeee !important;
 }

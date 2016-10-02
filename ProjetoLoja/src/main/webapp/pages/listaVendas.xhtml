@@ -9,12 +9,12 @@
 <h:head>
 	<h:outputStylesheet library="css" name="listaVenda.css" />
 	<h:outputStylesheet library="css" name="estilos.css" />
-	
+
 	<style>
-		td{
-			text-align: center;
-		}
-	</style>
+td {
+	text-align: center;
+}
+</style>
 
 </h:head>
 <ui:define name="metadata">
@@ -24,19 +24,25 @@
 
 </ui:define>
 
-<h:body style="background-color: #fff!important">
+<h:body>
 	<p:growl id="msgInfo" life="5000" />
 
 	<p:layout fullPage="true">
-		<p:layoutUnit position="north" resizable="false" closable="false"
+		<p:layoutUnit position="center" resizable="false" closable="false"
 			collapsible="false">
-			<h:outputText value="" />
-
 
 			<h:form id="formMenuPrincipal">
 
 				<p:menubar id="menuBarPrincipal">
 
+					<p:menuitem
+						style="background-image: linear-gradient(to bottom, #775582, #775582) !important;
+	background-color: #775582 !important;">
+						<h:link outcome="/pages/principal.xhtml">
+							<h:graphicImage name="/images/happykids.png" height="25"
+								style="margin-top: -9px; margin-left: 20px;" />
+						</h:link>
+					</p:menuitem>
 
 					<p:submenu label="Vendas"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
@@ -75,54 +81,49 @@
 					</p:submenu>
 
 					<f:facet name="options">
-
-						<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
-							style="margin-right: 15px;"></p:link>
-						<p:commandButton value="Sair"
-							action="#{autenticacaoBean.sairDoSistema}" icon="ui-icon-extlink" />
+						<h:panelGrid columns="2" style="margin-top: 2px !important;">
+							<p:submenu>
+								<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
+									style="font-family: sans-serif;margin-right: 15px; color: #ffffff !important; text-decoration: none; font-size: 14px !important; font-family: sans-serif;" />
+							</p:submenu>
+							<p:commandLink
+								style="margin-right:20px; font-size: 14px !important; color: #ffffff !important; "
+								action="#{autenticacaoBean.sairDoSistema}">Sair</p:commandLink>
+						</h:panelGrid>
 					</f:facet>
 
 				</p:menubar>
 			</h:form>
-		</p:layoutUnit>
-
-
-		
-
-		<p:layoutUnit position="center" resizable="false" closable="false"
-			collapsible="false">
 
 			<!-- inicio BODY -->
 
-
 			<h:form id="formListaVenda">
+				<h:panelGrid columns="2" style="float:right; margin-right: 80px;">
+					<p:commandLink oncomplete="PF('dlgRelatorio').show();">
+						<h:graphicImage name="/images/relatorio.png" style="float:right; " />
+					</p:commandLink>
 
+				</h:panelGrid>
 				<div align="center"
-					style="text-align: center !important; margin-bottom: 10px;">
+					style="text-align: center !important; margin-bottom: 10px;margin-left: 160px;">
 					<h2>Vendas</h2>
 				</div>
 
+				<h:panelGrid
+					style="padding-left: 80px !important;padding-right: 80px !important;">
+					<h:panelGrid columns="7" style="margin-buttom: 10px;">
+						<p:outputLabel value="Data Inicial: " />
+						<p:calendar value="#{vendaBean.filtro.dataInicial}" />
+
+						<p:outputLabel value="Data Final: " />
+						<p:calendar value="#{vendaBean.filtro.dataFinal}" />
+
+						<p:commandButton icon="ui-icon-search"
+							actionListener="#{vendaBean.buscarVenda}"
+							update=":msgInfo :formListaVenda:tblListaVenda" />
 
 
-				<h:panelGrid columns="7" style="margin-buttom: 10px;">
-					<p:outputLabel value="Data Inicial: " />
-					<p:calendar value="#{vendaBean.filtro.dataInicial}" />
-
-					<p:outputLabel value="Data Final: " />
-					<p:calendar value="#{vendaBean.filtro.dataFinal}" />
-
-					<p:commandButton icon="ui-icon-search"
-						actionListener="#{vendaBean.buscarVenda}"
-						update=":msgInfo :formListaVenda:tblListaVenda" />
-
-
-				</h:panelGrid>
-
-				<h:panelGrid columns="2" style="float:right;margin-right:10px">
-					<p:outputLabel value=">> " />
-					<p:commandLink oncomplete="PF('dlgRelatorio').show();">
-					 Emitir relatório</p:commandLink>
-
+					</h:panelGrid>
 				</h:panelGrid>
 
 				<p:dataTable id="tblListaVenda"
