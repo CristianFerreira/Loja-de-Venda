@@ -4,7 +4,9 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:j="http://xmlns.jcp.org/jsf/composite/jquery">
 <h:head>
 
 	<style>
@@ -40,7 +42,7 @@
 }
 
 .ui-dialog.ui-widget-content .ui-dialog-content {
-	width: 350px;
+	width: 400px;
 	padding: 15px;
 	font-size: 14px;
 }
@@ -84,11 +86,17 @@
 	background-repeat: no-repeat !important;
 	background-image: url("#{resource['images/cadeado1.png']}") !important;
 }
+
+
+.btn-primary {
+background-image: linear-gradient(to bottom,#775582 0,#775582 100%) !important;
+}
 </style>
 
 
 
-
+	<h:outputScript name="jquery.mask.js" library="jquery" />
+	<h:outputScript name="jquery.mask.min.js" library="jquery" />
 
 </h:head>
 
@@ -103,57 +111,52 @@ background-size:cover;opacity:0.9;filer:alpha(opacity=65);">
 		style="position:absolute;top:0;left:0;z-index:11;background-color:#000;
 opacity:1;filer:alpha(opacity=100);"
 		header="Acesso Restrito ao Sistema">
-
 		<h:form>
 			<div align="center">
 
+				<h:panelGrid columns="1" cellpadding="5">
 
-				<div>
-					<p:outputLabel value="CPF: "
-						style=" font-size: 16px;font-weight: 400;font-family: sans-serif;
-						margin-right: 265px;color: #000;" />
-				</div>
-				<div>
-					<p:inputMask styleClass="usuario" size="20"
-						placeholder="Digite o seu CPF" mask="999.999.999-99"
-						value="#{autenticacaoBean.funcionarioLogado.cpf}"
-						style="height: 25px;border-radius: 5px; font-size: 17px;
-    width: 270px; font-family: sans-serif;margin-bottom: 15px;">
+					<b:inputText styleClass="CPF" placeholder="CPF" style="width: 240px;
+    height: 40px;"
+						value="#{autenticacaoBean.funcionarioLogado.cpf}">
+						<f:facet name="prepend">
+							<b:iconAwesome name="fa fa-user" size="xs"></b:iconAwesome>
+
+						</f:facet>
 						<f:validateBean />
-					</p:inputMask>
-				</div>
-				<div>
-					<p:outputLabel value="Senha:"
-						style=" font-size: 16px;font-weight: 400;font-family: sans-serif;
-						margin-right: 250px;color: #000;" />
-
-				</div>
-				<div>
-					<p:password styleClass="cadeado" maxlength="8" size="20"
-						placeholder="Digite a sua senha"
-						value="#{autenticacaoBean.funcionarioLogado.senha}"
-						style="height: 25px;border-radius: 5px; font-size: 17px;
-    width: 270px; font-family: sans-serif;">
+					</b:inputText>
+					<b:inputSecret placeholder="Senha" style="width: 242px;
+    height: 40px;"
+						value="#{autenticacaoBean.funcionarioLogado.senha}">
+						<f:facet name="prepend">
+							<b:iconAwesome name="fa fa-lock" size="sm"></b:iconAwesome>
+						</f:facet>
 						<f:validateBean />
-					</p:password>
-				</div>
+					</b:inputSecret>
+
+				</h:panelGrid>
 
 
-				<h:panelGrid columns="1">
-					<p:commandButton value="FAÇA O LOGIN"
-						style="background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
-    				border-color: #775582 #775582 #775582 !important; background-color: #775582 !important; font-size: 18px;font-family: sans-serif;font-weight: 400;
-   					 color: #ffffff !important;
-					width: 310px; margin-left: 3px;height: 40px;border-radius: 5px; margin-top: 20px;"
+				<h:panelGrid columns="2">
+
+
+					<b:commandButton look="primary"
+						style="font-size: 18px;font-family: sans-serif;font-weight: 400; 
+   					 color: #ffffff !important;width: 276px; height: 40px; background-color: #775582;"
+						value="FAÇA O LOGIN"
 						action="#{autenticacaoBean.autenticarFuncionario}"
-						update=":msgInfo" />
+						update=":msgInfo"></b:commandButton>
 				</h:panelGrid>
 			</div>
 		</h:form>
 	</p:dialog>
 
 
-
+	<script>
+		jQuery(function($) {
+			$("input.CPF").mask("000.000.000-00");
+		});
+	</script>
 
 </h:body>
 </html>
