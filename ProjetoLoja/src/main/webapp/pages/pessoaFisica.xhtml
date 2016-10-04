@@ -5,8 +5,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 
 
 
@@ -68,16 +68,16 @@
 						<f:setPropertyActionListener
 							target="#{pessoaFisicaBean.pessoaFisica}" value="#{pessoaFisica}" />
 					</p:commandButton>
-
+					<h:outputText value=" "/>
+					
 					<p:commandButton style="color:#red;" icon="ui-icon-search"
 						title="Detalhes"
 						oncomplete="PF('dlgPessoaFisicaDetalhes').show();"
 						update=":formPessoaFisicaDetalhes:pnlPessoaFisicaDetalhes">
 						<f:setPropertyActionListener
-							target="#{pessoaFisicaBean.pessoaFisica}"
-							value="#{pessoaFisica}" />
+							target="#{pessoaFisicaBean.pessoaFisica}" value="#{pessoaFisica}" />
 					</p:commandButton>
-
+					<h:outputText value=" "/>
 
 					<p:commandButton style="color:#red;" icon="ui-icon-trash"
 						title="Excluir" oncomplete="PF('dlgPessoaFisicaExcluir').show();"
@@ -90,14 +90,14 @@
 
 
 				<f:facet name="footer">
-					<p:commandButton value="Novo Cadastro"
+					<b:commandButton value="Novo Cadastro"  
 						actionListener="#{pessoaFisicaBean.prepararNovaPessoaFisica}"
 						oncomplete="PF('dlgPessoaFisicaNovo').show();"
-						update=":formCriarPessoaFisica:pnlPessoaFisica"
-						style="font-size: medium;">
+						update=":formCriarPessoaFisica"
+						style="color: #fff;background-color: #775582;border-color: #555555;font-size: 16px !important;width: 163px;">
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
-					</p:commandButton>
+					</b:commandButton>
 				</f:facet>
 
 			</p:dataTable>
@@ -114,11 +114,11 @@
 
 				<h:panelGrid id="pnlPessoaFisicaExcluir" columns="2"
 					style="text-align: justify;
-    margin-left: 100px;">
+    				margin-left: 100px;">
 					<h:outputText value="Código:" style="font-weight: 700;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.codigo}" />
 
-					<h:outputText value="Nome:" style="font-weight: 700;"/>
+					<h:outputText value="Nome:" style="font-weight: 700;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.nome}" />
 
 				</h:panelGrid>
@@ -133,9 +133,9 @@
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
-		
-		
-		
+
+
+
 		<p:dialog widgetVar="dlgPessoaFisicaDetalhes" closable="true"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
 			header="Detalhes - Pessoa Fisica">
@@ -143,13 +143,16 @@
 				<h:panelGrid id="pnlPessoaFisicaDetalhes" columns="2"
 					style="text-align: left; margin-left: 60px;">
 
-					<h:outputLabel value="Código: " style="float: right;font-weight: 600;" />
+					<h:outputLabel value="Código: "
+						style="float: right;font-weight: 600;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.codigo}" />
 
-					<h:outputLabel value="Nome: " style="float: right;font-weight: 600;"/>
+					<h:outputLabel value="Nome: "
+						style="float: right;font-weight: 600;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.nome}" />
 
-					<h:outputLabel value="Telefone:" style="float: right;font-weight: 600;" />
+					<h:outputLabel value="Telefone:"
+						style="float: right;font-weight: 600;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.telefone}" />
 
 					<h:outputLabel value="Rua:" style="float: right;font-weight: 600;" />
@@ -158,26 +161,28 @@
 					<h:outputLabel value="N°: " style="float: right;font-weight: 600;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.numero}" />
 
-					<h:outputLabel value="Bairro: " style="float: right;font-weight: 600;" />
+					<h:outputLabel value="Bairro: "
+						style="float: right;font-weight: 600;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.bairro}" />
 
 					<h:outputLabel value="CEP:" style="float: right;font-weight: 600;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.cep}" />
 
-					<h:outputLabel value="Estado:" style="float: right;font-weight: 600;" />
+					<h:outputLabel value="Estado:"
+						style="float: right;font-weight: 600;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.estado}" />
 
 					<h:outputLabel value="CPF: " style="float: right;font-weight: 600;" />
 					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.cpf}" />
 
 
-					<h:outputLabel value="Observações: " style="float: right;font-weight: 600;"/>
-					<h:outputText
-						value="#{pessoaFisicaBean.pessoaFisica.descricao}" />
+					<h:outputLabel value="Observações: "
+						style="float: right;font-weight: 600;" />
+					<h:outputText value="#{pessoaFisicaBean.pessoaFisica.descricao}" />
 
 				</h:panelGrid>
 
-			
+
 
 			</h:form>
 
@@ -185,89 +190,94 @@
 
 
 		<p:dialog widgetVar="dlgPessoaFisicaEditar" closable="false"
-			draggable="false" resizable="false" modal="true" appendTo="@(body)"
-			header="Pessoa Fisica - Editar">
-			<h:form id="formPessoaFisicaEditar">
-				<h:panelGrid id="pnlPessoaFisicaEditar">
-					<h:panelGrid columns="2" style="margin-left: auto;">
+			draggable="false" resizable="false" modal="true" appendTo="@(body)" header="Pessoa Fisica - Editar">
+			<h:form id="formPessoaFisicaEditar" style="margin-top: 10px;">
+
+				<b:panelGrid colSpans="2,10" id="pnlPessoaFisicaEditar">
+					<h4 style="font-size: 16px; font-weight: 600;padding-left: 30px;">Nome:</h4>
+					<b:inputText size="26" maxlength="50" style="width: 370px;"
+						value="#{pessoaFisicaBean.pessoaFisica.nome}">
+						<f:validateBean />
+					</b:inputText>
+
+					<h4 style="font-size: 16px; font-weight: 600;padding-left: 42px;">CPF:</h4>
+					<b:inputText styleClass="CPF" size="26" maxlength="50" style="width: 370px;"
+						value="#{pessoaFisicaBean.pessoaFisica.cpf}">
+						<f:validateBean />
+					</b:inputText>
+
+					<h4 style="font-size: 16px; font-weight: 600;padding-left: 10px;">Telefone:</h4>
+					<b:inputText styleClass="Telefone" size="26" maxlength="50" style="width: 370px;"
+						value="#{pessoaFisicaBean.pessoaFisica.telefone}">
+						<f:validateBean />
+					</b:inputText>
+
+					<h4 style="font-size: 16px; font-weight: 600;padding-left: 45px;">Rua:</h4>
+					<b:inputText size="14" maxlength="50" style="width: 370px;"
+						value="#{pessoaFisicaBean.pessoaFisica.rua}">
+						<f:validateBean />
+					</b:inputText>
+
+					<h4 style="font-size: 16px; font-weight: 600;padding-left: 57px;">Nº:</h4>
+					<b:inputText size="6" maxlength="10" style="width: 370px;"
+						value="#{pessoaFisicaBean.pessoaFisica.numero}">
+						<f:validateBean />
+					</b:inputText>
+
+					<h4 style="font-size: 16px; font-weight: 600;padding-left: 27px;">Bairro:</h4>
+					<b:inputText size="26" maxlength="50" style="width: 370px;"
+						value="#{pessoaFisicaBean.pessoaFisica.bairro}">
+						<f:validateBean />
+					</b:inputText>
+
+					<h4 style="font-size: 16px; font-weight: 600;padding-left: 41px;">CEP:</h4>
+					<b:inputText styleClass="CEP" size="26" style="width: 370px;"
+						value="#{pessoaFisicaBean.pessoaFisica.cep}">
+						<f:validateBean />
+					</b:inputText>
+
+					<h4 style="font-size: 16px; font-weight: 600;padding-left: 11px;">Estados:</h4>
+					<b:selectOneMenu value="#{pessoaFisicaBean.pessoaFisica.estado}"
+						id="brandID" style="width: 370px;">
+						<f:selectItem itemValue="" itemLabel="Selecione um estado" />
+						<f:selectItems value="#{pessoaFisicaBean.arrayEstados}" />
+						<f:validateBean />
+					</b:selectOneMenu>
 
 
-						<p:outputLabel value="Nome: "></p:outputLabel>
-						<p:inputText size="26" maxlength="50"
-							value="#{pessoaFisicaBean.pessoaFisica.nome}">
-							<f:validateBean />
-						</p:inputText>
-
-						<p:outputLabel value="CPF: " />
-						<p:inputMask mask="999.999.999-99" style="width: 240px;"
-							value="#{pessoaFisicaBean.pessoaFisica.cpf}">
-							<f:validateBean />
-						</p:inputMask>
-
-						<p:outputLabel value="Telefone: " />
-						<p:inputMask mask="(99)9999-9999" style="width: 240px;"
-							value="#{pessoaFisicaBean.pessoaFisica.telefone}">
-							<f:validateBean />
-						</p:inputMask>
-					</h:panelGrid>
-
-					<h:panelGrid columns="4" style="margin-left: auto;">
-						<p:outputLabel value="Rua: " />
-						<p:inputText size="14" maxlength="50"
-							value="#{pessoaFisicaBean.pessoaFisica.rua}">
-							<f:validateBean />
-						</p:inputText>
-
-						<p:outputLabel value="Nº: " />
-						<p:inputText size="6" maxlength="10" style="width: 55px;"
-							value="#{pessoaFisicaBean.pessoaFisica.numero}">
-							<f:validateBean />
-						</p:inputText>
-					</h:panelGrid>
-
-					<h:panelGrid columns="2">
-						<p:outputLabel value="Bairro: " />
-						<p:inputText size="26" maxlength="50"
-							value="#{pessoaFisicaBean.pessoaFisica.bairro}">
-							<f:validateBean />
-						</p:inputText>
-
-						<p:outputLabel value="CEP: " />
-						<p:inputMask mask="99999-999" style="width: 240px;"
-							value="#{pessoaFisicaBean.pessoaFisica.cep}">
-							<f:validateBean />
-						</p:inputMask>
-
-						<p:outputLabel value="Estado: " />
-						<p:selectOneMenu value="#{pessoaFisicaBean.pessoaFisica.estado}"
-							style="width: 218px;">
-
-							<f:selectItem itemValue="" itemLabel="Selecione um estado" />
-							<f:selectItems value="#{pessoaFisicaBean.arrayEstados}" />
-							<f:validateBean />
-						</p:selectOneMenu>
-
-						<p:outputLabel value="Observação: " />
-						<p:inputTextarea rows="2" cols="28" maxlength="50"
-							value="#{pessoaFisicaBean.pessoaFisica.descricao}">
-							<f:validateBean />
-						</p:inputTextarea>
+					<h4 style="font-size: 16px; font-weight: 600;padding-left: 42px;">Obs: </h4>
+					<b:inputTextarea rows="2" cols="28" maxlength="50" style="width: 370px;"
+						value="#{pessoaFisicaBean.pessoaFisica.descricao}">
+						<f:validateBean />
+					</b:inputTextarea>
 
 
+					<script>
+						jQuery(function($) {
+							$("input.Telefone").mask("(00) 0000-00009");
+							$("input.CEP").mask("00000-000");
+							$("input.CPF").mask("000.000.000-00");
+						});
+					</script>
+				</b:panelGrid>
 
-					</h:panelGrid>
-				</h:panelGrid>
+
 
 				<h:panelGrid columns="2" style="margin-left: 90px;">
-					<p:commandButton value="Editar"
+					<p:commandButton  value="Editar" style="color: #fdf9f9;background-color: #775582 !important;
+					border-color: #555555;background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
+					    border-radius: 4px !important ;width: 180px;height: 40px;margin-right: 10px; margin-left: -6px; font-size: 18px;"
 						actionListener="#{pessoaFisicaBean.editarPessoaFisica}"
 						update=":msgInfo :formPessoaFisica:tblPessoaFisica"
 						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaPessoaFisica').clearFilters(); " />
-					<p:commandButton value="Cancelar"
+					<p:commandButton value="Cancelar" style="color: #000;background-color: #fff !important;
+					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
+					    border-radius: 4px !important ;width: 180px;height: 40px;margin-right: 10px; margin-left: -6px; font-size: 18px;"
 						onclick="PF('dlgPessoaFisicaEditar').hide();" />
 				</h:panelGrid>
 
 			</h:form>
+
 
 		</p:dialog>
 
@@ -381,6 +391,8 @@
 					}
 				}
 			</script>
+
+
 
 		</p:dialog>
 	</ui:define>

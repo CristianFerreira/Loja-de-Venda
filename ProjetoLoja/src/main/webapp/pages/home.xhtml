@@ -7,13 +7,22 @@
 <h:head>
 	<title>Sistema Integrado de Educação a Distância</title>
 	<meta name="author" content="Fabio Gomes Rocha"></meta>
+
+	<style>
+div.scroll {
+	position: relative;
+	height: 200px;
+	overflow: scroll;
+	width: 98%;
+}
+</style>
 </h:head>
 <h:body style="padding-top: 50px; padding-bottom: 20px;">
 	<b:navBar brand="SIEOnLine" brandhref="default.xhtml" inverse="true"
 		fixed="top">
 		<b:navbarLinks>
 			<b:navLink value="Meus Cursos" href="#"></b:navLink>
-			<b:navLink value="Link" href="#"></b:navLink>
+			<b:navLink value="Link" href="#link"></b:navLink>
 			<b:dropMenu value="Meu Perfil">
 				<b:navLink value="Configuração" href="#"></b:navLink>
 				<b:navLink value="Certificados" href="#"></b:navLink>
@@ -35,60 +44,67 @@
 				look="success" icon="chevron-right" iconAlign="right" />
 		</h:form>
 	</b:navBar>
-	<b:jumbotron>
-		<b:container>
+
+	<div style="width: 100%">
+		<b:carousel id="tiovivo"
+			style="position:relative; width: 100%;text-align: center;"
+			interval="4500" show-controls="true" tooltip-position="top">
 
 
-			<h2>Titulo do Curso</h2>
-			<p>Descrição do curso.</p>
-			<p>
-				<a href="linkdocurso.html" class="btn btn-lg btn-info">Veja
-					mais. »</a>
-			</p>
-		</b:container>
-	</b:jumbotron>
+
+			<b:carouselItem tooltip-container=""
+				caption="Valladolid has a nice central park.">
+
+				<b:image library="images" name="teste4.jpg"
+					style="height: 800px;width: 100%;"
+					tooltip="Great water fountain in Valladolid, Spain" />
+				
+
+			</b:carouselItem>
+
+			<b:carouselItem tooltip-container=""
+				caption="Valladolid has a nice central park.">
+
+				<b:image library="images" name="baby.jpg"
+					style="height: 800px;width: 100%;"
+					tooltip="Great water fountain in Valladolid, Spain" />
+
+
+			</b:carouselItem>
+
+			<b:carouselItem tooltip-container=""
+				caption="Valladolid has a nice central park.">
+
+				<b:image library="images" name="kids1.jpg"
+					style="height: 800px;width: 100%;"
+					tooltip="Great water fountain in Valladolid, Spain" />
+
+
+			</b:carouselItem>
+
+			<b:carouselItem tooltip-container=""
+				caption="Valladolid has a nice central park.">
+
+				<b:image library="images" name="kids2.jpg"
+					style="height: 800px;width: 100%;"
+					tooltip="Great water fountain in Valladolid, Spain" />
+
+
+			</b:carouselItem>
+
+
+
+		</b:carousel>
+
+
+	</div>
+
+
+
 
 	<b:container>
 		<b:row>
-			<b:carousel id="tiovivo"  style="width:800px" interval="2500" tooltip-position="left">
-				<b:carouselItem>
-					<b:image library="imagesHome" name="loja1.jpg"
-						tooltip="Great water fountain in Valladolid, Spain"
-						style="width: 800px; height: 600px" />
 
-					<b:carouselCaption>
-
-					</b:carouselCaption>
-				</b:carouselItem>
-				<b:carouselItem caption="Valladolid has a nice central park.">
-					<b:image library="imagesHome" name="loja2.jpg"
-						tooltip="Great water fountain in Valladolid, Spain"
-						style="width: 800px; height: 600px" />
-				</b:carouselItem>
-				<b:carouselItem caption="Ain't he a beauty?">
-					<b:image library="imagesHome" name="loja3.jpg"
-						tooltip="Great water fountain in Valladolid, Spain"
-						style="width: 800px; height: 600px" />
-				</b:carouselItem>
-				<b:carouselItem>
-					<b:image library="imagesHome" name="loja4.jpg"
-						tooltip="Great water fountain in Valladolid, Spain"
-						style="width: 800px; height: 600px" />
-					<b:carouselCaption>
-						<h3>Fountains</h3>
-						<p>In Spain, dry as it is, people love to play with water.</p>
-					</b:carouselCaption>
-				</b:carouselItem>
-
-			</b:carousel>
-
-		</b:row>
-
-	</b:container>
-
-
-	<b:container>
-		<b:row>
 			<b:column col-md="4">
 				<h2>Trilha de aprendizado</h2>
 				<p>Acesse a trilha de aprendizado do seu curso e siga os passos
@@ -119,6 +135,44 @@
 			<p>© Fabio Gomes Rocha 2014</p>
 		</footer>
 	</b:container>
+
+
+	<b:container id="scroll" styleClass="scroll">
+		<div id="about">
+			<b:row>
+
+				<b:column col-md="4">
+					<h2>Trilha de aprendizado</h2>
+					<p>Acesse a trilha de aprendizado do seu curso e siga os passos
+						para se aperfeiçoar.</p>
+					<p>
+						<b:button outcome="" value="Ver detalhes »" />
+					</p>
+				</b:column>
+				<b:column col-md="4">
+					<h2>Downloads</h2>
+					<p>Faça download do material de apoio do seu curso</p>
+					<p>
+						<b:button outcome="" value="Ver detalhes »" />
+					</p>
+				</b:column>
+				<b:column col-md="4">
+					<h2>Fórum</h2>
+					<p>Não deixe de interagir com outros alunos do curso e com seu
+						professor</p>
+					<p>
+						<b:button outcome="" value="Acessar fórum »" />
+					</p>
+				</b:column>
+			</b:row>
+			<hr />
+
+			<footer>
+				<p>© Fabio Gomes Rocha 2014</p>
+			</footer>
+		</div>
+	</b:container>
+
 
 </h:body>
 </html>

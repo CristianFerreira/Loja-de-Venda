@@ -13,6 +13,10 @@
 	<title>Happy Kids</title>
 	<h:outputStylesheet library="css" name="estilos.css" />
 	<h:outputStylesheet library="css" name="layoutGeral.css" />
+	
+	<h:outputScript library="jquery" name="jquery.mask.js" />
+	<h:outputScript library="jquery" name="jquery.mask.min.js" />
+
 
 	<style>
 td {
@@ -219,7 +223,36 @@ Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
 .ui-paginator, .ui-paginator-bottom, .ui-widget-header {
 	background-color: #eeeeee !important;
 }
+
+.ui-dialog.ui-widget-content .ui-dialog-content {
+    width: 500px !important;
+    padding: 15px;
+    font-size: 14px;
+}
+
+.ui-dialog, .ui-widget-content .ui-dialog-titlebar {
+	background-color: #775582 !important;
+	text-align: center !important;
+}
+
+.ui-dialog-title{
+    margin-left: 130px!important;
+    font-size: 22px !important;
+    color: #fff !important;
+}
+
+
+
+
+.ui-button{
+      background: none !important;
+ }
+
+
 </style>
+
+
+
 </h:head>
 <h:body>
 	<p:growl id="msgInfo" life="5000" />

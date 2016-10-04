@@ -87,9 +87,9 @@
 	background-image: url("#{resource['images/cadeado1.png']}") !important;
 }
 
-
 .btn-primary {
-background-image: linear-gradient(to bottom,#775582 0,#775582 100%) !important;
+	background-image: linear-gradient(to bottom, #775582 0, #775582 100%)
+		!important;
 }
 </style>
 
@@ -116,23 +116,25 @@ opacity:1;filer:alpha(opacity=100);"
 
 				<h:panelGrid columns="1" cellpadding="5">
 
-					<b:inputText styleClass="CPF" placeholder="CPF" style="width: 240px;
+					<b:inputText styleClass="CPF" placeholder="CPF"
+						style="width: 240px;
     height: 40px;"
 						value="#{autenticacaoBean.funcionarioLogado.cpf}">
 						<f:facet name="prepend">
-							<b:iconAwesome name="fa fa-user" size="xs"></b:iconAwesome>
-
+							<b:icon name="user" />
 						</f:facet>
 						<f:validateBean />
 					</b:inputText>
-					<b:inputSecret placeholder="Senha" style="width: 242px;
+					<b:inputSecret placeholder="Senha"
+						style="width: 242px;
     height: 40px;"
 						value="#{autenticacaoBean.funcionarioLogado.senha}">
 						<f:facet name="prepend">
-							<b:iconAwesome name="fa fa-lock" size="sm"></b:iconAwesome>
+							<b:iconAwesome name="key" />
 						</f:facet>
 						<f:validateBean />
 					</b:inputSecret>
+
 
 				</h:panelGrid>
 

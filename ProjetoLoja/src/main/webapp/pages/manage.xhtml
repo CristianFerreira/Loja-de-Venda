@@ -4,39 +4,58 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 
 <ui:composition template="/templates/modeloGeral.xhtml">
 
 	<ui:define name="conteudo">
 		<div align="center">
-			<h:form id="senhaAtual">
-				<h:panelGrid columns="2">
-					<h2 style="margin-top: 50px; text-align: center;">Configuração
-						de Conta</h2>
-					<p style="margin-top: 50px; font-size: 18px;">
-						<b>Para editar sua senha</b>, insira a senha atual no campo abaixo
-						e avance para a próxima etapa.
-					</p>
-				</h:panelGrid>
-				<h:panelGrid columns="3" style="margin-top:50px;">
-					<h:outputText value="Senha Atual: "
-						style="font-size: 18px !important;" />
-					<p:password size="30" maxlength="8" 
-						style="height:30px;border-radius: 5px;" value="#{autenticacaoBean.senhaAtual}">
-						<f:validateBean />						
-					</p:password>
-					
-					<p:commandButton value="Avançar" action="#{autenticacaoBean.verificarSenhaAtual}"
-						update=":msgInfo"
-						style="background-image: -webkit-linear-gradient(top, #18bc9c, #18bc9c) !important;
-    				border-color: #18bc9c #18bc9c #18bc9c !important; background-color: #18bc9c !important; font-size: 18px !important;
-   					 color: #fff !important;width: 200px !important; height: 40px !important;font-family: sans-serif !important;">
+			<h2 style="margin-top: 50px; margin-bottom: 50px; text-align: center;">Configuração
+				de Conta</h2>
 
-					</p:commandButton>
-				</h:panelGrid>
+			<h:form id="senhaAtual">
+				<b:panelGrid colSpans="6,6" col-sm="4"></b:panelGrid>
+
+				<b:panelGrid colSpans="6,6" col-sm="8">
+
+					<b:well id="messages">
+
+						<p style="margin-top: 50px; font-size: 18px;">
+							<b>Para editar sua senha</b>, insira a senha atual no campo
+							abaixo e avance para a próxima etapa.
+						</p>
+
+
+						<h:panelGrid columns="2" style="margin-top:50px;">
+
+							<b:inputSecret id="passwordDiv" style=""
+								placeholder="Digite sua senha atual" name="Senha Atual: "
+								value="#{autenticacaoBean.senhaAtual}" render-label="true"
+								maxlength="8" field-size="lg">
+								<f:validateBean />
+							</b:inputSecret>
+
+
+							<b:commandButton
+								style="font-size: 18px !important; color: #fff !important;
+						width: 200px !important; height: 45px !important;font-family: sans-serif !important; margin-top: -15px; margin-left: 10px;"
+								look="success" value="Avançar"
+								action="#{autenticacaoBean.verificarSenhaAtual}"
+								update=":msgInfo">
+							</b:commandButton>
+
+						</h:panelGrid>
+
+
+
+					</b:well>
+				</b:panelGrid>
 
 			</h:form>
+
+
+
 		</div>
 
 	</ui:define>
