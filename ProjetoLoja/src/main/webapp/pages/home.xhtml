@@ -15,33 +15,52 @@ div.scroll {
 	overflow: scroll;
 	width: 98%;
 }
+
+p {
+	font-size: 16px;
+	line-height: 1.5;
+	margin-bottom: 20px;
+	margin: 0px 0px 10px;
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	text-align: justify;
+	font-family: Merriweather, "Helvetica Neue", Arial, sans-serif;
+}
+
+h2 {
+	font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+	font-weight: 500;
+	line-height: 1.1;
+	color: inherit;
+	box-sizing: border-box;
+	display: block;
+	font-size: 1.5em !important;
+	-webkit-margin-before: 0.83em;
+	-webkit-margin-after: 0.83em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	font-size: 30px !important;
+}
+
+.container1 {
+	margin-top: 80px;
+}
 </style>
 </h:head>
-<h:body style="padding-top: 50px; padding-bottom: 20px;">
-	<b:navBar brand="SIEOnLine" brandhref="default.xhtml" inverse="true"
-		fixed="top">
-		<b:navbarLinks>
-			<b:navLink value="Meus Cursos" href="#"></b:navLink>
-			<b:navLink value="Link" href="#link"></b:navLink>
-			<b:dropMenu value="Meu Perfil">
-				<b:navLink value="Configuração" href="#"></b:navLink>
-				<b:navLink value="Certificados" href="#"></b:navLink>
-				<b:navLink></b:navLink>
-				<b:navLink header="Cursos finalizados"></b:navLink>
 
-			</b:dropMenu>
+<h:body style="padding-top: 50px; padding-bottom: 20px;">
+	<b:navBar brand="" brandhref="default.xhtml" inverse="true" fixed="top">
+		<b:navbarLinks>
+			<b:navLink value="Inicio" href="#"></b:navLink>
+			<b:navLink value="Sobre Nós" href="#about"></b:navLink>
+			<b:navLink value="Onde Estamos" href="#link"></b:navLink>
 		</b:navbarLinks>
 		<h:form styleClass="navbar-form navbar-right">
-			<div class="form-group">
-				`
-				<b:inputText placeholder="Email" fieldSize="sm" />
-			</div>
-			<div class="form-group">
-				<b:inputText placeholder="Password" fieldSize="sm" />
-			</div>
-                  #{' '}
-                  <b:commandButton action="a" value="Logar"
-				look="success" icon="chevron-right" iconAlign="right" />
+			<div class="form-group"></div>
+			<div class="form-group"></div>
 		</h:form>
 	</b:navBar>
 
@@ -56,9 +75,9 @@ div.scroll {
 				caption="Valladolid has a nice central park.">
 
 				<b:image library="images" name="teste4.jpg"
-					style="height: 800px;width: 100%;"
+					style="height: 600px;width: 100%;"
 					tooltip="Great water fountain in Valladolid, Spain" />
-				
+
 
 			</b:carouselItem>
 
@@ -66,7 +85,7 @@ div.scroll {
 				caption="Valladolid has a nice central park.">
 
 				<b:image library="images" name="baby.jpg"
-					style="height: 800px;width: 100%;"
+					style="height: 600px;width: 100%;"
 					tooltip="Great water fountain in Valladolid, Spain" />
 
 
@@ -76,7 +95,7 @@ div.scroll {
 				caption="Valladolid has a nice central park.">
 
 				<b:image library="images" name="kids1.jpg"
-					style="height: 800px;width: 100%;"
+					style="height: 600px;width: 100%;"
 					tooltip="Great water fountain in Valladolid, Spain" />
 
 
@@ -86,7 +105,7 @@ div.scroll {
 				caption="Valladolid has a nice central park.">
 
 				<b:image library="images" name="kids2.jpg"
-					style="height: 800px;width: 100%;"
+					style="height: 600px;width: 100%;"
 					tooltip="Great water fountain in Valladolid, Spain" />
 
 
@@ -102,77 +121,117 @@ div.scroll {
 
 
 
-	<b:container>
+	<b:container styleClass=""
+		style="background-color:#F05F40; width:100%;height: 400px;">
 		<b:row>
+			<b:column col-md="2"></b:column>
+			<b:column col-lg="8"
+				style="color: #fff;text-align:center;margin-top: 50px;margin-bottom: 50px;">
+				<h2>Quem Somos</h2>
+				<p style="color: rgba(255, 255, 255, 0.701961);">A CARMIM nasceu em 1982 da vontade de seu fundador, Renato
+					Caliman de criar um bom jeans nacional. A marca começou com uma
+					linha de jeans e acessórios feminino, seguida da linha masculina em
+					1985, possibilitando também aos homens ter um jeans com o design e
+					caimento inovadores no mercado. Logo em 1988, a CARMIM abriu sua
+					primeira loja, localizada na rua Oscar Freire, onde posteriormente
+					seria considerada a oitava mais luxuosa rua de compras do mundo. A
+					CARMIM é referencia da moda brasileira, busca novidades e
+					inspirações nas principais metrópoles do mundo para compor suas
+					coleções e seu estilo de vida. Acredita que a sofisticação está nos
+					detalhes da rotina das grandes cidades e que se vestir bem é uma
+					maneira natural da mulher se destacar. A missão é despertar o
+					desejo e surpreender a mulher moderna com possibilidades para todas
+					as ocasiões.</p>
 
-			<b:column col-md="4">
-				<h2>Trilha de aprendizado</h2>
-				<p>Acesse a trilha de aprendizado do seu curso e siga os passos
-					para se aperfeiçoar.</p>
-				<p>
-					<b:button outcome="" value="Ver detalhes »" />
-				</p>
 			</b:column>
-			<b:column col-md="4">
-				<h2>Downloads</h2>
-				<p>Faça download do material de apoio do seu curso</p>
-				<p>
-					<b:button outcome="" value="Ver detalhes »" />
-				</p>
-			</b:column>
-			<b:column col-md="4">
-				<h2>Fórum</h2>
-				<p>Não deixe de interagir com outros alunos do curso e com seu
-					professor</p>
-				<p>
-					<b:button outcome="" value="Acessar fórum »" />
-				</p>
-			</b:column>
+
 		</b:row>
-		<hr />
 
-		<footer>
-			<p>© Fabio Gomes Rocha 2014</p>
-		</footer>
 	</b:container>
 
 
-	<b:container id="scroll" styleClass="scroll">
-		<div id="about">
-			<b:row>
+	<b:container style="height: 400px;"></b:container>
 
-				<b:column col-md="4">
-					<h2>Trilha de aprendizado</h2>
-					<p>Acesse a trilha de aprendizado do seu curso e siga os passos
-						para se aperfeiçoar.</p>
-					<p>
-						<b:button outcome="" value="Ver detalhes »" />
-					</p>
-				</b:column>
-				<b:column col-md="4">
-					<h2>Downloads</h2>
-					<p>Faça download do material de apoio do seu curso</p>
-					<p>
-						<b:button outcome="" value="Ver detalhes »" />
-					</p>
-				</b:column>
-				<b:column col-md="4">
-					<h2>Fórum</h2>
-					<p>Não deixe de interagir com outros alunos do curso e com seu
-						professor</p>
-					<p>
-						<b:button outcome="" value="Acessar fórum »" />
-					</p>
-				</b:column>
-			</b:row>
-			<hr />
 
-			<footer>
-				<p>© Fabio Gomes Rocha 2014</p>
-			</footer>
+	<div
+		style="width: 100%; height: 600px; text-align: center; background-color: #222;">
+
+		<b:container style="background-color: #222;margin-top:50px;">
+
+			<b:carousel id="imgCriancas"
+				style="position:relative; width: 100%;text-align: center; margin-top:50px;"
+				interval="4500" show-controls="true">
+
+
+
+				<b:carouselItem tooltip-container=""
+					caption="Valladolid has a nice central park.">
+
+					<b:image library="imagesHome" name="oie_png.png"
+						style="width: 100%;"
+						tooltip="Great water fountain in Valladolid, Spain" />
+
+
+				</b:carouselItem>
+			</b:carousel>
+
+
+
+		</b:container>
+	</div>
+
+	<b:container>
+		<div
+			style="margin-bottom: 50px; margin-top: 50px; text-align: center;">
+			<h2>Contato</h2>
+			<b:column col-sm="6" style="text-align:center">
+				<i class="fa fa-phone fa-3x sr-contact"
+					style="color: rgb(240, 95, 64) !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+				<p>(51) 3024-7551</p>
+			</b:column>
+
+			<b:column col-sm="6" style="text-align:center">
+				<i class="fa fa-envelope-o fa-3x sr-contact"
+					style="visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+				<p>
+					<a href="mailto:happykidsbrecho@hotmail.com">happykidsbrecho@hotmail.com</a>
+				</p>
+			</b:column>
 		</div>
+
 	</b:container>
 
+
+	<b:container styleClass="container1">
+		<h2 style="text-align: center; margin-bottom: 50px;">Onde Estamos</h2>
+
+
+		<b:column col-sm="6">
+			<div style="text-align: center;">
+				<h4>Happy Kids - Baltazar</h4>
+			</div>
+			<iframe
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.935618434546!2d-51.13714648488567!3d-30.010004981894816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95197655b1085c6d%3A0xccb2b1832c5331ca!2sAv.+Baltazar+de+Oliveira+Garc%C3%ADa%2C+891+-+S%C3%A3o+Sebasti%C3%A3o%2C+Porto+Alegre+-+RS%2C+91130-001!5e0!3m2!1sen!2sbr!4v1475624859334"
+				width="550" height="300" style="border: 0"></iframe>
+		</b:column>
+
+		<b:column col-sm="6">
+			<div style="text-align: center;">
+				<h4>Happy Kids - Sarandi</h4>
+			</div>
+			<iframe
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.6997965337373!2d-51.13231508528318!3d-29.988056381902854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951976e771524871%3A0xe17b7ad15bf02ecc!2sAv.+Martins+Bastos%2C+471+-+Sarandi%2C+Porto+Alegre+-+RS%2C+91120-420!5e0!3m2!1sen!2sbr!4v1475630611204"
+				width="550" height="300" style="border: 0"></iframe>
+		</b:column>
+	</b:container>
+
+
+
+	<b:jumbotron>
+		<b:container>
+		</b:container>
+	</b:jumbotron>
 
 </h:body>
+
 </html>

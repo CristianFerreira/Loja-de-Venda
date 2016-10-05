@@ -5,7 +5,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 
 
 
@@ -17,20 +18,31 @@
 		</f:metadata>
 	</ui:define>
 	<ui:define name="conteudo">
-		
+
 		<h:form id="formProduto">
 			<h:panelGrid columns="2" style="float:right; margin-right: 80px;">
-					<p:commandLink oncomplete="PF('dlgRelatorio').show();">
-						<h:graphicImage name="/images/relatorio.png" style="float:right; " />
-					</p:commandLink>
+				<p:commandLink oncomplete="PF('dlgRelatorio').show();">
+					<h:graphicImage name="/images/relatorio.png" style="float:right; " />
+				</p:commandLink>
 
-				</h:panelGrid>
-			
-			<div align="center" style="text-align: center !important;margin-bottom: 40px; margin-top: 20px;margin-left: 160px;" >
+			</h:panelGrid>
+
+			<div align="center"
+				style="text-align: center !important; margin-bottom: 40px; margin-top: 20px; margin-left: 160px;">
 				<h2>Produtos</h2>
 			</div>
 
-			<p:dataTable id="tblProduto" widgetVar="tabelaProduto"
+			<b:dataTable id="tblProduto"  widgetVar="tabelaProduto" value="#{produtoBean.listaDeProdutos}"
+				var="produto">
+				<b:dataTableColumn value="#{produto.codigo}" />
+				<b:dataTableColumn value="#{produto.descricao}" />
+				<b:dataTableColumn value="#{produto.preco}" />
+				<b:dataTableColumn value="#{produto.quantidade}" />
+				<b:dataTableColumn value="#{produto.fabricante.nome}" />
+				
+			</b:dataTable>
+
+			<p:dataTable id="tblProduto1" widgetVar="tabelaProduto"
 				emptyMessage="Nenhum registro encontrado."
 				value="#{produtoBean.listaDeProdutos}"
 				filteredValue="#{produtoBean.listaFiltrarProdutos}" var="produto"
@@ -62,7 +74,7 @@
 
 				<p:column headerText="Fabricante" class="centralizarTxtColuna"
 					style="width:200px" filterBy="#{produto.fabricante.nome}"
-					sortBy="##{produto.fabricante.nome}">
+					sortBy="#{produto.fabricante.nome}">
 					<h:outputText value="#{produto.fabricante.nome}" />
 				</p:column>
 
@@ -159,8 +171,8 @@
 			header="Excluir esse produto?">
 
 			<h:form id="formProdutoExcluir">
-				<h:panelGrid id="pnlProdutoExcluir" columns="2" 
-				style="text-align: justify; margin-left: 100px;">
+				<h:panelGrid id="pnlProdutoExcluir" columns="2"
+					style="text-align: justify; margin-left: 100px;">
 					<h:outputText value="Código:" style="font-weight: 700;" />
 					<h:outputText value="#{produtoBean.produto.codigo}" />
 
@@ -209,7 +221,7 @@
 						</p:inputText>
 					</h:panelGrid>
 
-				<h:panelGrid columns="2" style="margin-left: auto;">
+					<h:panelGrid columns="2" style="margin-left: auto;">
 						<p:outputLabel value="Fabricante: " />
 						<p:selectOneMenu value="#{produtoBean.produto.fabricante}"
 							style="width: 244px;" converter="fabricanteConverter">
@@ -262,8 +274,8 @@
 							<f:convertNumber pattern="0.00" />
 						</p:inputText>
 
-						<p:outputLabel value="Quantidade: "  style="margin-left: 7px;"/>
-						<p:inputText maxlength="15" size="6" 
+						<p:outputLabel value="Quantidade: " style="margin-left: 7px;" />
+						<p:inputText maxlength="15" size="6"
 							value="#{produtoBean.produto.quantidade}">
 							<f:validateBean />
 						</p:inputText>

@@ -48,20 +48,20 @@
 
 				<p:column headerText="Telefone" filterBy="#{pessoaFisica.telefone}"
 					sortBy="#{pessoaFisica.telefone}"
-					style="width:265px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif; text-align: center;">
+					style="width:250px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif; text-align: center;">
 					<h:outputText value="#{pessoaFisica.telefone}" />
 				</p:column>
 
 				<p:column headerText="CPF" class="centralizarTxtColuna fonteTabela"
 					filterBy="#{pessoaFisica.cpf}" sortBy="#{pessoaFisica.cpf}"
-					style="width:260px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
+					style="width:250px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<h:outputText value="#{pessoaFisica.cpf}" />
 				</p:column>
 
 
 				<p:column headerText="Opções"
 					class="centralizarTxtColuna fonteTabela"
-					style="width: 110px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
+					style="width: 130px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						oncomplete="PF('dlgPessoaFisicaEditar').show();"
 						update=":formPessoaFisicaEditar:pnlPessoaFisicaEditar">
