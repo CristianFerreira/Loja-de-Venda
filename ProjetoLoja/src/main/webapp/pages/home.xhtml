@@ -30,6 +30,49 @@ p {
 	font-family: Merriweather, "Helvetica Neue", Arial, sans-serif;
 }
 
+h4 {
+	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+	font-weight: 500;
+	line-height: 1.1;
+	color: inherit;
+	box-sizing: border-box;
+	display: block;
+	font-size: 1.5em !important;
+	-webkit-margin-before: 0.83em;
+	-webkit-margin-after: 0.83em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	font-size: 24px !important;
+}
+
+#mapa {
+	position: absolute;
+	width: 500px;
+	height: 300px;
+	border-radius: 50%; /* CSS3 */
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari, Chrome */
+	overflow: hidden;
+}
+
+.iframe-rwd {
+	position: relative;
+	padding-bottom: 65.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari, Chrome */
+}
+
+.iframe-rwd iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80%;
+}
+
 h2 {
 	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 	font-weight: 500;
@@ -48,78 +91,98 @@ h2 {
 .container1 {
 	margin-top: 80px;
 }
+
+.containerHome {
+	max-width: 900px;
+}
+
+.txtFotoHome {
+	position: relative;
+	padding-top: 35%;
+	padding-bottom: 35%;
+}
+
+.buttonHome {
+	width: 70px;
+	height: 70px;
+	margin-top: 15px;
+	padding: 7px 16px;
+	border: 2px solid #fff;
+	border-radius: 100% !important;
+	font-size: 40px;
+	color: #fff;
+	text-shadow: #b3b0b0 2px 2px 2px;
+	background: 0 0;
+}
+
+.buttonHome:hover {
+	background-color: #de6944;
+	border-color: #de6944;
+	color: #fff;
+}
+
+.buttonHome:visited {
+	border-color: #de6944;
+	background-color: #de6944;
+	color: #fff;
+	background-color: #de6944;
+}
+
+.buttonHome:focus {
+	border-color: #de6944;
+	background-color: #de6944;
+	color: #fff;
+	background-color: #de6944;
+}
+
+}
+@import 'https://fonts.googleapis.com/css?family=Bree+Serif';
 </style>
 
+	<h:outputScript name="jquery.fitvids.js" library="jquery" />
+	<h:outputScript name="jquery.easing.1.3.js" library="jquery" />
 	<h:outputScript name="jquery.bxslider.min.js" library="jquery" />
 	<h:outputStylesheet name="jquery.bxslider.css" library="css" />
 </h:head>
 
 <h:body style="padding-top: 50px; padding-bottom: 20px;">
-	<b:navBar brand="" brandhref="default.xhtml" inverse="true" fixed="top">
-		<b:navbarLinks>
-			<b:navLink value="Inicio" href="#"></b:navLink>
-			<b:navLink value="Sobre Nós" href="#about"></b:navLink>
-			<b:navLink value="Onde Estamos" href="#link"></b:navLink>
-		</b:navbarLinks>
-		<h:form styleClass="navbar-form navbar-right">
-			<div class="form-group"></div>
-			<div class="form-group"></div>
-		</h:form>
-	</b:navBar>
 
-	<div style="width: 100%">
-		<b:carousel id="tiovivo"
-			style="position:relative; width: 100%;text-align: center;"
-			interval="4500" show-controls="true" tooltip-position="top">
-
-
-
-			<b:carouselItem tooltip-container=""
-				caption="Valladolid has a nice central park.">
-
-				<b:image library="images" name="teste4.jpg"
-					style="height: 600px;width: 100%;"
-					tooltip="Great water fountain in Valladolid, Spain" />
-
-
-			</b:carouselItem>
-
-			<b:carouselItem tooltip-container=""
-				caption="Valladolid has a nice central park.">
-
-				<b:image library="images" name="baby.jpg"
-					style="height: 600px;width: 100%;"
-					tooltip="Great water fountain in Valladolid, Spain" />
-
-
-			</b:carouselItem>
-
-			<b:carouselItem tooltip-container=""
-				caption="Valladolid has a nice central park.">
-
-				<b:image library="images" name="kids1.jpg"
-					style="height: 600px;width: 100%;"
-					tooltip="Great water fountain in Valladolid, Spain" />
-
-
-			</b:carouselItem>
-
-			<b:carouselItem tooltip-container=""
-				caption="Valladolid has a nice central park.">
-
-				<b:image library="images" name="kids2.jpg"
-					style="height: 600px;width: 100%;"
-					tooltip="Great water fountain in Valladolid, Spain" />
-
-
-			</b:carouselItem>
+	<header>
+		<b:navBar brand="" brandhref="default.xhtml" inverse="true"
+			fixed="top">
+			<b:navbarLinks>
+				<b:navLink value="Inicio" href="#"></b:navLink>
+				<b:navLink value="Sobre Nós" href="#about"></b:navLink>
+				<b:navLink value="Onde Estamos" href="#link"></b:navLink>
+			</b:navbarLinks>
+			<h:form styleClass="navbar-form navbar-right">
+				<div class="form-group"></div>
+				<div class="form-group"></div>
+			</h:form>
+		</b:navBar>
+		<div
+			style="background-image: url(#{request.contextPath}/resources/imagesHome/header.jpg); padding-top: 50px; padding-bottom: 50px; text-align: center; color: #f8f8f8; background-size: cover; opacity: 0.9; filer: alpha(opacity = 65);">
+			<b:container styleClass="containerHome">
+				<b:row>
+					<b:column col-lg="12">
+						<div class="txtFotoHome">
+							<h1
+								style="text-transform: uppercase; text-shadow: #b3b0b0 2px 2px 2px; font-weight: 900; font-size: 90px; line-height: 75px; font-family: 'Bree Serif', arial;">Happy
+								Kids</h1>
+							<h4
+								style="font-style: italic; text-shadow: #b3b0b0 2px 2px 2px; font-weight: 600; font-size: 40px; line-height: 30px; margin-bottom: 25px; font-family: 'Bree Serif', arial;">Vestindo
+								com alegria</h4>
+							<a href="#about"><b:button icon-awesome="angle-double-down"
+									styleClass="buttonHome buttonHome:hover buttonHome:visited buttonHome:focus" /></a>
+						</div>
+					</b:column>
+				</b:row>
+			</b:container>
+		</div>
 
 
 
-		</b:carousel>
-
-
-	</div>
+	</header>
 
 	<b:container style="height: 400px;">
 		<b:row>
@@ -189,23 +252,31 @@ h2 {
 
 	<b:container>
 		<div
-			style="width: 100%; margin-bottom: 50px; margin-top: 50px; text-align: center;">
+			style="width: 100%; margin-bottom: 80px; margin-top: 80px; text-align: center;">
 			<h2>Contato</h2>
-			<b:column col-sm="2"></b:column>
-			<b:column col-sm="4" style="text-align:center">
-				<i class="fa fa-phone fa-3x sr-contact"
-					style="color: rgb(240, 95, 64) !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
-				<p style="text-align: center">(51) 3024-7551</p>
-			</b:column>
+			<div style="margin-top: 50px;">
+				<b:column col-sm="4" style="text-align:center">
+					<i class="fa fa-phone fa-3x sr-contact"
+						style="color: rgb(240, 95, 64) !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+					<p style="text-align: center">(51) 3024-7551</p>
+				</b:column>
 
-			<b:column col-sm="4" style="text-align:center">
-				<i class="fa fa-envelope-o fa-3x sr-contact"
-					style="color: rgb(240, 95, 64) !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
-				<p style="text-align: center">
-					<a href="mailto:happykidsbrecho@hotmail.com">happykidsbrecho@hotmail.com</a>
-				</p>
-			</b:column>
-			<b:column col-sm="2"></b:column>
+				<b:column col-sm="4">
+					<i class="fa fa-clock-o fa-3x sr-contact"
+						style="color: rgb(240, 95, 64) !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+					<p style="text-align: center">Seg á Sex das 14 às 18 hrs Sábado
+						das 10 às 16 hrs</p>
+				</b:column>
+
+				<b:column col-sm="4" style="text-align:center">
+					<i class="fa fa-envelope-o fa-3x sr-contact"
+						style="color: rgb(240, 95, 64) !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+					<p style="text-align: center">
+						<a href="mailto:happykidsbrecho@hotmail.com">happykidsbrecho@hotmail.com</a>
+					</p>
+				</b:column>
+			</div>
+
 		</div>
 
 	</b:container>
@@ -213,51 +284,53 @@ h2 {
 
 	<b:container styleClass="container1"
 		style="width: 100%; background-color:#eee;">
-		<h2 style="text-align: center; margin-bottom: 50px;">Onde Estamos</h2>
 
-		<b:column col-sm="2"></b:column>
-		<b:column col-sm="4">
-			<div style="text-align: center;">
-				<h4>Happy Kids - Baltazar</h4>
-			</div>
-			<iframe
-				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.935618434546!2d-51.13714648488567!3d-30.010004981894816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95197655b1085c6d%3A0xccb2b1832c5331ca!2sAv.+Baltazar+de+Oliveira+Garc%C3%ADa%2C+891+-+S%C3%A3o+Sebasti%C3%A3o%2C+Porto+Alegre+-+RS%2C+91130-001!5e0!3m2!1sen!2sbr!4v1475624859334"
-				width="550" height="300" style="border: 0"></iframe>
-		</b:column>
+		<div style="margin-top: 80px;">
+			<h2 style="text-align: center; margin-bottom: 50px;">Onde
+				Estamos</h2>
 
-		<b:column col-sm="4">
-			<div style="text-align: center;">
-				<h4>Happy Kids - Sarandi</h4>
-			</div>
-			<iframe
-				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.6997965337373!2d-51.13231508528318!3d-29.988056381902854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951976e771524871%3A0xe17b7ad15bf02ecc!2sAv.+Martins+Bastos%2C+471+-+Sarandi%2C+Porto+Alegre+-+RS%2C+91120-420!5e0!3m2!1sen!2sbr!4v1475630611204"
-				width="550" height="300" style="border: 0"></iframe>
-		</b:column>
-		<b:column col-sm="2"></b:column>
+			<b:column col-sm="2"></b:column>
+			<b:column col-sm="4">
+				<div style="text-align: center;">
+					<h4>Happy Kids - Baltazar</h4>
+				</div>
+				<div class="iframe-rwd ">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.935618434546!2d-51.13714648488567!3d-30.010004981894816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95197655b1085c6d%3A0xccb2b1832c5331ca!2sAv.+Baltazar+de+Oliveira+Garc%C3%ADa%2C+891+-+S%C3%A3o+Sebasti%C3%A3o%2C+Porto+Alegre+-+RS%2C+91130-001!5e0!3m2!1sen!2sbr!4v1475624859334"
+						/>
+				</div>
+			</b:column>
+
+			<b:column col-sm="4">
+				<div style="text-align: center;">
+					<h4>Happy Kids - Sarandi</h4>
+				</div>
+				<div class="iframe-rwd ">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.6997965337373!2d-51.13231508528318!3d-29.988056381902854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951976e771524871%3A0xe17b7ad15bf02ecc!2sAv.+Martins+Bastos%2C+471+-+Sarandi%2C+Porto+Alegre+-+RS%2C+91120-420!5e0!3m2!1sen!2sbr!4v1475630611204"
+						/>
+				</div>
+			</b:column>
+			<b:column col-sm="2"></b:column>
+
+		</div>
+
+
 	</b:container>
 
 
-	<ul class="bxslider">
-		<li>
-			<div>
-			<p>OLAAAA</p>
-				<img src="../resources/images/teste4.jpg" />
-				<img src="../resources/images/teste4.jpg" />
-				<img src="../resources/images/teste4.jpg" />
-			</div>
-		</li>
-	</ul>
-	<script>
-	$('.bxslider').bxSlider({
-		  mode: 'fade',
-		  captions: true
-		});
-	</script>
+	<footer style="background-color: #fff; margin-top: 80px;">
 
-	<b:jumbotron>
-		<b:container>
-		</b:container>
-	</b:jumbotron>
+		<b:column col-sm="4" />
+		<b:column col-sm="4">
+			<p>© Company 2014</p>
+		</b:column>
+		<b:column col-sm="4" style="margin-bottom: 80px;">
+			<a href="login.xhtml">Acesso Restrito</a>
+		</b:column>
+
+
+	</footer>
 
 </h:body>
 

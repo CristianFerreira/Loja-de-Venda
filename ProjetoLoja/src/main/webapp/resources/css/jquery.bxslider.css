@@ -15,27 +15,27 @@
 ===================================*/
 
 .bx-wrapper {
-	position: relative;
-	margin: 0 auto 60px;
-	padding: 0;
-	*zoom: 1;
+	position: relative!important;
+	margin: 0 auto 60px!important;
+	padding: 0!important;
+	*zoom: 1!important;
 }
 
 .bx-wrapper img {
-	max-width: 100%;
-	display: block;
+	max-width: 100%!important;
+	display: block!important;
 }
 
 /** THEME
 ===================================*/
 
 .bx-wrapper .bx-viewport {
-	-moz-box-shadow: 0 0 5px #ccc;
-	-webkit-box-shadow: 0 0 5px #ccc;
-	box-shadow: 0 0 5px #ccc;
-	border:  5px solid #fff;
+	-moz-box-shadow: 0 0 5px #ccc!important;
+	-webkit-box-shadow: 0 0 5px #ccc!important;
+	box-shadow: 0 0 5px #ccc!important;
+	border:  5px solid #fff!important;
 	left: -5px;
-	background: #fff;
+	background: #fff!important;
 	
 	/*fix other elements on the page moving (on Chrome)*/
 	-webkit-transform: translatez(0);
@@ -47,15 +47,16 @@
 
 .bx-wrapper .bx-pager,
 .bx-wrapper .bx-controls-auto {
-	position: absolute;
-	bottom: -30px;
-	width: 100%;
+	position: absolute!important;
+	bottom: -30px!important;
+	width: 100%!important;
 }
 
 /* LOADER */
 
 .bx-wrapper .bx-loading {
 	min-height: 50px;
+	background-image: url("../resources/images/bx_loader.gif");
 	background: url(images/bx_loader.gif) center center no-repeat #fff;
 	height: 100%;
 	width: 100%;
@@ -105,11 +106,13 @@
 
 .bx-wrapper .bx-prev {
 	left: 10px;
+	background-image: url("../resources/images/controls.png") no-repeat 0 -32px;
 	background: url(images/controls.png) no-repeat 0 -32px;
 }
 
 .bx-wrapper .bx-next {
 	right: 10px;
+	background-image: url("../resources/images/controls.png") no-repeat 0 -32px;
 	background: url(images/controls.png) no-repeat -43px -32px;
 }
 
@@ -148,7 +151,8 @@
 	width: 10px;
 	height: 11px;
 	outline: 0;
-	background: url(images/controls.png) -86px -11px no-repeat;
+	background-image: url("../resources/images/controls.png")-86px -11px no-repeat!important;
+	background: url(../resources/images/controls.png) -86px -11px no-repeat!important;
 	margin: 0 3px;
 }
 
@@ -163,7 +167,8 @@
 	width: 9px;
 	height: 11px;
 	outline: 0;
-	background: url(images/controls.png) -86px -44px no-repeat;
+	background-image: url("../resources/images/controls.png")-86px -44px no-repeat!important;
+	background: url(../resources/images/controls.png) -86px -44px no-repeat!important;
 	margin: 0 3px;
 }
 
