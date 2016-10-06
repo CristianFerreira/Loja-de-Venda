@@ -89,7 +89,7 @@ h2 {
 }
 
 .container1 {
-	margin-top: 80px;
+	padding: 80px;
 }
 
 .containerHome {
@@ -211,25 +211,11 @@ h2 {
 	</b:container>
 
 
-	<b:container styleClass=""
-		style="background-color:#F05F40; width:100%;height: 400px;">
+	<b:container styleClass="container1">
 		<b:row>
 
-		</b:row>
-
-	</b:container>
-
-
-
-
-
-	<div
-		style="width: 100%; height: 600px; text-align: center; background-color: #222;">
-
-		<b:container style="background-color: #222;">
-
 			<b:carousel id="imgCriancas"
-				style="position:relative; width: 100%;text-align: center; margin-top:50px;"
+				style="position:relative; width: 100%; width:100%; text-align: center;"
 				interval="4500" show-controls="true">
 
 
@@ -237,7 +223,7 @@ h2 {
 				<b:carouselItem tooltip-container=""
 					caption="Valladolid has a nice central park.">
 
-					<b:image library="imagesHome" name="oie_png.png"
+					<b:image library="imagesHome" name="slide2.jpg"
 						style="width: 100%;"
 						tooltip="Great water fountain in Valladolid, Spain" />
 
@@ -246,13 +232,49 @@ h2 {
 			</b:carousel>
 
 
+		</b:row>
 
-		</b:container>
-	</div>
+	</b:container>
 
-	<b:container>
-		<div
-			style="width: 100%; margin-bottom: 80px; margin-top: 80px; text-align: center;">
+	<b:container
+		style="width: 100%;background-color: #222;text-align: center; color: #fff;"
+		styleClass="container1">
+
+		<div>
+			<h2 style="text-align: center; margin-bottom: 50px;">Onde
+				Estamos</h2>
+
+			<b:column col-sm="2"></b:column>
+			<b:column col-sm="4">
+				<div style="text-align: center;">
+					<h4>Happy Kids - Baltazar</h4>
+				</div>
+				<div class="iframe-rwd ">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.935618434546!2d-51.13714648488567!3d-30.010004981894816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95197655b1085c6d%3A0xccb2b1832c5331ca!2sAv.+Baltazar+de+Oliveira+Garc%C3%ADa%2C+891+-+S%C3%A3o+Sebasti%C3%A3o%2C+Porto+Alegre+-+RS%2C+91130-001!5e0!3m2!1sen!2sbr!4v1475624859334" />
+				</div>
+			</b:column>
+
+			<b:column col-sm="4">
+				<div style="text-align: center;">
+					<h4>Happy Kids - Sarandi</h4>
+				</div>
+				<div class="iframe-rwd ">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.6997965337373!2d-51.13231508528318!3d-29.988056381902854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951976e771524871%3A0xe17b7ad15bf02ecc!2sAv.+Martins+Bastos%2C+471+-+Sarandi%2C+Porto+Alegre+-+RS%2C+91120-420!5e0!3m2!1sen!2sbr!4v1475630611204" />
+				</div>
+			</b:column>
+			<b:column col-sm="2"></b:column>
+
+		</div>
+
+
+
+	</b:container>
+
+	<b:container styleClass="container1"
+		style="width: 100%;text-align: center;">
+		<div>
 			<h2>Contato</h2>
 			<div style="margin-top: 50px;">
 				<b:column col-sm="4" style="text-align:center">
@@ -281,56 +303,21 @@ h2 {
 
 	</b:container>
 
+	<b:container style="background-color:#F05F40; width:100%;"
+		styleClass="container1">
+		<footer>
 
-	<b:container styleClass="container1"
-		style="width: 100%; background-color:#eee;">
-
-		<div style="margin-top: 80px;">
-			<h2 style="text-align: center; margin-bottom: 50px;">Onde
-				Estamos</h2>
-
-			<b:column col-sm="2"></b:column>
+			<b:column col-sm="4" />
 			<b:column col-sm="4">
-				<div style="text-align: center;">
-					<h4>Happy Kids - Baltazar</h4>
-				</div>
-				<div class="iframe-rwd ">
-					<iframe
-						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.935618434546!2d-51.13714648488567!3d-30.010004981894816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95197655b1085c6d%3A0xccb2b1832c5331ca!2sAv.+Baltazar+de+Oliveira+Garc%C3%ADa%2C+891+-+S%C3%A3o+Sebasti%C3%A3o%2C+Porto+Alegre+-+RS%2C+91130-001!5e0!3m2!1sen!2sbr!4v1475624859334"
-						/>
-				</div>
+				<p>© Company 2014</p>
+			</b:column>
+			<b:column col-sm="4" style="margin-bottom: 80px;">
+				<a href="login.xhtml">Acesso Restrito</a>
 			</b:column>
 
-			<b:column col-sm="4">
-				<div style="text-align: center;">
-					<h4>Happy Kids - Sarandi</h4>
-				</div>
-				<div class="iframe-rwd ">
-					<iframe
-						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.6997965337373!2d-51.13231508528318!3d-29.988056381902854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951976e771524871%3A0xe17b7ad15bf02ecc!2sAv.+Martins+Bastos%2C+471+-+Sarandi%2C+Porto+Alegre+-+RS%2C+91120-420!5e0!3m2!1sen!2sbr!4v1475630611204"
-						/>
-				</div>
-			</b:column>
-			<b:column col-sm="2"></b:column>
 
-		</div>
-
-
+		</footer>
 	</b:container>
-
-
-	<footer style="background-color: #fff; margin-top: 80px;">
-
-		<b:column col-sm="4" />
-		<b:column col-sm="4">
-			<p>© Company 2014</p>
-		</b:column>
-		<b:column col-sm="4" style="margin-bottom: 80px;">
-			<a href="login.xhtml">Acesso Restrito</a>
-		</b:column>
-
-
-	</footer>
 
 </h:body>
 
