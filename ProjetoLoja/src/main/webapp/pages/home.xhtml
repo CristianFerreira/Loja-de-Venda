@@ -59,7 +59,7 @@ h3 {
 	-webkit-margin-after: 0.83em;
 	-webkit-margin-start: 0px;
 	-webkit-margin-end: 0px;
-	font-size: 24px !important;
+	font-size: 35px !important;
 }
 
 h4 {
@@ -141,13 +141,13 @@ h2 {
 	height: 70px;
 	margin-top: 15px;
 	padding: 7px 16px;
-	border: 2px solid #de6944;
+	border: 2px solid #775582;
 	border-radius: 100% !important;
 	font-size: 40px;
 	color: #fff;
 	text-shadow: #b3b0b0 2px 2px 2px;
 	background: 0 0;
-	background-color: #de6944;
+	background-color: #775582;
 }
 
 .buttonHome:hover {
@@ -205,10 +205,10 @@ h2 {
 					<b:column col-lg="12">
 						<div class="txtFotoHome">
 							<h1
-								style="text-transform: uppercase; text-shadow: #b3b0b0 2px 2px 2px; font-weight: 900; font-size: 90px; line-height: 75px; font-family: 'Bree Serif', arial;">Happy
+								style="text-transform: uppercase; text-shadow: #775582 4px 4px 4px; font-weight: 900; font-size: 90px; line-height: 75px; font-family: 'Bree Serif', arial;">Happy
 								Kids</h1>
 							<h3
-								style="font-style: italic; text-shadow: #b3b0b0 2px 2px 2px; font-weight: 600; font-size: 40px; line-height: 30px; margin-bottom: 25px; font-family: 'Bree Serif', arial;">Vestindo
+								style="font-style: italic; text-shadow: #775582 4px 4px 4px; font-weight: 600; line-height: 30px; margin-bottom: 25px; font-family: 'Bree Serif', arial;">Vestindo
 								com alegria</h3>
 							<a href="#about"><b:button icon-awesome="angle-double-down"
 									styleClass="buttonHome buttonHome:hover buttonHome:visited buttonHome:focus" /></a>
@@ -219,7 +219,7 @@ h2 {
 		</div>
 	</header>
 
-	<b:container styleClass="container1">
+	<b:container styleClass="container1 " style="width:100%">
 		<b:column col-md="12">
 
 			<h2 style="text-align: center;">Sobre Nós</h2>
@@ -241,36 +241,37 @@ h2 {
 
 
 		</b:column>
-		<b:column col-md="12">
+		<b:column col-md="12" style="width:100%">
 			<div style="margin-bottom: 30px; margin-top: 80px;">
-				<b:carousel id="imgCriancas"
-					style="position:relative; width: 100%; width:100%; text-align: center;"
+				<!-- <b:carousel id="imgCriancas"
+					style=" position:relative; width: 100%;"
 					interval="4500" show-controls="true">
 
 
 
 					<b:carouselItem tooltip-container=""
-						caption="Valladolid has a nice central park.">
-
-						<b:image library="imagesHome" name="slide2.jpg"
+						caption="Valladolid has a nice central park.">-->
+					<div>
+						<b:image library="imagesHome" name="teste1.jpg"
 							style="width: 100%;"
 							tooltip="Great water fountain in Valladolid, Spain" />
+							</div>
 
+					<!-- </b:carouselItem>
 
-					</b:carouselItem>
-				</b:carousel>
+				</b:carousel> -->
 			</div>
 		</b:column>
 
 	</b:container>
 
 	<b:container
-		style="width: 100%;background-color: #737373;;text-align: center; color: #fff;"
+		style="width: 100%;background-color: #47444a;text-align: center; color: #fff;"
 		styleClass="container1">
 		<h2 style="text-align: center; margin-bottom: 50px;">Localização</h2>
 
-
-		<b:column col-sm="6">
+		<b:column col-sm="1" />
+		<b:column col-sm="5">
 			<div style="text-align: center;">
 				<h4>Happy Kids - Baltazar</h4>
 			</div>
@@ -281,7 +282,7 @@ h2 {
 			</div>
 		</b:column>
 
-		<b:column col-sm="6">
+		<b:column col-sm="5">
 			<div style="text-align: center;">
 				<h4>Happy Kids - Sarandi</h4>
 			</div>
@@ -290,31 +291,31 @@ h2 {
 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.6997965337373!2d-51.13231508528318!3d-29.988056381902854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951976e771524871%3A0xe17b7ad15bf02ecc!2sAv.+Martins+Bastos%2C+471+-+Sarandi%2C+Porto+Alegre+-+RS%2C+91120-420!5e0!3m2!1sen!2sbr!4v1475630611204" />
 			</div>
 		</b:column>
-
+		<b:column col-sm="1" />
 
 	</b:container>
 
 	<b:container styleClass="container1"
 		style="width: 100%;text-align: center;">
 		<div>
-			<h2>Contato</h2>
+			<h2 style="color: #775582">Contato</h2>
 			<div style="margin-top: 50px;">
 				<b:column col-sm="4" style="text-align:center">
 					<i class="fa fa-phone fa-3x sr-contact"
-						style="color: rgb(240, 95, 64) !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+						style="color: #775582 !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
 					<p style="text-align: center">(51) 3024-7551</p>
 				</b:column>
 
 				<b:column col-sm="4">
 					<i class="fa fa-clock-o fa-3x sr-contact"
-						style="color: rgb(240, 95, 64) !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+						style="color: #775582 !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
 					<p style="text-align: center">Seg á Sex das 14 às 18 hrs Sábado
 						das 10 às 16 hrs</p>
 				</b:column>
 
 				<b:column col-sm="4" style="text-align:center">
 					<i class="fa fa-envelope-o fa-3x sr-contact"
-						style="color: rgb(240, 95, 64) !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+						style="color: #775582 !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
 					<p style="text-align: center">
 						<a class="aBody" href="mailto:happykidsbrecho@hotmail.com">happykidsbrecho@hotmail.com</a>
 					</p>
@@ -325,7 +326,7 @@ h2 {
 
 	</b:container>
 
-	<b:container style="background-color:#F05F40; width:100%;"
+	<b:container style="background-color:#775582; width:100%;"
 		styleClass="footerTxt">
 		<footer>
 			<div>
@@ -357,13 +358,14 @@ h2 {
 				<div style="padding: 40px 0px 0px 0px; font-size: 14px;">
 					Copyright 2016 - Happy Kids - Todos os direitos reservados.
 					Desenvolvido por <a
-						style="color: #4c4c4c; font-size: 14px; font-style: italic; font-family: inherit;"
+						style="color: #f9f9f9; font-size: 14px; font-style: italic; font-family: inherit;"
 						href="https://br.linkedin.com/in/cristiansantosferreira">Cristian
 						Ferreira</a>
 				</div>
 			</div>
 
-			<div class="col-sm-3">
+			<div class="col-sm-3 ">
+				<div></div>
 				<div class="fb-page"
 					data-href="https://www.facebook.com/Happykidsbrecho/"
 					data-tabs="timeline" data-width="300" data-height="100"
