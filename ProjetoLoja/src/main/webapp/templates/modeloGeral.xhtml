@@ -13,12 +13,25 @@
 	<title>Happy Kids</title>
 	<h:outputStylesheet library="css" name="estilos.css" />
 	<h:outputStylesheet library="css" name="layoutGeral.css" />
-	
+
 	<h:outputScript library="jquery" name="jquery.mask.js" />
 	<h:outputScript library="jquery" name="jquery.mask.min.js" />
 
 
 	<style>
+.botaoModal {
+	color: #fdf9f9 !important;
+	background-color: #775582 !important;
+	border-color: #555555 !important;
+	background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
+	border-radius: 4px !important;
+	width: 180px;
+	height: 40px;
+	margin-right: 10px;
+	margin-left: -6px;
+	font-size: 16px !important;
+}
+
 td {
 	font-size: medium !important;
 	font-weight: 100 !important;
@@ -193,8 +206,9 @@ toolbar-->.ui-toolbar {
 
 .ui-toolbar-group-left {
 	font-size: 18px;
-	float: none !important; text-align : center !important; font-family :
-	sans-serif;
+	float: none !important;
+	text-align: center !important;
+	font-family: sans-serif;
 	font-weight: 400;
 	text-align: center !important;
 	font-family: sans-serif;
@@ -225,9 +239,9 @@ Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
 }
 
 .ui-dialog.ui-widget-content .ui-dialog-content {
-    width: 500px !important;
-    padding: 15px;
-    font-size: 14px;
+	width: 500px !important;
+	padding: 15px;
+	font-size: 14px;
 }
 
 .ui-dialog, .ui-widget-content .ui-dialog-titlebar {
@@ -235,20 +249,15 @@ Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
 	text-align: center !important;
 }
 
-.ui-dialog-title{
-    margin-left: 130px!important;
-    font-size: 22px !important;
-    color: #fff !important;
+.ui-dialog-title {
+	margin-left: 130px !important;
+	font-size: 22px !important;
+	color: #fff !important;
 }
 
-
-
-
-.ui-button{
-      background: none !important;
- }
-
-
+.ui-button {
+	background: none !important;
+}
 </style>
 
 
@@ -313,7 +322,8 @@ Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
 					<f:facet name="options">
 						<h:panelGrid columns="2" style="margin-top: 2px !important;">
 							<p:submenu>
-								<p:link value="#{autenticacaoBean.funcionarioLogado.nome}" outcome="/pages/manage.xhtml"
+								<p:link value="#{autenticacaoBean.funcionarioLogado.nome}"
+									outcome="/pages/manage.xhtml"
 									style="font-family: sans-serif;margin-right: 15px; color: #ffffff !important; text-decoration: none; font-size: 14px !important; font-family: sans-serif;" />
 							</p:submenu>
 							<p:commandLink
