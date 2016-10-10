@@ -52,7 +52,7 @@ public class Produto {
 	@NotNull(message = "O campo quantidade é obrigatório")
 	@Column(nullable = false)
 	private Integer quantidade;
-
+	
 	@NotNull(message = "O campo fabricante é obrigatório")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "db_fabricante_fabricanteID", referencedColumnName = "fabricanteID", nullable = false)

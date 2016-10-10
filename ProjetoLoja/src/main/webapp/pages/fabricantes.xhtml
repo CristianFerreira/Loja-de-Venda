@@ -25,12 +25,6 @@
 				<h2>Fabricantes</h2>
 			</div>
 
-			<b:dataTable value="#{fabricanteBean.listFabricante}" var="fabricante">
-				<b:dataTableColumn value="#{fabricante.codigo}" />
-				<b:dataTableColumn value="#{fabricante.nome}" />
-				<b:dataTableColumn value="#{fabricante.descricao}" />
-			</b:dataTable>
-
 
 			<p:dataTable id="tblFabricante" widgetVar="tabelaFabricante"
 				emptyMessage="Nenhum registro encontrado."
@@ -75,12 +69,13 @@
 
 
 				<f:facet name="footer">
-					<p:commandButton value="Novo Cadastro"
+					<b:commandButton value="Novo Cadastro"
 						actionListener="#{fabricanteBean.prepararNovoFabricante}"
 						oncomplete="PF('dlgFabricanteNovo').show();"
-						update=":formCriarFabricante:pnlFabricante"
+						update=":formCriarFabricante"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != 'Caixa'}"
-						style="font-size: medium;" />
+						style="color: #fff;background-color: #775582;border-color: #555555;font-size: 16px !important;width: 163px;" />
+
 				</f:facet>
 
 			</p:dataTable>
@@ -94,51 +89,85 @@
 			header="Excluir esse fabricante?">
 
 			<h:form id="formFabExcluir">
-				<h:panelGrid id="pnlFabExcluir" columns="2"
-					style="text-align: justify; margin-left: 100px;">
-					<h:outputText value="Código:" style="font-weight: 700;" />
-					<h:outputText value="#{fabricanteBean.fabricante.codigo}" />
+				<div>
+					<b:column col-lg="3" />
+					<b:column id="pnlFabExcluir" col-lg="6"
+						style="text-align: left;margin-top:10px;padding: 0px 61px;">
 
-					<h:outputText value="Nome:" style="font-weight: 700;" />
-					<h:outputText value="#{fabricanteBean.fabricante.nome}" />
+						<div>
+							<h:outputText value="Código:"
+								style=" font-weight: 700; font-size: 18px; margin-right:10px; " />
+							<h:outputText value="#{fabricanteBean.fabricante.codigo}"
+								style="font-size: 18px;" />
+						</div>
+						<div>
+							<h:outputText value="Nome:"
+								style="font-weight: 700; font-size: 18px; margin-right:10px;    margin-left: 12px;" />
+							<h:outputText value="#{fabricanteBean.fabricante.nome}"
+								style="font-size: 18px;" />
+						</div>
+					</b:column>
+					<b:column col-lg="3" />
 
-				</h:panelGrid>
-				<h:panelGrid columns="2">
-					<p:commandButton style="margin-left: 100px;" value="Excluir"
-						actionListener="#{fabricanteBean.excluirFabricante}"
-						update=":msgInfo :formFabricante:tblFabricante"
-						oncomplete="PF('dlgFabricanteExcluir').hide(); PF('tabelaFabricante').clearFilters(); " />
-					<p:commandButton value="Cancelar"
-						onclick="PF('dlgFabricanteExcluir').hide();" />
-				</h:panelGrid>
+
+					<b:column col-lg="12" style="text-align:center;margin-top:20px;">
+
+						<p:commandButton value="Excluir" styleClass="botaoModal"
+							style="color: #fff !important;background-color: #d0b3b3 !important;    border-color: #d0b3b3 !important;
+    					background-image: -webkit-linear-gradient(#d0b3b3, #d0b3b3, #d0b3b3) !important;;
+						border-radius: 4px !important;font-size: 16px !important;"
+							actionListener="#{fabricanteBean.excluirFabricante}"
+							update=":msgInfo :formFabricante:tblFabricante"
+							oncomplete="PF('dlgFabricanteExcluir').hide(); PF('tabelaFabricante').clearFilters(); " />
+
+						<p:commandButton value="Cancelar"
+							style="color: #000;background-color: #fff !important;
+					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
+					    border-radius: 4px !important ; padding: 5px 39px; margin-left: 5px;font-size: 16px;"
+							onclick="PF('dlgFabricanteExcluir').hide();" />
+					</b:column>
+				</div>
 			</h:form>
 		</p:dialog>
+
+
+
 
 
 		<p:dialog widgetVar="dlgFabricanteEditar" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
 			header="Fabricante - Editar">
 			<h:form id="formFabEditar">
-				<h:panelGrid id="pnlFabEditar" columns="2"
-					style="margin-left: 35px;">
-					<p:outputLabel value="Nome: "></p:outputLabel>
-					<p:inputText size="24" maxlength="45"
-						value="#{fabricanteBean.fabricante.nome}" />
+				<b:panelGrid colSpans="3,9" id="pnlFabEditar">
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 30px;">Nome:</h4>
+					<b:inputText size="26" maxlength="50" style="width: 370px;"
+						value="#{fabricanteBean.fabricante.nome}">
+						<f:validateBean />
+					</b:inputText>
 
-					<p:outputLabel value="Descrição: " />
-					<p:inputTextarea rows="2" cols="26" maxlength="100"
-						value="#{fabricanteBean.fabricante.descricao}" />
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 42px;">Descrição:</h4>
+					<b:inputText styleClass="CPF" size="26" maxlength="50"
+						style="width: 370px;"
+						value="#{fabricanteBean.fabricante.descricao}">
+						<f:validateBean />
+					</b:inputText>
 
-				</h:panelGrid>
+				</b:panelGrid>
 
-				<h:panelGrid columns="2">
-					<p:commandButton value="Editar" style="margin-left: 110px;"
+				<b:column style="padding: 0px 19px;">
+					<p:commandButton value="Editar" styleClass="botaoModal"
+						style="color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
+						background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
+						border-radius: 4px !important;font-size: 16px !important;"
 						actionListener="#{fabricanteBean.editarFabricante}"
 						update=":msgInfo :formFabricante:tblFabricante"
 						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaFabricante').clearFilters(); " />
 					<p:commandButton value="Cancelar"
+						style="color: #000;background-color: #fff !important;
+					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
+					    border-radius: 4px !important ;    padding: 5px 39px; margin-left: 5px; font-size: 16px;"
 						onclick="PF('dlgFabricanteEditar').hide();" />
-				</h:panelGrid>
+				</b:column>
 
 			</h:form>
 
@@ -152,28 +181,36 @@
 
 
 			<h:form id="formCriarFabricante">
-				<h:panelGrid id="pnlFabricante" columns="2"
-					style="margin-left: 35px;">
-					<p:outputLabel value="Nome: " />
-					<p:inputText maxlength="50" size="24"
+				<b:panelGrid colSpans="3,9" id="pnlFabricante">
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 30px;">Nome:</h4>
+					<b:inputText size="26" maxlength="50" style="width: 370px;"
 						value="#{fabricanteBean.fabricante.nome}">
 						<f:validateBean />
-					</p:inputText>
+					</b:inputText>
 
-					<p:outputLabel value="Descrição: " />
-					<p:inputTextarea rows="2" cols="26" maxlength="100"
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 42px;">Descrição:</h4>
+					<b:inputText styleClass="CPF" size="26" maxlength="50"
+						style="width: 370px;"
 						value="#{fabricanteBean.fabricante.descricao}">
 						<f:validateBean />
-					</p:inputTextarea>
-				</h:panelGrid>
-				<h:panelGrid columns="2">
-					<p:commandButton value="Salvar" style="margin-left: 110px;"
+					</b:inputText>
+
+				</b:panelGrid>
+
+				<b:column style="padding: 0px 19px;">
+					<p:commandButton value="Salvar" styleClass="botaoModal"
+						style="color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
+						background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
+						border-radius: 4px !important;font-size: 16px !important;"
 						actionListener="#{fabricanteBean.salvar}"
 						update=":msgInfo :formFabricante:tblFabricante"
 						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaFabricante').clearFilters(); " />
-					<p:commandButton value="Sair"
-						onclick="PF('dlgFabricanteNovo').hide();"></p:commandButton>
-				</h:panelGrid>
+					<p:commandButton value="Cancelar"
+						style="color: #000;background-color: #fff !important;
+					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
+					    border-radius: 4px !important ;    padding: 5px 39px; margin-left: 5px; font-size: 16px;"
+						onclick="PF('dlgFabricanteNovo').hide();" />
+				</b:column>
 
 			</h:form>
 

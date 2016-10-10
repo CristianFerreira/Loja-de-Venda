@@ -7,6 +7,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
@@ -20,6 +21,7 @@ import org.hibernate.validator.constraints.br.CPF;
 		})
 public class PessoaFisica extends Cliente {
 	
+	@NotEmpty(message = "O campo CPF é obrigatório")
 	@CPF(message = "CPF informado é inválido")
 	@Column(length = 14, nullable = false, unique = true)
 	private String cpf;

@@ -5,7 +5,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 
 
 
@@ -85,14 +86,14 @@
 
 
 				<f:facet name="footer">
-					<p:commandButton value="Novo Cadastro"
+					<b:commandButton value="Novo Cadastro"
 						actionListener="#{funcionarioBean.prepararNovoFuncionario}"
 						oncomplete="PF('dlgFuncionarioNovo').show();"
-						update=":formCriarFuncionario:pnlFuncionario"
-						style="font-size: medium;">
+						update=":formCriarFuncionario"
+						style="color: #fff;background-color: #775582;border-color: #555555;font-size: 16px !important;width: 163px;">
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
-					</p:commandButton>
+					</b:commandButton>
 				</f:facet>
 
 			</p:dataTable>
@@ -106,57 +107,61 @@
 
 
 			<h:form id="formCriarFuncionario">
-				<h:panelGrid id="pnlFuncionario" columns="2">
-					<p:outputLabel value="Nome: " />
-					<p:inputText maxlength="50" size="20"
+				<b:panelGrid colSpans="2,10" id="pnlFuncionario">
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 30px;">Nome:</h4>
+					<b:inputText size="26" maxlength="50" style="width: 370px;"
 						value="#{funcionarioBean.funcionario.nome}">
 						<f:validateBean />
-					</p:inputText>
+					</b:inputText>
 
-					<p:outputLabel value="Telefone: "></p:outputLabel>
-					<p:inputMask size="20" mask="(99)9999-9999"
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 42px;">CPF:</h4>
+					<b:inputText styleClass="CPF" size="26" maxlength="50"
+						style="width: 370px;" value="#{funcionarioBean.funcionario.cpf}">
+						<f:validateBean />
+					</b:inputText>
+
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 10px;">Telefone:</h4>
+					<b:inputText styleClass="Telefone" size="26" maxlength="50"
+						style="width: 370px;"
 						value="#{funcionarioBean.funcionario.telefone}">
 						<f:validateBean />
-					</p:inputMask>
+					</b:inputText>
 
-
-					<p:outputLabel value="Função: " />
-					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}"
-						style="width: 170px;">
-						<f:validateBean />
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Função:</h4>
+					<b:selectOneMenu value="#{funcionarioBean.funcionario.tipo}"
+						id="brandID" style="width: 370px;">
 						<f:selectItem itemValue="" itemLabel="Selecione uma função" />
+						<f:validateBean />
 						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
 						<f:selectItem itemLabel="Vendedor" itemValue="Vendedor" />
 						<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
-					</p:selectOneMenu>
+					</b:selectOneMenu>
 
-					<p:outputLabel value="CPF: " />
-					<p:inputMask size="20" mask="999.999.999-99"
-						value="#{funcionarioBean.funcionario.cpf}">
-						<f:validateBean />
-					</p:inputMask>
+					<script>
+						jQuery(function($) {
+							$("input.Telefone").mask("(00) 0000-00009");
+							$("input.CEP").mask("00000-000");
+							$("input.CPF").mask("000.000.000-00");
+						});
+					</script>
+					<b:column style="padding: 4px 27px 2px 2px;">
+						<p:commandButton value="Salvar" styleClass="botaoModal"
+							style="color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
+						background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
+						border-radius: 4px !important;font-size: 16px !important;"
+							actionListener="#{funcionarioBean.salvar}"
+							update="pnlFuncionario :msgInfo :formFuncionario:tblFuncionario"
+							oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaFuncionario').clearFilters(); " />
+						<p:commandButton value="Cancelar"
+							style="color: #000;background-color: #fff !important;
+					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
+					    border-radius: 4px !important ; padding: 5px 39px; margin-left: 5px; font-size: 16px;"
+							oncomplete="PF('dlgFuncionarioNovo').hide(); " />
+					</b:column>
 
-					<h:outputLabel for="senha1" value="Senha: *" />
-					<p:password id="senha1" size="20"
-						value="#{funcionarioBean.funcionario.senha}" match="senha2"
-						 validatorMessage="Não foi possivel salvar as alterações da Senha. Verifique se os campos foram preenchidos corretamente" />
-
-					<h:outputLabel for="senha2" value="Confirmar Senha: *" />
-					<p:password id="senha2" size="20"
-						value="#{funcionarioBean.funcionario.senha}"/>
 
 
-
-				</h:panelGrid>
-				<h:panelGrid columns="2">
-					<p:commandButton value="SALVAR" style="margin-left: 122px;"
-						actionListener="#{funcionarioBean.salvar}"
-						update="pnlFuncionario :msgInfo :formFuncionario:tblFuncionario"
-						oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaFuncionario').clearFilters(); " />
-					<p:commandButton value="SAIR"
-						oncomplete="PF('dlgFuncionarioNovo').hide(); " />
-
-				</h:panelGrid>
+				</b:panelGrid>
 
 			</h:form>
 		</p:dialog>
@@ -170,72 +175,111 @@
 			header="Excluir esse funcionário?">
 
 			<h:form id="formFuncExcluir">
-				<h:panelGrid id="pnlFuncExcluir" columns="2"
-				style="text-align: justify; margin-left: 100px;">
-					<h:outputText value="Código: " style="font-weight: 700;"/>
-					<h:outputText value="#{funcionarioBean.funcionario.codigo}" />
+				<div>
+					<b:column col-lg="3" />
+					<b:column id="pnlFuncExcluir" col-lg="6"
+						style="text-align: left;margin-top:10px;padding: 0px 61px;">
 
-					<h:outputText value="Nome: " style="font-weight: 700;"/>
-					<h:outputText value="#{funcionarioBean.funcionario.nome}" />
+						<div>
+							<h:outputText value="Código:"
+								style=" font-weight: 700; font-size: 18px; margin-right:10px; " />
+							<h:outputText value="#{funcionarioBean.funcionario.codigo}"
+								style="font-size: 18px;" />
+						</div>
+						<div>
+							<h:outputText value="Nome:"
+								style="font-weight: 700; font-size: 18px; margin-right:10px;    margin-left: 12px;" />
+							<h:outputText value="#{funcionarioBean.funcionario.nome}"
+								style="font-size: 18px;" />
+						</div>
+					</b:column>
+					<b:column col-lg="3" />
 
-				</h:panelGrid>
-				<h:panelGrid columns="2">
-					<p:commandButton style="margin-left: 100px;" value="Excluir"
-						actionListener="#{funcionarioBean.excluirFuncionario}"
-						update=":msgInfo :formFuncionario:tblFuncionario"
-						oncomplete="PF('dlgFuncionarioExcluir').hide(); PF('tabelaFuncionario').clearFilters(); " />
-					<p:commandButton value="Cancelar"
-						onclick="PF('dlgFuncionarioExcluir').hide();" />
-				</h:panelGrid>
+
+					<b:column col-lg="12" style="text-align:center;margin-top:20px;">
+
+						<p:commandButton value="Excluir" styleClass="botaoModal"
+							style="color: #fff !important;background-color: #d0b3b3 !important;    border-color: #d0b3b3 !important;
+    					background-image: -webkit-linear-gradient(#d0b3b3, #d0b3b3, #d0b3b3) !important;;
+						border-radius: 4px !important;font-size: 16px !important;"
+							actionListener="#{funcionarioBean.excluirFuncionario}"
+							update=":msgInfo :formFuncionario:tblFuncionario"
+							oncomplete="PF('dlgFuncionarioExcluir').hide(); PF('tabelaFuncionario').clearFilters(); " />
+
+						<p:commandButton value="Cancelar"
+							style="color: #000;background-color: #fff !important;
+					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
+					    border-radius: 4px !important ; padding: 5px 39px; margin-left: 5px;font-size: 16px;"
+							onclick="PF('dlgFuncionarioExcluir').hide();" />
+					</b:column>
+				</div>
+
 			</h:form>
 		</p:dialog>
+
+
 
 
 		<p:dialog widgetVar="dlgFuncionarioEditar" closable="false"
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
 			header="Funcionario - Editar">
 			<h:form id="formFuncEditar">
-				<h:panelGrid id="pnlFuncEditar" columns="2" style="margin-left: 32px;">
-					<p:outputLabel value="Nome: " />
-					<p:inputText maxlength="50" size="24"
+				<b:panelGrid colSpans="2,10" id="pnlFuncEditar">
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 30px;">Nome:</h4>
+					<b:inputText size="26" maxlength="50" style="width: 370px;"
 						value="#{funcionarioBean.funcionario.nome}">
 						<f:validateBean />
-					</p:inputText>
+					</b:inputText>
 
-					<p:outputLabel value="Telefone: "></p:outputLabel>
-					<p:inputMask size="24" mask="(99)9999-9999"
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 42px;">CPF:</h4>
+					<b:inputText styleClass="CPF" size="26" maxlength="50"
+						style="width: 370px;" value="#{funcionarioBean.funcionario.cpf}">
+						<f:validateBean />
+					</b:inputText>
+
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 10px;">Telefone:</h4>
+					<b:inputText styleClass="Telefone" size="26" maxlength="50"
+						style="width: 370px;"
 						value="#{funcionarioBean.funcionario.telefone}">
 						<f:validateBean />
-					</p:inputMask>
+					</b:inputText>
 
-
-					<p:outputLabel value="Função: " />
-					<p:selectOneMenu value="#{funcionarioBean.funcionario.tipo}"
-						style="width: 203px;">
-						<f:validateBean />
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Função:</h4>
+					<b:selectOneMenu value="#{funcionarioBean.funcionario.tipo}"
+						id="brandID" style="width: 370px;">
 						<f:selectItem itemValue="" itemLabel="Selecione uma função" />
+						<f:validateBean />
 						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
 						<f:selectItem itemLabel="Vendedor" itemValue="Vendedor" />
 						<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
-					</p:selectOneMenu>
+					</b:selectOneMenu>
 
-					<p:outputLabel value="CPF: " />
-					<p:inputMask size="24" mask="999.999.999-99"
-						value="#{funcionarioBean.funcionario.cpf}">
-						<f:validateBean />
-					</p:inputMask>
-				</h:panelGrid>
-				
-				
-				
-				<h:panelGrid columns="2">
-					<p:commandButton value="Editar" style="margin-left:95px;"
+					<script>
+						jQuery(function($) {
+							$("input.Telefone").mask("(00) 0000-00009");
+							$("input.CEP").mask("00000-000");
+							$("input.CPF").mask("000.000.000-00");
+						});
+					</script>
+				</b:panelGrid>
+
+
+
+				<b:column style="padding: 0px 27px;">
+					<p:commandButton value="Editar" styleClass="botaoModal"
+						style="color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
+						background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
+						border-radius: 4px !important;font-size: 16px !important;"
 						actionListener="#{funcionarioBean.editarFuncionario}"
 						update=":msgInfo :formFuncionario:tblFuncionario"
 						oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaFuncionario').clearFilters(); " />
 					<p:commandButton value="Cancelar"
+						style="color: #000;background-color: #fff !important;
+					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
+					    border-radius: 4px !important ;    padding: 5px 39px; margin-left: 5px; font-size: 16px;"
 						onclick="PF('dlgFuncionarioEditar').hide();" />
-				</h:panelGrid>
+				</b:column>
+
 
 			</h:form>
 
