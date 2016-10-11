@@ -5,7 +5,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 
 <ui:composition template="/templates/modeloGeral.xhtml">
 	<ui:define name="metadata">
@@ -15,68 +16,94 @@
 	</ui:define>
 	<ui:define name="conteudo">
 
-		<h:form id="formCliente">
+		<h:form id="formCliente" prependId="false">
 			<div align="center"
 				style="text-align: center !important; margin-bottom: 10px;">
 				<h2>Pedido de vendas</h2>
 			</div>
-
-			<h:panelGrid
-				style="padding-left: 80px !important;
-	padding-right: 80px !important;">
-				<h:panelGrid columns="4">
-					<p:selectOneMenu value="#{vendaBean.tipoCliente}"
-						style="width: 218px;">
-						<f:validateBean />
-						<f:selectItem itemValue="" itemLabel="Selecione um Cliente" />
-						<f:selectItem itemLabel="CPF" itemValue="cpf" />
-						<f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
-					</p:selectOneMenu>
-
-					<p:inputMask mask="999.999.999-99" style="width: 240px;"
-						value="#{vendaBean.buscarClientePeloTipoPF}">
-						<f:validateBean />
-					</p:inputMask>
-
-					<p:inputMask mask="99.999.999/9999-99" style="width: 240px;"
-						value="#{vendaBean.buscarClientePeloTipoPJ}">
-						<f:validateBean />
-					</p:inputMask>
+			<div style="padding: 0px 80px;">
+				<h:panelGrid>
+					<h:panelGrid columns="4">
+						<b:selectOneMenu value="#{vendaBean.tipoCliente}"
+							onchange="selecionaCliente(this.value)" style="width: 218px;">
+							<f:validateBean />
+							<f:selectItem itemValue="" itemLabel="Selecione um Cliente" />
+							<f:selectItem itemLabel="CPF" itemValue="cpf" />
+							<f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
+						</b:selectOneMenu>
 
 
-					<p:commandButton icon="ui-icon-search"
-						actionListener="#{vendaBean.selecionarCliente}"
-						update=":msgInfo :formCliente:pnlCliente :formVenda:pnlFinaliza">
+						<b:inputText styleClass="CPF" size="26" maxlength="50"
+							placeholder="Informe o CPF" id="inputCPF"
+							value="#{vendaBean.buscarClientePeloTipoPF}">
+							<f:validateBean />
+						</b:inputText>
 
-					</p:commandButton>
+						<b:inputText styleClass="CNPJ" size="26" maxlength="50"
+							placeholder="Informe o CNPJ" id="inputCNPJ"
+							value="#{vendaBean.buscarClientePeloTipoPJ}">
+							<f:validateBean />
+						</b:inputText>
+
+
+
+						<b:commandButton id="btnPesquisar" icon-awesome="search"
+							style="display:none;"
+							actionListener="#{vendaBean.selecionarCliente}"
+							update=":msgInfo :formCliente:pnlCliente :formVenda">
+
+						</b:commandButton>
+					</h:panelGrid>
+					<div style="margin-left:300px">
+						<h:panelGrid columns="12" id="pnlCliente"
+							style="margin-top:10px;margin-bottom: 10px;">
+
+							<h:outputText value="Cliente: "
+								rendered="#{vendaBean.clienteFinal.nome != null}"
+								style="font-size: 16px;font-weight: 700;font-family: sans-serif;" />
+							<h:outputText value="#{vendaBean.clienteFinal.nome} " />
+							<h:outputText value=" - "
+								rendered="#{vendaBean.clienteFinal.nome != null}" />
+							<h:outputText value="#{vendaBean.tipoDadoCliente} " />
+						</h:panelGrid>
+					</div>
 				</h:panelGrid>
-				<h:panelGrid columns="5" id="pnlCliente"
-					style="margin-top:10px;margin-bottom: 10px;">
+			</div>
+			<script>
+						jQuery(function($) {
+							$("input.CNPJ").mask("00.000.000/0000-00");
+							$("input.CPF").mask("000.000.000-00");
+						});
+					</script>
 
-					<h:outputText value="Cliente: "
-						rendered="#{vendaBean.clienteFinal.nome != null}"
-						style="font-size: 14px;font-weight: 700;font-family: sans-serif;" />
-					<h:outputText value="#{vendaBean.clienteFinal.nome} " />
-					<h:outputText value=" - "
-						rendered="#{vendaBean.clienteFinal.nome != null}" />
-					<h:outputText value="#{vendaBean.tipoDadoCliente} " />
-				</h:panelGrid>
+			<script>
+			window.onload = function(){
+				selecionaCliente("");
+			}
+			
+			 function selecionaCliente(valor){
+			 
+			 document.getElementById("inputCNPJ").style = "display:none ";
+			 document.getElementById("inputCPF").style = "display:none "; 
+			 document.getElementById("btnPesquisar").style = "display:none";
+			if(valor == "cpf"){
+				document.getElementById("btnPesquisar").style = "position: relative;right: 45px;bottom: 7px; padding: 7px;border: none;border-radius: 4px;width: 44px;";
+				document.getElementById("inputCPF").style = "margin-left: 10px;";
 
-			</h:panelGrid>
+			}
+			if(valor == "cnpj"){
+				document.getElementById("btnPesquisar").style = "position: relative;right: 45px;bottom: 7px; padding: 7px;border: none;border-radius: 4px;width: 44px;";
+				document.getElementById("inputCNPJ").style = "margin-left: 10px;";
+				
+			}
+		}
+			
+	</script>
 
 		</h:form>
 
 
 		<h:form id="formVenda">
-
-			<p:toolbar
-				style=" padding: 0.4em !important;margin-left: 80px !important; margin-right: 80px !important;">
-				<f:facet name="left">
-					<h:outputText value="Produtos" />
-				</f:facet>
-
-			</p:toolbar>
-
 
 			<p:dataTable id="tblProduto"
 				emptyMessage="Nenhum registro encontrado."
@@ -207,7 +234,7 @@
 					</h:outputText>
 
 					<h:outputText value="Cliente: " />
-					<h:outputText value="#{vendaBean.clienteFinal.codigo}" />
+					<h:outputText value="#{vendaBean.clienteFinal.nome}" />
 
 					<h:outputText value="Funcionário: " />
 					<h:outputText value="#{vendaBean.venda.funcionario.nome}" />

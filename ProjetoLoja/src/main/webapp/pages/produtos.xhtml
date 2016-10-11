@@ -199,7 +199,7 @@
 						draggable="false" resizable="false" modal="true"
 						appendTo="@(body)" header="Produto - Editar">
 						<h:form id="formProdutoEditar">
-							<h:panelGrid id="pnlProdutoEditar">
+							<h:panelGrid id="pnlProdutoEditar" style="padding:0px 20px 1px 0px">
 
 								<h:panelGrid columns="2" style="margin-left: auto;">
 									<h4
@@ -247,7 +247,7 @@
 
 								<h:panelGrid columns="2" style="padding: 2px 7px;">
 									<p:commandButton value="Editar" styleClass="botaoModal"
-										style="color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
+										style="left:9px;color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
 						background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
 						border-radius: 4px !important;font-size: 16px !important;"
 										actionListener="#{produtoBean.editarProduto}"
@@ -256,7 +256,7 @@
 									<p:commandButton value="Cancelar"
 										style="color: #000;background-color: #fff !important;
 					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
-					    border-radius: 4px !important ;    padding: 5px 39px; margin-left: 5px; font-size: 16px;"
+					    border-radius: 4px !important ;    padding: 5px 39px; left: 16px; font-size: 16px;"
 										onclick="PF('dlgProdutoEditar').hide();" />
 								</h:panelGrid>
 
@@ -274,7 +274,7 @@
 
 
 						<h:form id="formCriarProduto">
-							<h:panelGrid id="pnlProduto">
+							<h:panelGrid id="pnlProduto" style="padding: 0px 20px 1px 0px;">
 								<h:panelGrid columns="2" style="margin-left: auto;">
 									<h4
 										style="font-size: 16px; font-weight: 600; padding-left: 11px;">Descrição:</h4>
@@ -321,7 +321,7 @@
 
 								<h:panelGrid columns="2" style="padding: 2px 7px;">
 									<p:commandButton value="Salvar" styleClass="botaoModal"
-										style="color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
+										style=" left:9px;color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
 						background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
 						border-radius: 4px !important;font-size: 16px !important;"
 										actionListener="#{produtoBean.salvar}"
@@ -330,7 +330,7 @@
 									<p:commandButton value="Cancelar"
 										style="color: #000;background-color: #fff !important;
 					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
-					    border-radius: 4px !important ;    padding: 5px 39px; margin-left: 5px; font-size: 16px;"
+					    border-radius: 4px !important ;    padding: 5px 39px; left: 16px; font-size: 16px;"
 										onclick="PF('dlgProdutoNovo').hide();" />
 								</h:panelGrid>
 
