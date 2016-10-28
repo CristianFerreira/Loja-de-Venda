@@ -68,7 +68,7 @@ public class AutenticacaoBean {
 
 	public String sairDoSistema() {
 		funcionarioLogado = null;
-		return "/pages/login.xhtml?faces-redirect=true";
+		return "/pages/home.xhtml?faces-redirect=true";
 	}
 
 	public String verificarSenhaAtual() {

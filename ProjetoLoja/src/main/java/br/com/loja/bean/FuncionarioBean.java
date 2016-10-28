@@ -82,15 +82,16 @@ public class FuncionarioBean {
 
 		// FacesUtil.adicionarMsgSucesso(fabricante.toString());
 		try {
-			
+			System.out.println("Funcionario >>> "+funcionario.getNome()+","+funcionario.getCpf()+","+funcionario.getTelefone()+","+funcionario.getTipo()+","+funcionario.getCodigo()+","+funcionario.getSenha());
 			FuncionarioDAO fdao = new FuncionarioDAO();
 			funcionario.setSenha(DigestUtils.md5Hex(funcionario.getSenha()));
+			System.out.println("Funcionario >>> "+funcionario.getNome()+","+funcionario.getCpf()+","+funcionario.getTelefone()+","+funcionario.getTipo()+","+funcionario.getCodigo()+","+funcionario.getSenha());
 			fdao.salvar(funcionario);
 
 			FacesUtil.adicionarMsgSucesso("Funcionario salvo com sucesso");
 		} catch (RuntimeException ex) {
 			ex.printStackTrace();
-			FacesUtil.adicionarMsgErro("Erro ao tentar salvar o funcionario: " + ex.getMessage());
+			FacesUtil.adicionarMsgErro("Erro111 ao tentar salvar o funcionario: " + ex.getMessage());
 		}
 	}
 

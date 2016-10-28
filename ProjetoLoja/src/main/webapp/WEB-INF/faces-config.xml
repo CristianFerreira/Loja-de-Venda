@@ -8,5 +8,13 @@
     <lifecycle>
     	<phase-listener>br.com.loja.util.AutenticacaoPhaseListener</phase-listener>
     </lifecycle>
+    
+  <!--   <application>
+    	<resource-bundle>
+    		<base-name>/messages</base-name>
+    		<var>messages</var>
+    	</resource-bundle>
+    	
+    </application>-->  
 
 </faces-config>

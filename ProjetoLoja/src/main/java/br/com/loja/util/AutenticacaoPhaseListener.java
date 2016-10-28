@@ -25,9 +25,10 @@ public class AutenticacaoPhaseListener implements PhaseListener {
 		String pagina = uiViewRoot.getViewId();
 
 		boolean ehPaginaAutenticacao = pagina.contains("login.xhtml");
+		boolean ehPaginaHome = pagina.contains("home.xhtml");
 		boolean ehPaginaEditarSenha = pagina.contains("editarSenha.xhtml");
 
-		if (!ehPaginaAutenticacao) {
+		if (!ehPaginaAutenticacao && !ehPaginaHome) {
 			ExternalContext externalContext = facesContext.getExternalContext();
 			Map<String, Object> mapa = externalContext.getSessionMap();
 			AutenticacaoBean autenticacaoBean = (AutenticacaoBean) mapa.get("autenticacaoBean");

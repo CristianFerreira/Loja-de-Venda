@@ -121,7 +121,7 @@
 					</b:inputText>
 
 					<h4 style="font-size: 16px; font-weight: 600; padding-left: 10px;">Telefone:</h4>
-					<b:inputText styleClass="Telefone" size="26" maxlength="50"
+					<b:inputText styleClass="Telefone" size="26" maxlength="14"
 						style="width: 370px;"
 						value="#{funcionarioBean.funcionario.telefone}">
 						<f:validateBean />
@@ -136,10 +136,17 @@
 						<f:selectItem itemLabel="Vendedor" itemValue="Vendedor" />
 						<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
 					</b:selectOneMenu>
+					
+					<h4 style="font-size: 16px; font-weight: 600; padding-left: 10px;">Senha:</h4>
+					<b:inputText type="password" styleClass="Senha" size="26" maxlength="8"
+						style="width: 370px;"
+						value="#{funcionarioBean.funcionario.senha}">
+						<f:validateBean />
+					</b:inputText>
 
 					<script>
 						jQuery(function($) {
-							$("input.Telefone").mask("(00) 0000-00009");
+							$("input.Telefone").mask("(00)0000-00009");
 							$("input.CEP").mask("00000-000");
 							$("input.CPF").mask("000.000.000-00");
 						});
@@ -295,7 +302,6 @@
 					PF('dlgFuncionarioNovo').hide();
 				}
 			}
-
 			function validateRequestEdit(xhr, status, args) {
 				if (args.validationFailed) {
 					PF('dlgFuncionarioEditar').jq.effect("shake", {
