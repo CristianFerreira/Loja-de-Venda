@@ -153,20 +153,19 @@ h2 {
 }
 
 .buttonHome:hover {
-border: 2px solid #e27465;
+	border: 2px solid #e27465;
 	background-color: #e27465;
-
 	color: #fff;
 }
 
 .buttonHome:visited {
-border: 2px solid #e27465;
+	border: 2px solid #e27465;
 	background-color: #e27465;
 	color: #fff;
 }
 
 .buttonHome:focus {
-border: 2px solid #e27465;
+	border: 2px solid #e27465;
 	background-color: #e27465;
 	color: #fff;
 }
@@ -195,7 +194,7 @@ body {
 	border-color: rgba(249, 249, 249, 0.13);
 }
 
-.navBarTransparente{
+.navBarTransparente {
 	font-size: 17px;
 	margin-left: 60px;
 	padding: 20px;
@@ -209,12 +208,11 @@ body {
 	list-style: none;
 	/* font: 80% Tahoma; */
 	position: fixed;
-	border:none;
-	
+	border: none;
 }
 
 .overlay {
-    min-height: 100vh;
+	min-height: 100vh;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -224,25 +222,23 @@ body {
 	z-index: 1;
 }
 
-.circulo{
-		width:130px;
-		height:130px;
-		border-radius:50%;
-		border:3px solid #000;
-		z-index:5;
-		background:#000;
-		position:relative;
-		}
-		.img{
-			z-index:1;
-			width:130px;
-                        height:130px
-                        background-position:center;
-			opacity:0.5;
-		}
+.circulo {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-size: cover;
+	/*ajusta a imagem dentro do div, mantendo a proporção da imagem */
+	background-position: center center margin:10px;
+	border-radius: 50%;
+	overflow: hidden;
+	width: 250px;
+	height: 200px;
+	box-shadow: 3px 3px 15px rgba(85, 85, 85, 0.52);
+	/* sombra deslocada em 3px para baixo e 3px para direita, borrada em 5px e com cor cinza */
+}
 
-.CorMenuTransparente{
-color: #fff; 
+.CorMenuTransparente {
+	color: #fff;
 }
 
 }
@@ -263,26 +259,27 @@ color: #fff;
 	<header>
 
 		<div class="navBar navBarTransparente">
-			<a class="sobre sobreScroll CorMenuTransparente" href="#sobre" style=" padding: 10px; 	color: #fff;">Sobre
-				Nós</a> <a class="mapaScroll CorMenuTransparente" href="#mapaScroll"
-				style=" padding: 10px; 	color: #fff;">Localização</a> <a
+			<a class="sobre sobreScroll CorMenuTransparente" href="#sobre"
+				style="padding: 10px; color: #fff;">Sobre Nós</a> <a
+				class="mapaScroll CorMenuTransparente" href="#mapaScroll"
+				style="padding: 10px; color: #fff;">Localização</a> <a
 				class="contatoScroll CorMenuTransparente" href="#contatoScroll"
-				style=" padding: 10px; 	color: #fff;">Contato</a>
+				style="padding: 10px; color: #fff;">Contato</a>
 		</div>
 
 
 		<div
-			style="min-height: 100vh;background-image: url(#{request.contextPath}/resources/imagesHome/header.jpg); text-align: center; color: #f8f8f8; background-size: cover; opacity: 0.9; filer: alpha(opacity = 65); height: 700px;">
+			style="min-height: 100vh; background-image: url(#{request.contextPath}/resources/imagesHome/header.jpg); text-align: center; color: #f8f8f8; background-size: cover; opacity: 0.9; filer: alpha(opacity = 65); height: 700px;">
 
 		</div>
 
 		<div class="overlay">
-		<b:container styleClass="containerHome">
+			<b:container styleClass="containerHome">
 				<b:row>
-					<b:column col-lg="12" >
+					<b:column col-lg="12">
 						<div class="txtFotoHome">
 							<h1
-								style="text-transform: uppercase;font-weight: 900; font-size: 90px; line-height: 75px; font-family: 'Bree Serif', arial;">Happy
+								style="text-transform: uppercase; font-weight: 900; font-size: 90px; line-height: 75px; font-family: 'Bree Serif', arial;">Happy
 								Kids</h1>
 							<h3
 								style="font-style: italic; font-weight: 600; line-height: 30px; margin-bottom: 25px; font-family: 'Bree Serif', arial;">Vestindo
@@ -296,7 +293,7 @@ color: #fff;
 			</b:container>
 		</div>
 
-	
+
 
 
 	</header>
@@ -305,57 +302,65 @@ color: #fff;
 		id="sobre">
 		<b:column col-md="12">
 
-			<h2 style="text-align: center;">Sobre Nós</h2>
-			<p>A Happy Kids nasceu em 1982 da vontade de seu fundador, Renato
-				Caliman de criar um bom jeans nacional. A marca começou com uma
-				linha de jeans e acessórios feminino, seguida da linha masculina em
-				1985, possibilitando também aos homens ter um jeans com o design e
-				caimento inovadores no mercado. Logo em 1988, a Happy Kids abriu sua
-				primeira loja, localizada na rua Farias Lobato, onde posteriormente
-				seria considerada a oitava mais luxuosa rua de compras do mundo. A
-				Happy Kids é referencia da moda brasileira, busca novidades e
-				inspirações nas principais metrópoles do mundo para compor suas
-				coleções e seu estilo de vida. Acredita que a sofisticação está nos
-				detalhes da rotina das grandes cidades e que se vestir bem é uma
-				maneira natural da mulher se destacar. A missão é despertar o desejo
-				e surpreender a mulher moderna com possibilidades para todas as
-				ocasiões.</p>
+			<h2 style="text-align: center;color: #e27465;">Sobre Nós</h2>
+			<p style="padding-bottom: 50px;">A Happy Kids nasceu em 1982 da
+				vontade de seu fundador, Renato Caliman de criar um bom jeans
+				nacional. A marca começou com uma linha de jeans e acessórios
+				feminino, seguida da linha masculina em 1985, possibilitando também
+				aos homens ter um jeans com o design e caimento inovadores no
+				mercado. Logo em 1988, a Happy Kids abriu sua primeira loja,
+				localizada na rua Farias Lobato, onde posteriormente seria
+				considerada a oitava mais luxuosa rua de compras do mundo. A Happy
+				Kids é referencia da moda brasileira, busca novidades e inspirações
+				nas principais metrópoles do mundo para compor suas coleções e seu
+				estilo de vida. Acredita que a sofisticação está nos detalhes da
+				rotina das grandes cidades e que se vestir bem é uma maneira natural
+				da mulher se destacar. A missão é despertar o desejo e surpreender a
+				mulher moderna com possibilidades para todas as ocasiões.</p>
 
 
 
 		</b:column>
-		 <div class="circulo">
-  		<div class="img" style="background-image:url('http://1.bp.blogspot.com/-a632cWhzU7E/VNT0MncCZRI/AAAAAAAAAeo/a6yrdo08akQ/s1600/02.jpg');"></div>
 
-  		<div class="dentro">
-        	<p>Um testo vai aqui para descrever a imagem</p>
-        </div>
-
-  </div>
-		
-		<!-- <b:column col-md="12" style="width:100%">
-			<div style="margin-bottom: 30px; margin-top: 80px;">
-				<b:carousel id="imgCriancas"
-					style=" position:relative; width: 100%;"
-					interval="4500" show-controls="true">
-
-
-
-					<b:carouselItem tooltip-container=""
-						caption="Valladolid has a nice central park.">
-				<div>
-					<b:image library="imagesHome" name="teste1.jpg"
-						style="width: 100%;"
-						tooltip="Great water fountain in Valladolid, Spain" />
+		<div>
+			<b:column col-md="4" style="text-align: -webkit-right;">
+				<div class="circulo">
+					<b:image styleClass="img" library="imagesHome" name="person1.jpg">
+					</b:image>
 				</div>
+				<div class="dentro">
+					<p style="text-align: -webkit-right; padding-right: 62px;">Leticia
+						- Gerente</p>
+				</div>
+			</b:column>
 
-				</b:carouselItem>
+			<b:column col-md="4" style="text-align: -webkit-center;">
+				<div class="circulo">
+					<b:image styleClass="img" library="imagesHome" name="person4.jpg"
+						style="width: 240px;height: 205px;">
+					</b:image>
+				</div>
+				<div class="dentro" style="text-align: -webkit-center;">
+					<p style="text-align: -webkit-center;">Steve - Sócio</p>
+				</div>
+			</b:column>
 
-				</b:carousel>
-			</div>
-		</b:column> -->
+			<b:column col-md="4" style="text-align: center;">
+				<div class="circulo">
+					<b:image styleClass="img" library="imagesHome" name="person5.png"
+						style="width: 250px;height: 201px;">
+					</b:image>
+				</div>
+				<div class="dentro">
+					<p style="padding-left: 75px;">Mark - Fundador</p>
+				</div>
+			</b:column>
+		</div>
+
+
 
 	</b:container>
+
 
 	<b:container
 		style="width: 100%;background-color: #47444a;text-align: center; color: #fff;"
@@ -372,9 +377,7 @@ color: #fff;
 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.935618434546!2d-51.13714648488567!3d-30.010004981894816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95197655b1085c6d%3A0xccb2b1832c5331ca!2sAv.+Baltazar+de+Oliveira+Garc%C3%ADa%2C+891+-+S%C3%A3o+Sebasti%C3%A3o%2C+Porto+Alegre+-+RS%2C+91130-001!5e0!3m2!1sen!2sbr!4v1475624859334"
 					style="" />
 			</div>
-			<div>Av. Baltazar de Oliveira García, 891 - São Sebastião Av.
-				Baltazar de Oliveira García, 891 - São Sebastião, Porto Alegre - RS
-			</div>
+			<div style="margin-top: -100px;">Av.Baltazar de Oliveira García, 891 - São Sebastião, Porto Alegre - RS</div>
 		</b:column>
 
 		<b:column col-sm="5">
@@ -385,7 +388,7 @@ color: #fff;
 				<iframe
 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.6997965337373!2d-51.13231508528318!3d-29.988056381902854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951976e771524871%3A0xe17b7ad15bf02ecc!2sAv.+Martins+Bastos%2C+471+-+Sarandi%2C+Porto+Alegre+-+RS%2C+91120-420!5e0!3m2!1sen!2sbr!4v1475630611204" />
 			</div>
-			<div>Av. Martins Bastos, 471 - Sarandi, Porto Alegre - RS</div>
+			<div style="margin-top: -100px;">Av. Martins Bastos, 471 - Sarandi, Porto Alegre - RS</div>
 			<div></div>
 
 		</b:column>
@@ -542,21 +545,19 @@ color: #fff;
 			}, 800);
 		});
 	});
-	
-	
+
 	$(function() {
-		  $(window).on("scroll", function() {
-		    if($(window).scrollTop() > 100) {
-		      $(".navBar").removeClass("navBarTransparente");
-	
-		      $(".navBar").addClass("menu");
-		    } else {
-		      $(".navBar").removeClass("menu");
-		      $(".navBar").addClass("navBarTransparente");
-		    }
-		  });
+		$(window).on("scroll", function() {
+			if ($(window).scrollTop() > 100) {
+				$(".navBar").removeClass("navBarTransparente");
+
+				$(".navBar").addClass("menu");
+			} else {
+				$(".navBar").removeClass("menu");
+				$(".navBar").addClass("navBarTransparente");
+			}
 		});
-	
+	});
 </script>
 
 
