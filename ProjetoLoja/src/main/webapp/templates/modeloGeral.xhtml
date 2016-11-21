@@ -11,7 +11,7 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Happy Kids</title>
-	
+
 	<h:outputStylesheet library="css" name="layoutGeral.css" />
 
 	<h:outputScript library="jquery" name="jquery.mask.js" />
@@ -19,38 +19,67 @@
 
 
 	<style>
+body {
+	font-family: 'Bree Serif', arial !important;
+}
+
+.btnPrimary {
+	color: #fff;
+	background-color: #775582;
+	border-color: #442a4d;
+	font-size: 16px !important;
+	width: 163px;
+}
+
+.btnPrimary:hover{
+	color: #fff !important;
+	background-color: #442a4d !important;
+	border-color: #442a4d !important;
+	font-size: 16px !important;
+	width: 163px;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 100%;
+	z-index: 12;
+}
+
 .botaoModal {
 	color: #fdf9f9 !important;
 	background-color: #775582 !important;
 	border-color: #555555 !important;
-	background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
+	background-image: -webkit-linear-gradient(top, #775582, #775582)
+		!important;
 	border-radius: 4px !important;
 	padding: 5px 50px;
 	font-size: 16px !important;
 }
 
 .ui-selectonemenu label.ui-selectonemenu-label {
-    padding: 11px !important;
+	padding: 11px !important;
 }
 
 .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
-    margin-top: 11px;
+	margin-top: 11px;
 }
 
 .ui-selectonemenu .ui-selectonemenu-trigger {
-    border-right: none;
-    border-top: none;
-    border-bottom: none;
-    cursor: pointer;
-    width: 16px;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 0px 7px;
+	border-right: none;
+	border-top: none;
+	border-bottom: none;
+	cursor: pointer;
+	width: 16px;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0px 7px;
 }
-
-
 
 td {
 	font-size: medium !important;
@@ -244,12 +273,9 @@ Link happy kids-->.ui-menu.ui-widget li>.ui-menuitem-link,
 	color: #ffffff !important;
 }
 
-
-
-.ui-inputfield, .ui-inputtext{
+.ui-inputfield, .ui-inputtext {
 	background-color: #fff !important;
 }
-
 
 <!--
 Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
@@ -282,15 +308,12 @@ Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
 	background: none !important;
 }
 
-.btn-default:hover{
-	background-color: #fff !important;
-	color: #000 !important;
+.btn-default:hover {
+	background-color: #fff;
+	color: #000;
 }
 
-
-
 @import 'https://fonts.googleapis.com/css?family=Shrikhand';
-
 </style>
 
 
@@ -319,7 +342,8 @@ Fundo paginator  -->.ui-paginator, .ui-paginator-top, .ui-widget-header,
 					<p:submenu label="Vendas"
 						rendered="#{autenticacaoBean.funcionarioLogado.tipo != null}">
 						<p:menuitem value="Pedido de venda"
-							outcome="/pages/vendaCadastro.xhtml"></p:menuitem>
+							outcome="/pages/vendaCadastro.xhtml"
+							rendered="#{autenticacaoBean.funcionarioLogado.tipo != 'Caixa'}">></p:menuitem>
 						<p:menuitem value="Lista de Vendas"
 							outcome="/pages/listaVendas.xhtml"></p:menuitem>
 

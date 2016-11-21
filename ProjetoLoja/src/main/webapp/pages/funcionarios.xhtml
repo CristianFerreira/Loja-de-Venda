@@ -64,7 +64,7 @@
 
 
 				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 100px">
+					style="width: 100px" rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}">
 					<p:commandButton icon="ui-icon-pencil"
 						oncomplete="PF('dlgFuncionarioEditar').show();"
 						update=":formFuncEditar:pnlFuncEditar">
@@ -86,11 +86,11 @@
 
 
 				<f:facet name="footer">
-					<b:commandButton value="Novo Cadastro"
+					<b:commandButton value="Novo Cadastro" rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}"
 						actionListener="#{funcionarioBean.prepararNovoFuncionario}"
 						oncomplete="PF('dlgFuncionarioNovo').show();"
 						update=":formCriarFuncionario"
-						style="color: #fff;background-color: #775582;border-color: #555555;font-size: 16px !important;width: 163px;">
+						styleClass="btnPrimary">
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</b:commandButton>

@@ -61,8 +61,10 @@
 
 				<p:column headerText="Opções"
 					class="centralizarTxtColuna fonteTabela"
+					
 					style="width: 130px;font-size: medium !important;font-weight: 100 !important;font-family: sans-serif;">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
+					rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}"
 						oncomplete="PF('dlgPessoaFisicaEditar').show();"
 						update=":formPessoaFisicaEditar:pnlPessoaFisicaEditar">
 						<f:setPropertyActionListener
@@ -71,6 +73,7 @@
 					<h:outputText value=" " />
 
 					<p:commandButton style="color:#red;" icon="ui-icon-search"
+					
 						title="Detalhes"
 						oncomplete="PF('dlgPessoaFisicaDetalhes').show();"
 						update=":formPessoaFisicaDetalhes:pnlPessoaFisicaDetalhes">
@@ -80,6 +83,7 @@
 					<h:outputText value=" " />
 
 					<p:commandButton style="color:#red;" icon="ui-icon-trash"
+					rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}"
 						title="Excluir" oncomplete="PF('dlgPessoaFisicaExcluir').show();"
 						update=":formPessoaFisicaExcluir:pnlPessoaFisicaExcluir">
 						<f:setPropertyActionListener
@@ -91,10 +95,11 @@
 
 				<f:facet name="footer">
 					<b:commandButton value="Novo Cadastro"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}"
 						actionListener="#{pessoaFisicaBean.prepararNovaPessoaFisica}"
 						oncomplete="PF('dlgPessoaFisicaNovo').show();"
 						update=":formCriarPessoaFisica"
-						style="color: #fff;background-color: #775582;border-color: #555555;font-size: 16px !important;width: 163px;">
+						styleClass="btnPrimary">
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</b:commandButton>
@@ -159,30 +164,31 @@
 			draggable="false" resizable="false" modal="true" appendTo="@(body)"
 			header="Detalhes - Pessoa Fisica">
 			<h:form id="formPessoaFisicaDetalhes">
-			
-				<b:column id="pnlPessoaFisicaDetalhes" col-lg="12" style="text-align:left">
+
+				<b:column id="pnlPessoaFisicaDetalhes" col-lg="12"
+					style="text-align:left">
 					<div>
-						<h:outputLabel value="Código: " style="margin-right:10px;"/>
+						<h:outputLabel value="Código: " style="margin-right:10px;" />
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.codigo}" />
 					</div>
 					<div>
-						<h:outputLabel value="Nome: " style="margin-right:10px;"/>
+						<h:outputLabel value="Nome: " style="margin-right:10px;" />
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.nome}" />
 					</div>
 					<div>
-						<h:outputLabel value="Telefone:" style="margin-right:10px;"/>
+						<h:outputLabel value="Telefone:" style="margin-right:10px;" />
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.telefone}" />
 					</div>
 					<div>
-						<h:outputLabel value="Rua:" style="margin-right:10px;"/>
+						<h:outputLabel value="Rua:" style="margin-right:10px;" />
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.rua}" />
 					</div>
 					<div>
-						<h:outputLabel value="N°: " style="margin-right:10px;"/>
+						<h:outputLabel value="N°: " style="margin-right:10px;" />
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.numero}" />
 					</div>
 					<div>
-						<h:outputLabel value="Bairro: " style="margin-right:10px;"/>
+						<h:outputLabel value="Bairro: " style="margin-right:10px;" />
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.bairro}" />
 					</div>
 					<div>
@@ -190,20 +196,20 @@
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.cep}" />
 					</div>
 					<div>
-						<h:outputLabel value="Estado:" style="margin-right:10px;"/>
+						<h:outputLabel value="Estado:" style="margin-right:10px;" />
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.estado}" />
 					</div>
 					<div>
-						<h:outputLabel value="CPF: " style="margin-right:10px;"/>
+						<h:outputLabel value="CPF: " style="margin-right:10px;" />
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.cpf}" />
 					</div>
 					<div>
 
-						<h:outputLabel value="Observações: " style="margin-right:10px;"/>
+						<h:outputLabel value="Observações: " style="margin-right:10px;" />
 						<h:outputText value="#{pessoaFisicaBean.pessoaFisica.descricao}" />
 					</div>
 				</b:column>
-			
+
 
 
 			</h:form>

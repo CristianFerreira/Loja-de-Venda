@@ -70,7 +70,8 @@
 
 
 				<p:column headerText="Opções" class="centralizarTxtColuna"
-					style="width: 100px" exportable="false">
+					style="width: 100px" exportable="false"
+					rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						actionListener="#{produtoBean.prepararNovoProduto}"
 						oncomplete="PF('dlgProdutoEditar').show();"
@@ -108,6 +109,7 @@
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo Cadastro"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}"
 						actionListener="#{produtoBean.prepararNovoProduto}"
 						oncomplete="PF('dlgProdutoNovo').show();"
 						update=":formCriarProduto"
@@ -154,213 +156,205 @@
 
 		</h:form>
 
-		
-
-		
 
 
-					<p:dialog widgetVar="dlgProdutoExcluir" closable="false"
-						draggable="false" resizable="false" modal="true"
-						appendTo="@(body)" header="Excluir esse produto?">
 
-						<h:form id="formProdutoExcluir">
-							<h:panelGrid id="pnlProdutoExcluir" columns="2"
-								style="text-align: left;margin-top:10px;padding: 0px 61px;">
-								<h:outputText value="Código:"
-								style=" font-weight: 700; font-size: 18px; margin-right:10px; margin-left: 35px;" />
-							<h:outputText value="#{produtoBean.produto.codigo}"
-								style="font-size: 18px;" />
 
-							<h:outputText value="Descrição:"
-								style="font-weight: 700; font-size: 18px; margin-right:10px;    margin-left: 12px;" />
-							<h:outputText value="#{produtoBean.produto.descricao}"
-								style="font-size: 18px;" />
 
-							</h:panelGrid>
-							<h:panelGrid columns="2" style="margin-top:10px;">
-								<p:commandButton value="Excluir" styleClass="botaoModal"
-									style="color: #fff !important;background-color: #d0b3b3 !important;    border-color: #d0b3b3 !important;
+		<p:dialog widgetVar="dlgProdutoExcluir" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Excluir esse produto?">
+
+			<h:form id="formProdutoExcluir">
+				<h:panelGrid id="pnlProdutoExcluir" columns="2"
+					style="text-align: left;margin-top:10px;padding: 0px 61px;">
+					<h:outputText value="Código:"
+						style=" font-weight: 700; font-size: 18px; margin-right:10px; margin-left: 35px;" />
+					<h:outputText value="#{produtoBean.produto.codigo}"
+						style="font-size: 18px;" />
+
+					<h:outputText value="Descrição:"
+						style="font-weight: 700; font-size: 18px; margin-right:10px;    margin-left: 12px;" />
+					<h:outputText value="#{produtoBean.produto.descricao}"
+						style="font-size: 18px;" />
+
+				</h:panelGrid>
+				<h:panelGrid columns="2" style="margin-top:10px;">
+					<p:commandButton value="Excluir" styleClass="botaoModal"
+						style="color: #fff !important;background-color: #d0b3b3 !important;    border-color: #d0b3b3 !important;
     					background-image: -webkit-linear-gradient(#d0b3b3, #d0b3b3, #d0b3b3) !important;;
 						border-radius: 4px !important;font-size: 16px !important;"
-									actionListener="#{produtoBean.excluirProduto}"
-									update=":msgInfo :formProduto:tblProduto"
-									oncomplete="PF('dlgProdutoExcluir').hide(); PF('tabelaProduto').clearFilters(); " />
-								<p:commandButton value="Cancelar"
-									style="color: #000;background-color: #fff !important;
+						actionListener="#{produtoBean.excluirProduto}"
+						update=":msgInfo :formProduto:tblProduto"
+						oncomplete="PF('dlgProdutoExcluir').hide(); PF('tabelaProduto').clearFilters(); " />
+					<p:commandButton value="Cancelar"
+						style="color: #000;background-color: #fff !important;
 					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
 					    border-radius: 4px !important ; padding: 5px 39px; margin-left: 5px;font-size: 16px;"
-									onclick="PF('dlgProdutoExcluir').hide();" />
-							</h:panelGrid>
-						</h:form>
-					</p:dialog>
+						onclick="PF('dlgProdutoExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
 
 
-					<p:dialog widgetVar="dlgProdutoEditar" closable="false"
-						draggable="false" resizable="false" modal="true"
-						appendTo="@(body)" header="Produto - Editar">
-						<h:form id="formProdutoEditar">
-							<h:panelGrid id="pnlProdutoEditar" style="padding:0px 20px 1px 0px">
+		<p:dialog widgetVar="dlgProdutoEditar" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Produto - Editar">
+			<h:form id="formProdutoEditar">
+				<h:panelGrid id="pnlProdutoEditar" style="padding:0px 20px 1px 0px">
 
-								<h:panelGrid columns="2" style="margin-left: auto;">
-									<h4
-										style="font-size: 16px; font-weight: 600; padding-left: 11px;">Descrição:</h4>
-									<p:inputText maxlength="50" size="29"
-										style="border-radius: 5px; height: 31px;"
-										value="#{produtoBean.produto.descricao}">
-										<f:validateBean />
-									</p:inputText>
-								</h:panelGrid>
-								<h:panelGrid columns="4" style="margin-left: auto;">
-									<h4
-										style="font-size: 16px; font-weight: 600; padding-left: 11px;">Preço:</h4>
-									<p:inputText maxlength="15" size="9"
-										style="border-radius: 5px; height: 31px;"
-										value="#{produtoBean.produto.preco}"
-										converterMessage="Informe um valor válido para o campo preço">
-										<f:validateBean />
-										<f:convertNumber pattern="0.00" />
-									</p:inputText>
+					<h:panelGrid columns="2" style="margin-left: auto;">
+						<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Descrição:</h4>
+						<p:inputText maxlength="50" size="29"
+							style="border-radius: 5px; height: 31px;"
+							value="#{produtoBean.produto.descricao}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
+					<h:panelGrid columns="4" style="margin-left: auto;">
+						<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Preço:</h4>
+						<p:inputText maxlength="15" size="9"
+							style="border-radius: 5px; height: 31px;"
+							value="#{produtoBean.produto.preco}"
+							converterMessage="Informe um valor válido para o campo preço">
+							<f:validateBean />
+							<f:convertNumber pattern="0.00" />
+						</p:inputText>
 
-									<h4
-										style="font-size: 16px; font-weight: 600; padding-left: 11px;">Qntd:</h4>
-									<p:inputText maxlength="15" size="7"
-										style="border-radius: 5px; height: 31px;"
-										converterMessage="Informe um valor válido para o campo preço"
-										value="#{produtoBean.produto.quantidade}">
-										<f:validateBean />
-									</p:inputText>
-								</h:panelGrid>
+						<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Qntd:</h4>
+						<p:inputText maxlength="15" size="7"
+							style="border-radius: 5px; height: 31px;"
+							converterMessage="Informe um valor válido para o campo preço"
+							value="#{produtoBean.produto.quantidade}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
 
-								<h:panelGrid columns="2" style="margin-left: auto;">
-									<h4
-										style="font-size: 16px; font-weight: 600; padding-left: 11px;">Fabricante:</h4>
-									<p:selectOneMenu value="#{produtoBean.produto.fabricante}"
-										style="width: 244px;" converter="fabricanteConverter">
+					<h:panelGrid columns="2" style="margin-left: auto;">
+						<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Fabricante:</h4>
+						<p:selectOneMenu value="#{produtoBean.produto.fabricante}"
+							style="width: 244px;" converter="fabricanteConverter">
 
-										<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
-										<f:selectItems value="#{produtoBean.listaDeFabricantes}"
-											var="fabricante" itemValue="#{fabricante}"
-											itemLabel="#{fabricante.nome}" />
-										<f:validateBean />
-									</p:selectOneMenu>
-								</h:panelGrid>
+							<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
+							<f:selectItems value="#{produtoBean.listaDeFabricantes}"
+								var="fabricante" itemValue="#{fabricante}"
+								itemLabel="#{fabricante.nome}" />
+							<f:validateBean />
+						</p:selectOneMenu>
+					</h:panelGrid>
 
-								<h:panelGrid columns="2" style="padding: 2px 7px;">
-									<p:commandButton value="Editar" styleClass="botaoModal"
-										style="left:9px;color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
+					<h:panelGrid columns="2" style="padding: 2px 7px;">
+						<p:commandButton value="Editar" styleClass="botaoModal"
+							style="left:9px;color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
 						background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
 						border-radius: 4px !important;font-size: 16px !important;"
-										actionListener="#{produtoBean.editarProduto}"
-										update=":msgInfo :formProduto:tblProduto"
-										oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
-									<p:commandButton value="Cancelar"
-										style="color: #000;background-color: #fff !important;
+							actionListener="#{produtoBean.editarProduto}"
+							update=":msgInfo :formProduto:tblProduto"
+							oncomplete="validateRequestEdit(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
+						<p:commandButton value="Cancelar"
+							style="color: #000;background-color: #fff !important;
 					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
 					    border-radius: 4px !important ;    padding: 5px 39px; left: 16px; font-size: 16px;"
-										onclick="PF('dlgProdutoEditar').hide();" />
-								</h:panelGrid>
+							onclick="PF('dlgProdutoEditar').hide();" />
+					</h:panelGrid>
 
-							</h:panelGrid>
+				</h:panelGrid>
 
-						</h:form>
+			</h:form>
 
-					</p:dialog>
-
-
-
-					<p:dialog widgetVar="dlgProdutoNovo" closable="false"
-						draggable="false" resizable="false" modal="true"
-						appendTo="@(body)" header="Cadastrar Produto">
+		</p:dialog>
 
 
-						<h:form id="formCriarProduto">
-							<h:panelGrid id="pnlProduto" style="padding: 0px 20px 1px 0px;">
-								<h:panelGrid columns="2" style="margin-left: auto;">
-									<h4
-										style="font-size: 16px; font-weight: 600; padding-left: 11px;">Descrição:</h4>
-									<p:inputText maxlength="50" size="29"
-										style="border-radius: 5px; height: 31px;"
-										value="#{produtoBean.produto.descricao}">
-										<f:validateBean />
-									</p:inputText>
-								</h:panelGrid>
-								<h:panelGrid columns="4" style="margin-left: auto;">
-									<h4
-										style="font-size: 16px; font-weight: 600; padding-left: 11px;">Preço:</h4>
-									<p:inputText maxlength="15" size="9"
-										style="border-radius: 5px; height: 31px;"
-										value="#{produtoBean.produto.preco}"
-										converterMessage="Informe um valor válido para o campo preço">
-										<f:validateBean />
-										<f:convertNumber pattern="0.00" />
-									</p:inputText>
 
-									<h4
-										style="font-size: 16px; font-weight: 600; padding-left: 11px;">Qntd:</h4>
-									<p:inputText maxlength="15" size="7"
-										style="border-radius: 5px; height: 31px;"
-										converterMessage="Informe um valor válido para o campo preço"
-										value="#{produtoBean.produto.quantidade}">
-										<f:validateBean />
-									</p:inputText>
-								</h:panelGrid>
+		<p:dialog widgetVar="dlgProdutoNovo" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Cadastrar Produto">
 
-								<h:panelGrid columns="2" style="margin-left: auto;">
-									<h4
-										style="font-size: 16px; font-weight: 600; padding-left: 11px;">Fabricante:</h4>
-									<p:selectOneMenu value="#{produtoBean.produto.fabricante}"
-										style="width: 244px;" converter="fabricanteConverter">
 
-										<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
-										<f:selectItems value="#{produtoBean.listaDeFabricantes}"
-											var="fabricante" itemValue="#{fabricante}"
-											itemLabel="#{fabricante.nome}" />
-										<f:validateBean />
-									</p:selectOneMenu>
-								</h:panelGrid>
+			<h:form id="formCriarProduto">
+				<h:panelGrid id="pnlProduto" style="padding: 0px 20px 1px 0px;">
+					<h:panelGrid columns="2" style="margin-left: auto;">
+						<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Descrição:</h4>
+						<p:inputText maxlength="50" size="29"
+							style="border-radius: 5px; height: 31px;"
+							value="#{produtoBean.produto.descricao}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
+					<h:panelGrid columns="4" style="margin-left: auto;">
+						<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Preço:</h4>
+						<p:inputText maxlength="15" size="9"
+							style="border-radius: 5px; height: 31px;"
+							value="#{produtoBean.produto.preco}"
+							converterMessage="Informe um valor válido para o campo preço">
+							<f:validateBean />
+							<f:convertNumber pattern="0.00" />
+						</p:inputText>
 
-								<h:panelGrid columns="2" style="padding: 2px 7px;">
-									<p:commandButton value="Salvar" styleClass="botaoModal"
-										style=" left:9px;color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
+						<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Qntd:</h4>
+						<p:inputText maxlength="15" size="7"
+							style="border-radius: 5px; height: 31px;"
+							converterMessage="Informe um valor válido para o campo preço"
+							value="#{produtoBean.produto.quantidade}">
+							<f:validateBean />
+						</p:inputText>
+					</h:panelGrid>
+
+					<h:panelGrid columns="2" style="margin-left: auto;">
+						<h4 style="font-size: 16px; font-weight: 600; padding-left: 11px;">Fabricante:</h4>
+						<p:selectOneMenu value="#{produtoBean.produto.fabricante}"
+							style="width: 244px;" converter="fabricanteConverter">
+
+							<f:selectItem itemValue="" itemLabel="Selecione um fabricante" />
+							<f:selectItems value="#{produtoBean.listaDeFabricantes}"
+								var="fabricante" itemValue="#{fabricante}"
+								itemLabel="#{fabricante.nome}" />
+							<f:validateBean />
+						</p:selectOneMenu>
+					</h:panelGrid>
+
+					<h:panelGrid columns="2" style="padding: 2px 7px;">
+						<p:commandButton value="Salvar" styleClass="botaoModal"
+							style=" left:9px;color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
 						background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
 						border-radius: 4px !important;font-size: 16px !important;"
-										actionListener="#{produtoBean.salvar}"
-										update=":msgInfo :formProduto:tblProduto"
-										oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
-									<p:commandButton value="Cancelar"
-										style="color: #000;background-color: #fff !important;
+							actionListener="#{produtoBean.salvar}"
+							update=":msgInfo :formProduto:tblProduto"
+							oncomplete="validateRequestCreate(xhr, status, args); PF('tabelaProduto').clearFilters(); " />
+						<p:commandButton value="Cancelar"
+							style="color: #000;background-color: #fff !important;
 					border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
 					    border-radius: 4px !important ;    padding: 5px 39px; left: 16px; font-size: 16px;"
-										onclick="PF('dlgProdutoNovo').hide();" />
-								</h:panelGrid>
+							onclick="PF('dlgProdutoNovo').hide();" />
+					</h:panelGrid>
 
-							</h:panelGrid>
+				</h:panelGrid>
 
-						</h:form>
+			</h:form>
 
-						<script type="text/javascript">
-							function validateRequestCreate(xhr, status, args) {
-								if (args.validationFailed) {
-									PF('dlgProdutoNovo').jq.effect("shake", {
-										times : 5
-									}, 100);
-								} else {
-									PF('dlgProdutoNovo').hide();
-								}
-							}
+			<script type="text/javascript">
+				function validateRequestCreate(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgProdutoNovo').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgProdutoNovo').hide();
+					}
+				}
 
-							function validateRequestEdit(xhr, status, args) {
-								if (args.validationFailed) {
-									PF('dlgProdutoEditar').jq.effect("shake", {
-										times : 5
-									}, 100);
-								} else {
-									PF('dlgProdutoEditar').hide();
-								}
-							}
-						</script>
+				function validateRequestEdit(xhr, status, args) {
+					if (args.validationFailed) {
+						PF('dlgProdutoEditar').jq.effect("shake", {
+							times : 5
+						}, 100);
+					} else {
+						PF('dlgProdutoEditar').hide();
+					}
+				}
+			</script>
 
-					</p:dialog>
+		</p:dialog>
 	</ui:define>
 </ui:composition>
 </html>

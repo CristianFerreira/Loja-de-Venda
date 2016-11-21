@@ -54,7 +54,7 @@
 
 						</b:commandButton>
 					</h:panelGrid>
-					<div style="margin-left:300px">
+					<div style="margin-left: 300px">
 						<h:panelGrid columns="12" id="pnlCliente"
 							style="margin-top:10px;margin-bottom: 10px;">
 
@@ -171,7 +171,7 @@
 				scrollHeight="80">
 
 				<p:column headerText="Produto" class="centralizarTxtColuna"
-					style="width:300px">
+					style="width:280px">
 					<h:outputText value="#{item.produto.descricao}" />
 				</p:column>
 
@@ -197,7 +197,7 @@
 
 
 				<p:column headerText="Remover" class="centralizarTxtColuna"
-					style="width:50px">
+					style="width:70px">
 					<p:commandButton icon="ui-icon-minus"
 						actionListener="#{vendaBean.removerItens(item)}"
 						update="formVenda:tblItens :formVenda:pnlFinaliza" />
@@ -208,16 +208,22 @@
 			<p:separator
 				style="margin-left: 80px !important;margin-right: 80px !important;" />
 
-			<h:panelGrid columns="1" id="pnlFinaliza">
-				<p:commandButton value="Finalizar Venda"
+			<h:panelGrid id="pnlFinaliza"
+				style="width: 100%;margin: 0px 0px 0px -80px; text-align: right;">
+				<b:commandButton value="Finalizar Venda"
 					rendered="#{vendaBean.venda.valor != '0.00' and vendaBean.clienteFinal.codigo != null}"
 					actionListener="#{vendaBean.prepararNovaVenda}"
 					oncomplete="PF('dlgFinalizarVenda').show();"
-					update=":formFinalizarVenda:pnlFinalizarVenda"
-					style="font-size: medium;" />
+					update=":formFinalizarVenda"
+					styleClass="btnPrimary">
+					<f:actionListener
+						type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+				</b:commandButton>
 
 			</h:panelGrid>
 
+			<p:separator
+				style="margin-left: 80px !important;margin-right: 80px !important;" />
 
 		</h:form>
 

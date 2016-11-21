@@ -21,7 +21,7 @@ div.scroll {
 }
 
 .aFooder {
-	color: #fff;
+	color: #100f0f;
 }
 
 .footerTxt {
@@ -122,9 +122,11 @@ h2 {
 }
 
 .txtFotoHome {
+	color: #fff;
+	text-align: center;
 	position: relative;
-	padding-top: 35%;
-	padding-bottom: 35%;
+	padding-top: 25%;
+	padding-bottom: 66px;
 }
 
 .txtFooterCartaoCredito {
@@ -141,33 +143,106 @@ h2 {
 	height: 70px;
 	margin-top: 15px;
 	padding: 7px 16px;
-	border: 2px solid #775582;
+	border: 2px solid #e27465;
 	border-radius: 100% !important;
 	font-size: 40px;
 	color: #fff;
 	text-shadow: #b3b0b0 2px 2px 2px;
 	background: 0 0;
-	background-color: #775582;
+	background-color: #dc7264;
 }
 
 .buttonHome:hover {
-	background-color: #f1f1f1;
-	border-color: #f1f1f1;
+border: 2px solid #e27465;
+	background-color: #e27465;
+
 	color: #fff;
 }
 
 .buttonHome:visited {
-	border-color: #f1f1f1;
-	background-color: #f1f1f1;
+border: 2px solid #e27465;
+	background-color: #e27465;
 	color: #fff;
-	background-color: #f1f1f1;
 }
 
 .buttonHome:focus {
-	border-color: #f1f1f1;
-	background-color: #f1f1f1;
+border: 2px solid #e27465;
+	background-color: #e27465;
 	color: #fff;
-	background-color: #f1f1f1;
+}
+
+body {
+	font-family: 'Bree Serif', arial !important;
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+.menu {
+	font-size: 17px;
+	margin-left: 60px;
+	padding: 20px;
+	padding: 20px;
+	margin: 0px;
+	z-index: 101;
+	/* float: left; */
+	width: 100%;
+	background-color: #e27465;
+	color: #fff;
+	list-style: none;
+	/* font: 80% Tahoma; */
+	position: fixed;
+	border-bottom-style: outset;
+	border-color: rgba(249, 249, 249, 0.13);
+}
+
+.navBarTransparente{
+	font-size: 17px;
+	margin-left: 60px;
+	padding: 20px;
+	padding: 20px;
+	margin: 0px;
+	z-index: 101;
+	/* float: left; */
+	width: 100%;
+	background-color: transparent;
+	color: red;
+	list-style: none;
+	/* font: 80% Tahoma; */
+	position: fixed;
+	border:none;
+	
+}
+
+.overlay {
+    min-height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 700px;
+	z-index: 1;
+}
+
+.circulo{
+		width:130px;
+		height:130px;
+		border-radius:50%;
+		border:3px solid #000;
+		z-index:5;
+		background:#000;
+		position:relative;
+		}
+		.img{
+			z-index:1;
+			width:130px;
+                        height:130px
+                        background-position:center;
+			opacity:0.5;
+		}
+
+.CorMenuTransparente{
+color: #fff; 
 }
 
 }
@@ -178,6 +253,7 @@ h2 {
 	<h:outputScript name="jquery.easing.1.3.js" library="jquery" />
 	<h:outputScript name="jquery.bxslider.min.js" library="jquery" />
 	<h:outputStylesheet name="jquery.bxslider.css" library="css" />
+	<h:outputScript name="smooth-scroll.js" library="jquery" />
 </h:head>
 <div id="fb-root"></div>
 
@@ -185,52 +261,59 @@ h2 {
 
 
 	<header>
-		<b:navBar brand="" brandhref="default.xhtml" inverse="true"
-			fixed="top">
-			<b:navbarLinks>
-				<b:navLink value="Inicio" href="#"></b:navLink>
-				<b:navLink value="Sobre Nós" href="#about"></b:navLink>
-				<b:navLink value="Localização" href="#link"></b:navLink>
-				<b:navLink value="Contato" href="#link"></b:navLink>
-			</b:navbarLinks>
-			<h:form styleClass="navbar-form navbar-right">
-				<div class="form-group"></div>
-				<div class="form-group"></div>
-			</h:form>
-		</b:navBar>
+
+		<div class="navBar navBarTransparente">
+			<a class="sobre sobreScroll CorMenuTransparente" href="#sobre" style=" padding: 10px; 	color: #fff;">Sobre
+				Nós</a> <a class="mapaScroll CorMenuTransparente" href="#mapaScroll"
+				style=" padding: 10px; 	color: #fff;">Localização</a> <a
+				class="contatoScroll CorMenuTransparente" href="#contatoScroll"
+				style=" padding: 10px; 	color: #fff;">Contato</a>
+		</div>
+
+
 		<div
-			style="background-image: url(#{request.contextPath}/resources/imagesHome/header.jpg); text-align: center; color: #f8f8f8; background-size: cover; opacity: 0.9; filer: alpha(opacity = 65);">
-			<b:container styleClass="containerHome">
+			style="min-height: 100vh;background-image: url(#{request.contextPath}/resources/imagesHome/header.jpg); text-align: center; color: #f8f8f8; background-size: cover; opacity: 0.9; filer: alpha(opacity = 65); height: 700px;">
+
+		</div>
+
+		<div class="overlay">
+		<b:container styleClass="containerHome">
 				<b:row>
-					<b:column col-lg="12">
+					<b:column col-lg="12" >
 						<div class="txtFotoHome">
 							<h1
-								style="text-transform: uppercase; text-shadow: #775582 4px 4px 4px; font-weight: 900; font-size: 90px; line-height: 75px; font-family: 'Bree Serif', arial;">Happy
+								style="text-transform: uppercase;font-weight: 900; font-size: 90px; line-height: 75px; font-family: 'Bree Serif', arial;">Happy
 								Kids</h1>
 							<h3
-								style="font-style: italic; text-shadow: #775582 4px 4px 4px; font-weight: 600; line-height: 30px; margin-bottom: 25px; font-family: 'Bree Serif', arial;">Vestindo
+								style="font-style: italic; font-weight: 600; line-height: 30px; margin-bottom: 25px; font-family: 'Bree Serif', arial;">Vestindo
 								com alegria</h3>
-							<a href="#about"><b:button icon-awesome="angle-double-down"
+							<a href="#sobre" class="sobre"><b:button
+									icon-awesome="angle-double-down"
 									styleClass="buttonHome buttonHome:hover buttonHome:visited buttonHome:focus" /></a>
 						</div>
 					</b:column>
 				</b:row>
 			</b:container>
 		</div>
+
+	
+
+
 	</header>
 
-	<b:container styleClass="container1 " style="width:100%">
+	<b:container styleClass="container1 sobre" style="width:100%"
+		id="sobre">
 		<b:column col-md="12">
 
 			<h2 style="text-align: center;">Sobre Nós</h2>
-			<p>A CARMIM nasceu em 1982 da vontade de seu fundador, Renato
+			<p>A Happy Kids nasceu em 1982 da vontade de seu fundador, Renato
 				Caliman de criar um bom jeans nacional. A marca começou com uma
 				linha de jeans e acessórios feminino, seguida da linha masculina em
 				1985, possibilitando também aos homens ter um jeans com o design e
-				caimento inovadores no mercado. Logo em 1988, a CARMIM abriu sua
-				primeira loja, localizada na rua Oscar Freire, onde posteriormente
+				caimento inovadores no mercado. Logo em 1988, a Happy Kids abriu sua
+				primeira loja, localizada na rua Farias Lobato, onde posteriormente
 				seria considerada a oitava mais luxuosa rua de compras do mundo. A
-				CARMIM é referencia da moda brasileira, busca novidades e
+				Happy Kids é referencia da moda brasileira, busca novidades e
 				inspirações nas principais metrópoles do mundo para compor suas
 				coleções e seu estilo de vida. Acredita que a sofisticação está nos
 				detalhes da rotina das grandes cidades e que se vestir bem é uma
@@ -241,34 +324,43 @@ h2 {
 
 
 		</b:column>
-		<b:column col-md="12" style="width:100%">
+		 <div class="circulo">
+  		<div class="img" style="background-image:url('http://1.bp.blogspot.com/-a632cWhzU7E/VNT0MncCZRI/AAAAAAAAAeo/a6yrdo08akQ/s1600/02.jpg');"></div>
+
+  		<div class="dentro">
+        	<p>Um testo vai aqui para descrever a imagem</p>
+        </div>
+
+  </div>
+		
+		<!-- <b:column col-md="12" style="width:100%">
 			<div style="margin-bottom: 30px; margin-top: 80px;">
-				<!-- <b:carousel id="imgCriancas"
+				<b:carousel id="imgCriancas"
 					style=" position:relative; width: 100%;"
 					interval="4500" show-controls="true">
 
 
 
 					<b:carouselItem tooltip-container=""
-						caption="Valladolid has a nice central park.">-->
-					<div>
-						<b:image library="imagesHome" name="teste1.jpg"
-							style="width: 100%;"
-							tooltip="Great water fountain in Valladolid, Spain" />
-							</div>
+						caption="Valladolid has a nice central park.">
+				<div>
+					<b:image library="imagesHome" name="teste1.jpg"
+						style="width: 100%;"
+						tooltip="Great water fountain in Valladolid, Spain" />
+				</div>
 
-					<!-- </b:carouselItem>
+				</b:carouselItem>
 
-				</b:carousel> -->
+				</b:carousel>
 			</div>
-		</b:column>
+		</b:column> -->
 
 	</b:container>
 
 	<b:container
 		style="width: 100%;background-color: #47444a;text-align: center; color: #fff;"
 		styleClass="container1">
-		<h2 style="text-align: center; margin-bottom: 50px;">Localização</h2>
+		<h2 style="text-align: center; margin-bottom: 50px;" id="mapaScroll">Localização</h2>
 
 		<b:column col-sm="1" />
 		<b:column col-sm="5">
@@ -280,6 +372,9 @@ h2 {
 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.935618434546!2d-51.13714648488567!3d-30.010004981894816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95197655b1085c6d%3A0xccb2b1832c5331ca!2sAv.+Baltazar+de+Oliveira+Garc%C3%ADa%2C+891+-+S%C3%A3o+Sebasti%C3%A3o%2C+Porto+Alegre+-+RS%2C+91130-001!5e0!3m2!1sen!2sbr!4v1475624859334"
 					style="" />
 			</div>
+			<div>Av. Baltazar de Oliveira García, 891 - São Sebastião Av.
+				Baltazar de Oliveira García, 891 - São Sebastião, Porto Alegre - RS
+			</div>
 		</b:column>
 
 		<b:column col-sm="5">
@@ -290,32 +385,35 @@ h2 {
 				<iframe
 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.6997965337373!2d-51.13231508528318!3d-29.988056381902854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951976e771524871%3A0xe17b7ad15bf02ecc!2sAv.+Martins+Bastos%2C+471+-+Sarandi%2C+Porto+Alegre+-+RS%2C+91120-420!5e0!3m2!1sen!2sbr!4v1475630611204" />
 			</div>
+			<div>Av. Martins Bastos, 471 - Sarandi, Porto Alegre - RS</div>
+			<div></div>
+
 		</b:column>
 		<b:column col-sm="1" />
 
 	</b:container>
 
 	<b:container styleClass="container1"
-		style="width: 100%;text-align: center;">
+		style="width: 100%;text-align: center;" id="contatoScroll">
 		<div>
-			<h2 style="color: #775582">Contato</h2>
+			<h2 style="color: #e27465">Contato</h2>
 			<div style="margin-top: 50px;">
 				<b:column col-sm="4" style="text-align:center">
 					<i class="fa fa-phone fa-3x sr-contact"
-						style="color: #775582 !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+						style="color: #e27465 !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
 					<p style="text-align: center">(51) 3024-7551</p>
 				</b:column>
 
 				<b:column col-sm="4">
 					<i class="fa fa-clock-o fa-3x sr-contact"
-						style="color: #775582 !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+						style="color: #e27465 !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
 					<p style="text-align: center">Seg á Sex das 14 às 18 hrs Sábado
 						das 10 às 16 hrs</p>
 				</b:column>
 
 				<b:column col-sm="4" style="text-align:center">
 					<i class="fa fa-envelope-o fa-3x sr-contact"
-						style="color: #775582 !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+						style="color: #e27465 !important; visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
 					<p style="text-align: center">
 						<a class="aBody" href="mailto:happykidsbrecho@hotmail.com">happykidsbrecho@hotmail.com</a>
 					</p>
@@ -326,13 +424,13 @@ h2 {
 
 	</b:container>
 
-	<b:container style="background-color:#775582; width:100%;"
+	<b:container style="background-color:#e27465; width:100%;"
 		styleClass="footerTxt">
 		<footer>
 			<div>
 
-				<div class="col-sm-3">
-					<a class="aFooder" href="login.xhtml">Acesso Restrito</a>
+				<div class="col-sm-3" style="margin-top: 65px;">
+					<a style="color: #fff;" href="login.xhtml">Acesso Restrito</a>
 				</div>
 
 			</div>
@@ -419,6 +517,46 @@ h2 {
 		js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&amp;version=v2.8&amp;appId=1222747444433418";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".sobre").click(function(event) {
+			event.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(this.hash).offset().top
+			}, 800);
+		});
+		$(".mapaScroll").click(function(event) {
+			event.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(this.hash).offset().top
+			}, 800);
+		});
+
+		$(".contatoScroll").click(function(event) {
+			event.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(this.hash).offset().top
+			}, 800);
+		});
+	});
+	
+	
+	$(function() {
+		  $(window).on("scroll", function() {
+		    if($(window).scrollTop() > 100) {
+		      $(".navBar").removeClass("navBarTransparente");
+	
+		      $(".navBar").addClass("menu");
+		    } else {
+		      $(".navBar").removeClass("menu");
+		      $(".navBar").addClass("navBarTransparente");
+		    }
+		  });
+		});
+	
 </script>
 
 

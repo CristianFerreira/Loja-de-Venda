@@ -9,9 +9,9 @@
 
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://intracker.com.br:3306/fdb</property>
-        <property name="connection.username">fdb</property>
-        <property name="connection.password">fdb</property>
+        <property name="connection.url">jdbc:mysql://db4free.net:3306/intracker</property>
+        <property name="connection.username">facfdb</property>
+        <property name="connection.password">facfdb@2016</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>

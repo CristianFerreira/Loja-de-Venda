@@ -215,7 +215,7 @@ td {
 
 				<p:dialog widgetVar="dlgDetalhesVenda" closable="true"
 					draggable="false" resizable="false" modal="true" appendTo="@(body)"
-					style="margin-top: -50px; width: 1000px !important;">
+					style="">
 
 					<h:panelGrid columns="1" style="">
 						<h:outputText value="Detalhes da venda"
@@ -226,21 +226,21 @@ td {
 					</h:panelGrid>
 					<p:dataTable id="tblVenda"
 						emptyMessage="Nenhum registro encontrado."
-						value="#{vendaBean.venda}" var="venda" style="width: 1200px;">
+						value="#{vendaBean.venda}" var="venda" style="width: 1000px;">
 						<p:column headerText="Código" class="centralizarTxtColuna"
 							style="width:60px">
 							<h:outputText value="#{venda.codigo}" />
 						</p:column>
 
 						<p:column headerText="Data" class="centralizarTxtColuna"
-							style="width:200px">
+							style="width:100px">
 							<h:outputText value="#{venda.data}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
 
 						<p:column headerText="Valor Total" class="centralizarTxtColuna"
-							style="width:200px">
+							style="width:100px">
 							<h:outputText value="R$ #{venda.valor}">
 								<f:convertNumber pattern="0.00" />
 							</h:outputText>
@@ -273,7 +273,7 @@ td {
 					<p:dataTable id="tblItens"
 						emptyMessage="Nenhum registro encontrado."
 						value="#{vendaBean.venda.itensDaVenda}" var="itemVenda"
-						style="width: 1200px;" scrollable="true" scrollHeight="150">
+						style="width: 1000px;" scrollable="true" scrollHeight="150">
 						<p:column headerText="Produto">
 							<h:outputText value="#{itemVenda.produto.descricao}"
 								style="text-align:center;" />

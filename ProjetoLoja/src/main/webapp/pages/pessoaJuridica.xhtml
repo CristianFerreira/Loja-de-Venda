@@ -69,6 +69,7 @@
 				<p:column headerText="Opções" class="centralizarTxtColuna"
 					style="width: 130px">
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}"
 						oncomplete="PF('dlgPessoaJuridicaEditar').show();"
 						update=":formPessoaJuridicaEditar:pnlPessoaJuridicaEditar">
 						<f:setPropertyActionListener
@@ -88,6 +89,7 @@
 					<h:outputText value=" " />
 
 					<p:commandButton style="color:#red;" icon="ui-icon-trash"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}"
 						title="Excluir"
 						oncomplete="PF('dlgPessoaJuridicaExcluir').show();"
 						update=":formPessoaJuridicaExcluir:pnlPessoaJuridicaExcluir">
@@ -101,10 +103,11 @@
 
 				<f:facet name="footer">
 					<b:commandButton value="Novo Cadastro"
+						rendered="#{autenticacaoBean.funcionarioLogado.tipo == 'Administrador'}"
 						actionListener="#{pessoaJuridicaBean.prepararNovaPessoaJuridica}"
 						oncomplete="PF('dlgPessoaJuridicaNovo').show();"
 						update=":formCriarPessoaJuridica"
-						style="color: #fff;background-color: #775582;border-color: #555555;font-size: 16px !important;width: 163px;">
+						styleClass="btnPrimary">
 						<f:actionListener
 							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</b:commandButton>
