@@ -214,8 +214,7 @@
 					rendered="#{vendaBean.venda.valor != '0.00' and vendaBean.clienteFinal.codigo != null}"
 					actionListener="#{vendaBean.prepararNovaVenda}"
 					oncomplete="PF('dlgFinalizarVenda').show();"
-					update=":formFinalizarVenda"
-					styleClass="btnPrimary">
+					update=":formFinalizarVenda" styleClass="btnPrimary">
 					<f:actionListener
 						type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 				</b:commandButton>
@@ -232,29 +231,49 @@
 			widgetVar="dlgFinalizarVenda" appendTo="@(body)">
 
 			<h:form id="formFinalizarVenda">
+				<b:column col-sm="12" style="padding-bottom: 20px;">
+					<b:column col-sm="4"></b:column>
+					<b:column col-sm="6" id="pnlFinalizarVenda"
+						style="text-align: justify;">
+						<div>
+							<h:outputText value="Data: " />
+							<h:outputText value="#{vendaBean.venda.data}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</div>
 
-				<h:panelGrid id="pnlFinalizarVenda" columns="2">
-					<h:outputText value="Data: " />
-					<h:outputText value="#{vendaBean.venda.data}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
+						<div>
+							<h:outputText value="Cliente: " />
+							<h:outputText value="#{vendaBean.clienteFinal.nome}" />
+						</div>
 
-					<h:outputText value="Cliente: " />
-					<h:outputText value="#{vendaBean.clienteFinal.nome}" />
-
-					<h:outputText value="Funcionário: " />
-					<h:outputText value="#{vendaBean.venda.funcionario.nome}" />
-					<h:outputText value="Valor Total" />
-					<h:outputText value="#{vendaBean.venda.valor}" />
-				</h:panelGrid>
-				<h:panelGrid columns="2">
-					<p:commandButton value="Salvar"
+						<div>
+							<h:outputText value="Funcionário: " />
+							<h:outputText value="#{vendaBean.venda.funcionario.nome}" />
+						</div>
+						<div>
+							<h:outputText value="Valor Total: R$ " />
+							<h:outputText value="#{vendaBean.venda.valor}" />
+						</div>
+					</b:column>
+					<b:column col-sm="2"></b:column>
+				</b:column>
+				<b:column col-sm="2"></b:column>
+				<b:column col-sm="7">
+					<p:commandButton value="Confirmar" styleClass="botaoModal"
+						style="color: #fdf9f9 !important;background-color: #775582 !important;border-color: #555555 !important;
+						background-image: -webkit-linear-gradient(top, #775582, #775582) !important;
+						border-radius: 4px !important;font-size: 16px !important;"
 						actionListener="#{vendaBean.salvarVenda}"
 						update=":msgInfo formVenda:tblItens "
 						oncomplete="PF('dlgFinalizarVenda').hide());" />
-					<p:commandButton value="Voltar"
+					<p:commandButton value="Cancelar"
+						style="color: #000;background-color: #fff !important;
+						border-color: #ccc;background-image: -webkit-linear-gradient(top, #fff, #fff) !important;
+					    border-radius: 4px !important ;    padding: 5px 39px; left: 7px; font-size: 16px;"
 						onclick="PF('dlgFinalizarVenda').hide());" />
-				</h:panelGrid>
+				</b:column>
+				<b:column col-sm="3"></b:column>
 			</h:form>
 
 		</p:dialog>
