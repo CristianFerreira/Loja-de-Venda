@@ -197,32 +197,49 @@ public class VendaBean {
 
 	public void adicionarItens(Produto produto) {
 		int posicaoEncontrada = -1;
+	
+		try {
+			if (produto.getQuantidade() == 0) {
+				FacesUtil.adicionarMsgErro("Quantidade insuficiente");
+				System.out.println("qntd Adicionar: " + produto.getQuantidade());
+			} else {
 
-		for (int posicao = 0; posicao < listaDeItens.size() && posicaoEncontrada < 0; posicao++) {
-			Itens comparandoItens = listaDeItens.get(posicao);
+				for (int posicao = 0; posicao < listaDeItens.size() && posicaoEncontrada < 0; posicao++) {
+					Itens comparandoItens = listaDeItens.get(posicao);
 
-			if (comparandoItens.getProduto().equals(produto)) {
-				posicaoEncontrada = posicao;
+					if (comparandoItens.getProduto().equals(produto)) {
+						posicaoEncontrada = posicao;
+					}
+				}
+
+				Itens item = new Itens();
+				item.setProduto(produto);
+
+				ProdutoDAO pdao = new ProdutoDAO();
+
+				if (posicaoEncontrada < 0) {
+					item.setQuantidade(1);
+					item.setValor(produto.getPreco());
+					listaDeItens.add(item);
+					produto.setQuantidade(produto.getQuantidade() - 1);
+					pdao.editar(produto);
+				} else {
+					Itens itemEncontrado = listaDeItens.get(posicaoEncontrada);
+					item.setQuantidade(itemEncontrado.getQuantidade() + 1);
+					item.setValor(produto.getPreco().multiply(new BigDecimal(item.getQuantidade())));
+					listaDeItens.set(posicaoEncontrada, item);
+					produto.setQuantidade(produto.getQuantidade() - 1);
+					pdao.editar(produto);
+				}
+
+				venda.setValor(venda.getValor().add(produto.getPreco()));
+				venda.setQuantidadeTotal(venda.getQuantidadeTotal() + 1);
 			}
+		} catch (RuntimeException ex) {
+			FacesUtil.adicionarMsgErro("Erro ao adicionar");
 		}
-
-		Itens item = new Itens();
-		item.setProduto(produto);
-
-		if (posicaoEncontrada < 0) {
-			item.setQuantidade(1);
-			item.setValor(produto.getPreco());
-			listaDeItens.add(item);
-		} else {
-			Itens itemEncontrado = listaDeItens.get(posicaoEncontrada);
-			item.setQuantidade(itemEncontrado.getQuantidade() + 1);
-			item.setValor(produto.getPreco().multiply(new BigDecimal(item.getQuantidade())));
-			listaDeItens.set(posicaoEncontrada, item);
-		}
-
-		venda.setValor(venda.getValor().add(produto.getPreco()));
-		venda.setQuantidadeTotal(venda.getQuantidadeTotal() + 1);
 	}
+	// }
 
 	public void removerItens(Itens itens) {
 
@@ -235,12 +252,19 @@ public class VendaBean {
 				posicaoEncontrada = posicao;
 			}
 		}
-
+		System.out.println("produto:" + posicaoEncontrada);
 		if (posicaoEncontrada > -1) {
 			listaDeItens.remove(posicaoEncontrada);
 
 			venda.setValor(venda.getValor().subtract(itens.getValor()));
 			venda.setQuantidadeTotal(venda.getQuantidadeTotal() - itens.getQuantidade());
+
+			ProdutoDAO pdao = new ProdutoDAO();
+			System.out.println("codigo produto: " + itens.getProduto().getCodigo());
+			System.out.println("qntd produto: " + itens.getProduto().getQuantidade());
+			Produto produto = pdao.buscarPorCodigo(itens.getProduto().getCodigo());
+			produto.setQuantidade(produto.getQuantidade() + itens.getQuantidade());
+			pdao.editar(produto);
 		}
 
 	}
@@ -306,7 +330,7 @@ public class VendaBean {
 	public void selecionarCliente() {
 
 		try {
-			
+
 			if (tipoCliente.equals("cpf")) {
 				PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
 				clientePF = pessoaFisicaDAO.buscarPorCPF(buscarClientePeloTipoPF);
@@ -332,11 +356,11 @@ public class VendaBean {
 			if (tipoCliente.equals("cpf")) {
 				clientePJ = new PessoaJuridica();
 			}
-			
-			if(tipoCliente.equals("")){
+
+			if (tipoCliente.equals("")) {
 				FacesUtil.adicionarMsgErro("Informe o CPF ou CNPJ do cliente");
 			}
-			
+
 		} catch (RuntimeException ex) {
 			FacesUtil.adicionarMsgErro("Cliente não foi encontrado");
 		}

@@ -143,7 +143,7 @@
 					style="width:50px">
 					<p:commandButton icon="ui-icon-plus"
 						actionListener="#{vendaBean.adicionarItens(produto)}"
-						update="formVenda:tblItens  :formVenda:pnlFinaliza" />
+						update=":msgInfo :formVenda:tblItens  :formVenda:pnlFinaliza :formVenda:tblProduto" />
 				</p:column>
 
 
@@ -200,7 +200,7 @@
 					style="width:70px">
 					<p:commandButton icon="ui-icon-minus"
 						actionListener="#{vendaBean.removerItens(item)}"
-						update="formVenda:tblItens :formVenda:pnlFinaliza" />
+						update="formVenda:tblItens :formVenda:tblProduto :formVenda:pnlFinaliza" />
 				</p:column>
 
 
