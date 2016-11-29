@@ -286,6 +286,7 @@ public class VendaBean {
 
 	}
 
+	//salvar venda
 	public void salvarVenda() {
 		try {
 			VendaDAO vendaDAO = new VendaDAO();
